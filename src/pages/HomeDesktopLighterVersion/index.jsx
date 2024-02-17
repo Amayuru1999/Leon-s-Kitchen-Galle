@@ -617,7 +617,7 @@ const HomeDesktopLighterVersionPage = () => {
                                 </>
                               </Text>
                             </div>
-                            <div className="bg-blue_gray-100 flex flex-1 flex-col justify-end p-6 sm:px-5 rounded-[12px] w-full">
+                            <div className="bg-blue_gray-100 flex flex-1 flex-col items-center justify-center p-5 rounded-[12px] w-full">
                               <Text
                                 className="mt-[11px] mx-auto text-black-900_01 text-center text-lg tracking-[-0.36px]"
                                 size="txtPoppinsBold18"
@@ -625,7 +625,7 @@ const HomeDesktopLighterVersionPage = () => {
                                 Get your Order!
                               </Text>
                               <Img
-                                className="h-32 md:h-auto md:ml-[0] ml-[17px] mr-[43px] mt-[11px] object-cover w-32"
+                                className="h-[150px] md:h-auto mt-[18px] object-cover w-[115px]"
                                 src="images/img_order1.png"
                                 alt="orderOne"
                               />
@@ -728,37 +728,38 @@ const HomeDesktopLighterVersionPage = () => {
                             alt="appstorebadgese_One"
                           />
                           <div className="flex flex-col gap-2 justify-start mb-2.5">
-                            <div className="flex relative w-full">
-                              <Input
-                                name="email"
-                                placeholder="youremail@gmail.com"
-                                className="p-0 placeholder:text-black-900_99 text-[15px] text-left w-full"
-                                wrapClassName="ml-[undefinedpx] my-auto w-[79%] z-[1]"
-                                type="email"
-                              ></Input>
-                              <Button
-                                className="cursor-pointer font-medium leading-[normal] min-w-[171px] ml-[-67px] my-auto rounded-[29px] text-center text-lg z-[1]"
-                                color="orange_600"
-                                size="xs"
-                              >
-                                Subscribe
-                              </Button>
-                            </div>
-                            <Text
-                              className="md:ml-[0] ml-[30px] text-[13px] text-black-900_01"
-                              size="txtPoppinsRegular13Black90001"
-                            >
-                              <span className="text-black-900_01 font-poppins text-left font-normal">
-                                we wont spam, read our{" "}
-                              </span>
-                              <a
-                                href="javascript:"
-                                className="text-black-900_01 font-poppins text-left font-normal underline"
-                              >
-                                email policy
-                              </a>
-                            </Text>
-                          </div>
+    <div className="flex relative w-full border rounded-md border-gray-500">
+        <Input
+            name="email"
+            placeholder="youremail@gmail.com"
+            className="p-2  placeholder:text-black-900_99 text-[15px] text-left w-full mr-2"
+            wrapClassName="my-auto w-[79%] z-[1]"
+            type="email"
+        ></Input>
+        <Button
+            className="cursor-pointer font-medium leading-[normal] min-w-[171px] my-auto rounded-[29px] text-center text-lg z-[1]"
+            color="orange_600"
+            size="xs"
+        >
+            Subscribe
+        </Button>
+    </div>
+    <Text
+        className="md:ml-[0] ml-[30px] text-[13px] text-black-900_01"
+        size="txtPoppinsRegular13Black90001"
+    >
+        <span className="text-black-900_01 font-poppins text-left font-normal">
+            we won't spam, read our{" "}
+        </span>
+        <a
+            href="javascript:"
+            className="text-black-900_01 font-poppins text-left font-normal underline"
+        >
+            email policy
+        </a>
+    </Text>
+</div>
+
                         </div>
                         <div className="flex md:flex-col flex-row md:gap-5 items-start justify-start w-[77%] md:w-full">
                           <Text
