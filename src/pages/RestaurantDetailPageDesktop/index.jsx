@@ -155,6 +155,8 @@ const RestaurantDetailPageDesktopPage = () => {
                       </Text>
                     </div>
                     <div className="flex relative w-full">
+                      
+                      <div className="absolute bg-orange-600 h-24 inset-x-[0] mx-auto top-[0] w-full">
                       <div className="bg-black-900_01 border border-black-900 border-solid h-[39px] my-auto rounded-[19px] w-[9%]"></div>
                       <Text
                         className="ml-[-93px] mr-auto mt-auto sm:text-[17px] md:text-[19px] text-[21px] text-white-A700 z-[1]"
@@ -163,17 +165,21 @@ const RestaurantDetailPageDesktopPage = () => {
                         Offers Fried Rice Spaghetti Snacks Turkey Cold drinks
                         Pasta Kottu Pizza French Frice Develles
                       </Text>
+                      </div>
                     </div>
+                    
                   </div>
                 </div>
+                
                 <div className="md:h-[546px] h-[595px] mt-auto mx-auto w-full">
                   <Img
                     className="absolute bottom-[0] h-[546px] inset-x-[0] mx-auto object-cover w-[90%]"
                     src="images/img_32823722953625.png"
                     alt="32823722953625"
                   />
-                  <div className="absolute bg-orange-600 h-24 inset-x-[0] mx-auto top-[0] w-full"></div>
+                  
                 </div>
+                
               </div>
               <div className="absolute border border-black-900_01 border-solid flex flex-col items-start justify-end p-[17px] right-[9%] rounded-[31px] top-[0] w-1/5">
                 <Img
