@@ -83,46 +83,49 @@ const RestaurantDetailPageDesktopPage = () => {
                 </Text>
               </div>
               <div className="absolute flex md:flex-col flex-row font-manrope md:gap-5 inset-x-[0] items-center justify-start mx-auto top-[0] w-[98%]">
-    <Img
-        className="h-[239px] sm:h-auto object-cover w-[18%] md:w-full"
-        src="images/img_32700620370740.png"
-        alt="32700620370740"
-    />
-    <div className="h-[45px] md:ml-[0] ml-[331px] relative w-[42%] md:w-full">
-        <div className="flex ml-[-93px] items-center gap-4">
-            <button className="text-white font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
-                Home
-            </button>
-            <button className="text-black-900_01 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button ml-4">
-                Browse Menu
-            </button>
-            <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button ml-4">
-                Special Offers
-            </button>
-            <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button ml-4">
-                Restaurants
-            </button>
-            <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button ml-4">
-                Track Order
-            </button>
-        </div>
-    </div>
-
-
+                <Img
+                  className="h-[239px] sm:h-auto object-cover w-[18%] md:w-full"
+                  src="images/img_32700620370740.png"
+                  alt="32700620370740"
+                />
+                <div className="h-[45px] md:ml-[0] ml-[331px] relative w-[42%] md:w-full">
+                
+                <div className="flex ml-[-300px] items-center gap-4">
+                  <button className="text-white font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
+                    Home
+                  </button>
+                  <button className="text-black-900_01 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
+                    Browse Menu
+                  </button>
+                  <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
+                    Special Offers
+                  </button>
+                  <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
+                    Restaurants
+                  </button>
+                  <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
+                    Track Order
+                  </button>
+                </div>
+              
              
                 
-                <button className="bg-black-900_01 flex flex-col font-poppins items-start justify-end p-4 rounded-[30px] w-[21%] md:w-full focus:outline-none border border-white-A700 hover:bg-gray-400 transition duration-300">
-  < div className="flex flex-row gap-3 items-center justify-start md:ml-[0] ml-[9px] w-[81%] md:w-full">
-    <img
-      className="h-[27px] md:h-auto object-cover rounded-[1px] w-[19%]"
-      src="images/img_maleuser.png"
-      alt="maleuser"
-    />
-    <span className="text-lg text-white-A700">Login/Signup</span>
-  </div>
-</button>
+                
                 </div>
+                <button className="bg-black-900_01 flex flex-col font-poppins items-center justify-end p-4 rounded-[30px] w-[18%] md:w-full focus:outline-none border border-white-A700 hover:bg-gray-400 transition duration-300">
+    <div className="flex flex-row gap-3 items-center justify-start md:ml-[0] ml-[9px] w-[81%] md:w-full">
+        <img
+            className="h-[27px] md:h-auto object-cover rounded-[1px] w-[19%]"
+            src="images/img_maleuser.png"
+            alt="maleuser"
+        />
+        <span className="text-lg text-white-A700">Login/Signup</span>
+    </div>
+</button>
+
+
               </div>
+              
             </div>
             <div className="absolute bg-gray-50_01 border border-black-900_19 border-solid flex flex-col inset-x-[0] items-start justify-end mx-auto p-[13px] rounded-bl-[12px] rounded-br-[12px] top-[0] w-full">
               <Img
@@ -1716,7 +1719,7 @@ const RestaurantDetailPageDesktopPage = () => {
             </div>
           </div>
         </div>
-      
+      </div>
     </>
   );
 };
