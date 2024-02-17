@@ -112,16 +112,18 @@ const RestaurantDetailPageDesktopPage = () => {
                 
                 
                 </div>
-                <button className="bg-black-900_01 flex flex-col font-poppins items-start justify-end p-4 rounded-[30px] w-[21%] md:w-full focus:outline-none border border-white-A700 hover:bg-gray-400 transition duration-300">
-  < div className="flex flex-row gap-3 items-center justify-start md:ml-[0] ml-[9px] w-[81%] md:w-full">
-    <img
-      className="h-[27px] md:h-auto object-cover rounded-[1px] w-[19%]"
-      src="images/img_maleuser.png"
-      alt="maleuser"
-    />
-    <span className="text-lg text-white-A700">Login/Signup</span>
-  </div>
+                <button className="bg-black-900_01 flex flex-col font-poppins items-center justify-end p-4 rounded-[30px] w-[18%] md:w-full focus:outline-none border border-white-A700 hover:bg-gray-400 transition duration-300">
+    <div className="flex flex-row gap-3 items-center justify-start md:ml-[0] ml-[9px] w-[81%] md:w-full">
+        <img
+            className="h-[27px] md:h-auto object-cover rounded-[1px] w-[19%]"
+            src="images/img_maleuser.png"
+            alt="maleuser"
+        />
+        <span className="text-lg text-white-A700">Login/Signup</span>
+    </div>
 </button>
+
+
               </div>
               
             </div>
