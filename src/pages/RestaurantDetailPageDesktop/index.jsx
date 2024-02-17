@@ -1,4 +1,5 @@
 import React from "react";
+import './index.css'
 
 import { useNavigate } from "react-router-dom";
 
@@ -14,11 +15,7 @@ const RestaurantDetailPageDesktopPage = () => {
           <div className="md:h-[477px] h-[716px] max-w-[1534px] mx-auto md:px-5 relative w-full">
             <div className="absolute md:h-[477px] h-[697px] inset-[0] justify-center m-auto w-full">
               <div className="absolute bottom-[4%] h-[477px] inset-x-[0] mx-auto w-full">
-                <Img
-                  className="h-[477px] m-auto object-cover rounded-[12px] w-full"
-                  src="images/img_rectangle43.png"
-                  alt="rectangleFortyThree"
-                />
+                
                 <div className="absolute h-[477px] inset-[0] justify-center m-auto w-full">
                   <Img
                     className="absolute h-[477px] inset-[0] justify-center m-auto object-cover rounded-[12px] w-full"
@@ -92,46 +89,43 @@ const RestaurantDetailPageDesktopPage = () => {
                   alt="32700620370740"
                 />
                 <div className="h-[45px] md:ml-[0] ml-[331px] relative w-[42%] md:w-full">
-                  <div className="absolute bg-orange-600 h-[45px] inset-y-[0] my-auto right-[24%] rounded-[22px] w-[29%]"></div>
-                  <Text
-                    className="absolute bottom-[18%] inset-x-[0] mx-auto text-black-900 text-lg w-max"
-                    size="txtManropeSemiBold18"
-                  >
-                    <span className="text-black-900 font-poppins text-left font-medium">
-                      Home
-                    </span>
-                    <span className="text-black-900 font-poppins text-left font-medium">
-                      {" "}
-                      Special Offers{" "}
-                    </span>
-                    <span className="text-white-A700 font-poppins text-left font-medium">
-                      Restaurants
-                    </span>
-                    <span className="text-black-900 font-poppins text-left font-medium">
-                      {" "}
-                      Track Order
-                    </span>
-                  </Text>
+                
+                <div className="flex ml-[-300px] items-center gap-4">
+                  <button className="text-white font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
+                    Home
+                  </button>
+                  <button className="text-black-900_01 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
+                    Browse Menu
+                  </button>
+                  <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
+                    Special Offers
+                  </button>
+                  <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
+                    Restaurants
+                  </button>
+                  <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
+                    Track Order
+                  </button>
                 </div>
-                <div
-                  className="common-pointer bg-black-900_01 flex flex-col font-poppins items-start justify-end md:ml-[0] ml-[39px] md:mt-0 my-[89px] p-4 rounded-[30px] w-[16%] md:w-full"
-                  onClick={() => navigate("/login")}
-                >
-                  <div className="flex flex-row gap-3 items-center justify-start md:ml-[0] ml-[9px] w-[81%] md:w-full">
-                    <Img
-                      className="h-[27px] md:h-auto object-cover rounded-[1px] w-[19%]"
-                      src="images/img_maleuser.png"
-                      alt="maleuser"
-                    />
-                    <Text
-                      className="text-lg text-white-A700"
-                      size="txtPoppinsMedium18"
-                    >
-                      Login/Signup
-                    </Text>
-                  </div>
+              
+             
+                
+                
                 </div>
+                <button className="bg-black-900_01 flex flex-col font-poppins items-center justify-end p-4 rounded-[30px] w-[18%] md:w-full focus:outline-none border border-white-A700 hover:bg-gray-400 transition duration-300">
+    <div className="flex flex-row gap-3 items-center justify-start md:ml-[0] ml-[9px] w-[81%] md:w-full">
+        <img
+            className="h-[27px] md:h-auto object-cover rounded-[1px] w-[19%]"
+            src="images/img_maleuser.png"
+            alt="maleuser"
+        />
+        <span className="text-lg text-white-A700">Login/Signup</span>
+    </div>
+</button>
+
+
               </div>
+              
             </div>
             <div className="absolute bg-gray-50_01 border border-black-900_19 border-solid flex flex-col inset-x-[0] items-start justify-end mx-auto p-[13px] rounded-bl-[12px] rounded-br-[12px] top-[0] w-full">
               <Img
