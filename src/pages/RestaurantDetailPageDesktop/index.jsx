@@ -139,41 +139,40 @@ const RestaurantDetailPageDesktopPage = () => {
             <div className="md:h-[546px] h-[704px] md:px-5 relative w-full">
               <div className="absolute h-[690px] inset-[0] justify-center m-auto w-full">
                 <div className="flex flex-col items-center justify-start mb-[-69px] ml-[95px] w-[82%] z-[1]">
-                  <div className="flex flex-col md:gap-10 gap-[77px] items-center justify-start w-full">
-                    <div className="flex md:flex-col flex-row md:gap-10 items-start justify-between w-[93%] md:w-full">
-                      <Text
-                        className="md:text-3xl sm:text-[28px] text-[32px] text-black-900"
-                        size="txtPoppinsBold32"
-                      >
-                        All Offers from Leon’s Kitchen Galle
-                      </Text>
-                      <Text
-                        className="md:mt-0 mt-[5px] text-black-900_90 text-lg"
-                        size="txtPoppinsSemiBold18Black90090"
-                      >
-                        Search from menu...
-                      </Text>
-                    </div>
-                    <div className="flex relative w-full">
-                      
-                      <div className="absolute bg-orange-600 h-24 inset-x-[0] mx-auto top-[0] w-full">
-                      <div className="bg-black-900_01 border border-black-900 border-solid h-[39px] my-auto rounded-[19px] w-[9%]"></div>
-                      <Text
-                        className="ml-[-93px] mr-auto mt-auto sm:text-[17px] md:text-[19px] text-[21px] text-white-A700 z-[1]"
-                        size="txtPoppinsBold21"
-                      >
-                        Offers Fried Rice Spaghetti Snacks Turkey Cold drinks
-                        Pasta Kottu Pizza French Frice Develles
-                      </Text>
-                      </div>
-                    </div>
-                    
-                  </div>
+                <div className="flex flex-col md:gap-10 gap-[77px] items-center justify-start w-full">
+    <div className="flex md:flex-col flex-row md:gap-10 items-start justify-between w-[93%] md:w-full">
+        <Text
+            className="md:text-3xl sm:text-[28px] text-[32px] text-black-900"
+            size="txtPoppinsBold32"
+        >
+            All Offers from Leon’s Kitchen Galle
+        </Text>
+        <Text
+            className="md:mt-0 mt-[5px] text-black-900_90 text-lg"
+            size="txtPoppinsSemiBold18Black90090"
+        >
+            Search from menu...
+        </Text>
+    </div>
+    <div className="absolute bg-orange-600 h-24 inset-x-[0] mx-auto top-[100px] w-full">
+        <div className="flex relative w-full">
+            <div className="bg-black-900_01 border border-black-900 border-solid h-[39px] my-auto rounded-[19px] w-[9%]"></div>
+            <Text
+                className="ml-[-93px] mr-auto mt-auto sm:text-[17px] md:text-[19px] text-[21px] text-white-A700 z-[1]"
+                size="txtPoppinsBold21"
+            >
+                Offers Fried Rice Spaghetti Snacks Turkey Cold drinks
+                Pasta Kottu Pizza French Frice Develles
+            </Text>
+        </div>
+    </div>
+</div>
+
                 </div>
                 
                 <div className="md:h-[546px] h-[595px] mt-auto mx-auto w-full">
                   <Img
-                    className="absolute bottom-[0] h-[546px] inset-x-[0] mx-auto object-cover w-[90%]"
+                    className="absolute bottom-[0] h-[546px] inset-x-[0] mx-auto object-cover w-[90%] top-[210px]"
                     src="images/img_32823722953625.png"
                     alt="32823722953625"
                   />
