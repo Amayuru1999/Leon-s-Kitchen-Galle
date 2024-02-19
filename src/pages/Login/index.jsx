@@ -66,6 +66,19 @@ const LoginPage = () => {
             >
               Login Now
             </Button>
+            
+           
+            <div className="h-6 md:h-[54px] mt-[30px] relative w-full">
+            <button
+    className="absolute h-full inset-[0] justify-center m-auto text-base font-bold text-blue_gray-700 w-max hover:text-blue-600"
+    size="txtPoppinsRegular16Bluegray700"
+>
+    Don't have an account yet? Sign Up
+</button>
+
+
+              
+            </div>
             <Line className="absolute bg-deep_purple-50 h-px inset-[0] justify-center m-auto w-full" />
             <div className="h-6 md:h-[54px] mt-[30px] relative w-full">
               <Text
@@ -76,6 +89,7 @@ const LoginPage = () => {
               </Text>
               
             </div>
+            
             <List
               className="flex flex-col gap-[19px] items-center mt-[31px] w-full"
               orientation="vertical"
@@ -97,7 +111,7 @@ const LoginPage = () => {
                 Login with{" "}
             </span>
             <span className="text-gray-900_02 font-poppins text-left font-bold">
-                google
+                Google
             </span>
         </Text>
     </button>
