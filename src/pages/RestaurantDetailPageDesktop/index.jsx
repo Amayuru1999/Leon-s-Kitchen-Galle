@@ -252,6 +252,7 @@ const RestaurantDetailPageDesktopPage = () => {
                   </div>
                 </div>
               </div>
+              {/* end */}
               <div
                 className="common-pointer bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105"
                 onClick={() => navigate("/orderingpage")}
@@ -453,9 +454,9 @@ const RestaurantDetailPageDesktopPage = () => {
             >
               Kottu
             </Text>
-            <div className="gap-5 grid sm:grid-cols-1 md:grid-cols-3 grid-cols-6 justify-center max-w-[1528px] min-h-[auto] mt-10 mx-auto md:px-5 w-full">
+            <div className="gap-5 grid sm:grid-cols-1 md:grid-cols-3 grid-cols-3 justify-center max-w-[1528px] min-h-[auto] mt-10 mx-auto md:px-5 w-full">
               <div
-                className="common-pointer bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full"
+                className="common-pointer bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105"
                 onClick={() => navigate("/orderingpage")}
               >
                 <div className="flex sm:flex-col flex-row gap-2.5 items-center justify-start mt-0.5 w-[98%] md:w-full">
@@ -483,13 +484,13 @@ const RestaurantDetailPageDesktopPage = () => {
                   </div>
                   <div className="h-[199px] relative w-[47%] sm:w-full">
                     <Img
-                      className="h-[199px] m-auto object-cover rounded-[12px] w-full"
+                      className="h-[199px] m-auto object-cover rounded-[12px] w-full hover:scale-105 focus:scale-105"
                       src="images/img_rectangle46_5.png"
                       alt="rectangleFortySix"
                     />
                     <div className="absolute bg-white-A700_ab bottom-[0] flex flex-col items-end justify-end p-3.5 right-[0] rounded-br-[12px] rounded-tl-[45px] w-[44%]">
                       <Img
-                        className="h-[49px] md:h-auto mt-1 object-cover w-[49px]"
+                        className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                         src="images/img_plus.png"
                         alt="plus"
                       />
@@ -497,7 +498,7 @@ const RestaurantDetailPageDesktopPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full">
+              <div className="bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105">
                 <div className="flex sm:flex-col flex-row gap-2.5 items-center justify-start mt-0.5 w-[98%] md:w-full">
                   <div className="flex flex-col items-start justify-start">
                     <Text
@@ -523,13 +524,13 @@ const RestaurantDetailPageDesktopPage = () => {
                   </div>
                   <div className="h-[199px] relative w-[47%] sm:w-full">
                     <Img
-                      className="h-[199px] m-auto object-cover rounded-[12px] w-full"
+                      className="h-[199px] m-auto object-cover rounded-[12px] w-full hover:scale-105 focus:scale-105"
                       src="images/img_rectangle46_6.png"
                       alt="rectangleFortySix"
                     />
                     <div className="absolute bg-white-A700_ab bottom-[0] flex flex-col items-end justify-end p-3.5 right-[0] rounded-br-[12px] rounded-tl-[45px] w-[44%]">
                       <Img
-                        className="h-[49px] md:h-auto mt-1 object-cover w-[49px]"
+                        className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                         src="images/img_plus.png"
                         alt="plus"
                       />
@@ -537,7 +538,7 @@ const RestaurantDetailPageDesktopPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full">
+              <div className="bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105">
                 <div className="flex sm:flex-col flex-row gap-2.5 items-center justify-start mt-0.5 w-[98%] md:w-full">
                   <div className="flex flex-col items-start justify-start">
                     <Text
@@ -563,13 +564,13 @@ const RestaurantDetailPageDesktopPage = () => {
                   </div>
                   <div className="h-[199px] relative w-[47%] sm:w-full">
                     <Img
-                      className="h-[199px] m-auto object-cover rounded-[12px] w-full"
+                      className="h-[199px] m-auto object-cover rounded-[12px] w-full hover:scale-105 focus:scale-105"
                       src="images/img_rectangle46_7.png"
                       alt="rectangleFortySix"
                     />
                     <div className="absolute bg-white-A700_ab bottom-[0] flex flex-col items-end justify-end p-3.5 right-[0] rounded-br-[12px] rounded-tl-[45px] w-[44%]">
                       <Img
-                        className="h-[49px] md:h-auto mt-1 object-cover w-[49px]"
+                        className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                         src="images/img_plus.png"
                         alt="plus"
                       />
@@ -577,7 +578,7 @@ const RestaurantDetailPageDesktopPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full">
+              <div className="bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105">
                 <div className="flex sm:flex-col flex-row gap-2.5 items-center justify-start mt-0.5 w-[98%] md:w-full">
                   <div className="flex flex-col items-start justify-start">
                     <Text
@@ -602,13 +603,13 @@ const RestaurantDetailPageDesktopPage = () => {
                   </div>
                   <div className="h-[199px] relative w-[47%] sm:w-full">
                     <Img
-                      className="h-[199px] m-auto object-cover rounded-[12px] w-full"
+                      className="h-[199px] m-auto object-cover rounded-[12px] w-full hover:scale-105 focus:scale-105"
                       src="images/img_rectangle46_8.png"
                       alt="rectangleFortySix"
                     />
                     <div className="absolute bg-white-A700_ab bottom-[0] flex flex-col items-end justify-end p-3.5 right-[0] rounded-br-[12px] rounded-tl-[45px] w-[44%]">
                       <Img
-                        className="h-[49px] md:h-auto mt-1 object-cover w-[49px]"
+                        className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                         src="images/img_plus.png"
                         alt="plus"
                       />
@@ -616,7 +617,7 @@ const RestaurantDetailPageDesktopPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full">
+              <div className="bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105">
                 <div className="flex sm:flex-col flex-row gap-2.5 items-center justify-start mt-0.5 w-[98%] md:w-full">
                   <div className="flex flex-col items-start justify-start">
                     <Text
@@ -642,13 +643,13 @@ const RestaurantDetailPageDesktopPage = () => {
                   </div>
                   <div className="h-[199px] relative w-[47%] sm:w-full">
                     <Img
-                      className="h-[199px] m-auto object-cover rounded-[12px] w-full"
+                      className="h-[199px] m-auto object-cover rounded-[12px] w-full hover:scale-105 focus:scale-105"
                       src="images/img_rectangle46_9.png"
                       alt="rectangleFortySix"
                     />
                     <div className="absolute bg-white-A700_ab bottom-[0] flex flex-col items-end justify-end p-3.5 right-[0] rounded-br-[12px] rounded-tl-[45px] w-[44%]">
                       <Img
-                        className="h-[49px] md:h-auto mt-1 object-cover w-[49px]"
+                        className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                         src="images/img_plus.png"
                         alt="plus"
                       />
@@ -656,7 +657,7 @@ const RestaurantDetailPageDesktopPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full">
+              <div className="bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105">
                 <div className="flex sm:flex-col flex-row gap-2.5 items-center justify-start mt-0.5 w-[98%] md:w-full">
                   <div className="flex flex-col items-start justify-start">
                     <Text
@@ -682,13 +683,13 @@ const RestaurantDetailPageDesktopPage = () => {
                   </div>
                   <div className="h-[199px] relative w-[47%] sm:w-full">
                     <Img
-                      className="h-[199px] m-auto object-cover rounded-[12px] w-full"
+                      className="h-[199px] m-auto object-cover rounded-[12px] w-full hover:scale-105 focus:scale-105"
                       src="images/img_rectangle46_10.png"
                       alt="rectangleFortySix"
                     />
                     <div className="absolute bg-white-A700_ab bottom-[0] flex flex-col items-end justify-end p-3.5 right-[0] rounded-br-[12px] rounded-tl-[45px] w-[44%]">
                       <Img
-                        className="h-[49px] md:h-auto mt-1 object-cover w-[49px]"
+                        className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                         src="images/img_plus.png"
                         alt="plus"
                       />
@@ -708,7 +709,7 @@ const RestaurantDetailPageDesktopPage = () => {
               orientation="horizontal"
             >
               <div
-                className="common-pointer bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full"
+                className="common-pointer bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105"
                 onClick={() => navigate("/orderingpage")}
               >
                 <div className="flex flex-row items-center justify-between mt-0.5 w-[98%] md:w-full">
@@ -728,13 +729,13 @@ const RestaurantDetailPageDesktopPage = () => {
                   </div>
                   <div className="h-[199px] relative w-[47%]">
                     <Img
-                      className="h-[199px] m-auto object-cover rounded-[12px] w-full"
+                      className="h-[199px] m-auto object-cover rounded-[12px] w-full hover:scale-105 focus:scale-105"
                       src="images/img_rectangle46_11.png"
                       alt="rectangleFortySix"
                     />
                     <div className="absolute bg-white-A700_ab bottom-[0] flex flex-col items-end justify-end p-3.5 right-[0] rounded-br-[12px] rounded-tl-[45px] w-[44%]">
                       <Img
-                        className="h-[49px] md:h-auto mt-1 object-cover w-[49px]"
+                        className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                         src="images/img_plus.png"
                         alt="plus"
                       />
@@ -742,7 +743,7 @@ const RestaurantDetailPageDesktopPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full">
+              <div className="bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105">
                 <div className="flex flex-row items-center justify-between mt-0.5 w-[98%] md:w-full">
                   <div className="flex flex-col md:gap-10 gap-[107px] items-start justify-start">
                     <Text
@@ -760,13 +761,13 @@ const RestaurantDetailPageDesktopPage = () => {
                   </div>
                   <div className="h-[199px] relative w-[47%]">
                     <Img
-                      className="h-[199px] m-auto object-cover rounded-[12px] w-full"
+                      className="h-[199px] m-auto object-cover rounded-[12px] w-full hover:scale-105 focus:scale-105"
                       src="images/img_rectangle46_12.png"
                       alt="rectangleFortySix"
                     />
                     <div className="absolute bg-white-A700_ab bottom-[0] flex flex-col items-end justify-end p-3.5 right-[0] rounded-br-[12px] rounded-tl-[45px] w-[44%]">
                       <Img
-                        className="h-[49px] md:h-auto mt-1 object-cover w-[49px]"
+                        className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                         src="images/img_plus.png"
                         alt="plus"
                       />
@@ -774,7 +775,7 @@ const RestaurantDetailPageDesktopPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full">
+              <div className="bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105">
                 <div className="flex flex-row items-center justify-between mt-0.5 w-[98%] md:w-full">
                   <div className="flex flex-col md:gap-10 gap-[109px] items-start justify-start">
                     <Text
@@ -792,13 +793,13 @@ const RestaurantDetailPageDesktopPage = () => {
                   </div>
                   <div className="h-[199px] relative w-[47%]">
                     <Img
-                      className="h-[199px] m-auto object-cover rounded-[12px] w-full"
+                      className="h-[199px] m-auto object-cover rounded-[12px] w-full hover:scale-105 focus:scale-105"
                       src="images/img_rectangle46_13.png"
                       alt="rectangleFortySix"
                     />
                     <div className="absolute bg-white-A700_ab bottom-[0] flex flex-col items-end justify-end p-3.5 right-[0] rounded-br-[12px] rounded-tl-[45px] w-[44%]">
                       <Img
-                        className="h-[49px] md:h-auto mt-1 object-cover w-[49px]"
+                        className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                         src="images/img_plus.png"
                         alt="plus"
                       />
@@ -809,11 +810,11 @@ const RestaurantDetailPageDesktopPage = () => {
             </List>
             <div className="md:h-[1198px] h-[1231px] mt-10 md:px-5 relative w-full">
               <Img
-                className="absolute bottom-[0] h-[1158px] inset-x-[0] mx-auto object-cover w-full"
+                className="absolute bottom-[0] h-[1158px] inset-x-[0] mx-auto object-cover w-full "
                 src="images/img_31992938816222.png"
                 alt="31992938816222"
               />
-              <div className="absolute bg-gray-50_02 border border-black-900_19 border-solid flex flex-col items-center justify-end left-[6%] p-[22px] sm:px-5 rounded-[12px] shadow-bs1 top-[0] w-[29%]">
+              <div className="absolute bg-gray-50_02 border border-black-900_19 border-solid flex flex-col items-center justify-end left-[6%] p-[22px] sm:px-5 rounded-[12px] shadow-bs1 top-[0] w-[29%] hover:scale-105 focus:scale-105">
                 <div className="flex flex-row items-center justify-between mt-0.5 w-[98%] md:w-full">
                   <div className="flex flex-col md:gap-10 gap-[107px] items-center justify-start">
                     <Text
@@ -831,13 +832,13 @@ const RestaurantDetailPageDesktopPage = () => {
                   </div>
                   <div className="h-[199px] relative w-[47%]">
                     <Img
-                      className="h-[199px] m-auto object-cover rounded-[12px] w-full"
+                      className="h-[199px] m-auto object-cover rounded-[12px] w-full hover:scale-105 focus:scale-105"
                       src="images/img_rectangle46_14.png"
                       alt="rectangleFortySix"
                     />
                     <div className="absolute bg-white-A700_ab bottom-[0] flex flex-col items-end justify-end p-3.5 right-[0] rounded-br-[12px] rounded-tl-[45px] w-[44%]">
                       <Img
-                        className="h-[49px] md:h-auto mt-1 object-cover w-[49px]"
+                        className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                         src="images/img_plus.png"
                         alt="plus"
                       />
@@ -845,7 +846,7 @@ const RestaurantDetailPageDesktopPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="absolute bg-gray-50_02 border border-black-900_19 border-solid flex flex-col inset-x-[0] items-center justify-end mx-auto p-[22px] sm:px-5 rounded-[12px] shadow-bs1 top-[0] w-[29%]">
+              <div className="absolute bg-gray-50_02 border border-black-900_19 border-solid flex flex-col inset-x-[0] items-center justify-end mx-auto p-[22px] sm:px-5 rounded-[12px] shadow-bs1 top-[0] w-[29%] hover:scale-105 focus:scale-105">
                 <div className="flex sm:flex-col flex-row sm:gap-10 items-center justify-between mt-0.5 w-[98%] md:w-full">
                   <div className="flex flex-col md:gap-10 gap-[109px] items-start justify-start">
                     <Text
@@ -863,13 +864,13 @@ const RestaurantDetailPageDesktopPage = () => {
                   </div>
                   <div className="h-[199px] relative w-[47%] sm:w-full">
                     <Img
-                      className="h-[199px] m-auto object-cover rounded-[12px] w-full"
+                      className="h-[199px] m-auto object-cover rounded-[12px] w-full hover:scale-105 focus:scale-105"
                       src="images/img_rectangle46_15.png"
                       alt="rectangleFortySix_One"
                     />
                     <div className="absolute bg-white-A700_ab bottom-[0] flex flex-col items-end justify-end p-3.5 right-[0] rounded-br-[12px] rounded-tl-[45px] w-[44%]">
                       <Img
-                        className="h-[49px] md:h-auto mt-1 object-cover w-[49px]"
+                        className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                         src="images/img_plus.png"
                         alt="plus_One"
                       />
@@ -877,14 +878,14 @@ const RestaurantDetailPageDesktopPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="absolute bg-gray-50_02 border border-black-900_19 border-solid flex flex-col items-center justify-end p-[22px] sm:px-5 right-[6%] rounded-[12px] shadow-bs1 top-[0] w-[29%]">
+              <div className="absolute bg-gray-50_02 border border-black-900_19 border-solid flex flex-col items-center justify-end p-[22px] sm:px-5 right-[6%] rounded-[12px] shadow-bs1 top-[0] w-[29%] hover:scale-105 focus:scale-105">
                 <div className="flex sm:flex-col flex-row gap-8 items-center justify-between mt-0.5 w-[98%] md:w-full">
                   <div className="flex flex-col md:gap-10 gap-[107px] items-start justify-start">
                     <Text
                       className="text-black-900 text-xl"
                       size="txtPoppinsSemiBold20"
                     >
-                      Local drinking water
+                      Kinley
                     </Text>
                     <Text
                       className="text-black-900_01 text-lg"
@@ -895,13 +896,13 @@ const RestaurantDetailPageDesktopPage = () => {
                   </div>
                   <div className="h-[199px] relative w-[47%] sm:w-full">
                     <Img
-                      className="h-[199px] m-auto object-cover rounded-[12px] w-full"
+                      className="h-[199px] m-auto object-cover rounded-[12px] w-full hover:scale-105 focus:scale-105"
                       src="images/img_rectangle46_16.png"
                       alt="rectangleFortySix_Two"
                     />
                     <div className="absolute bg-white-A700_ab bottom-[0] flex flex-col items-end justify-end p-3.5 right-[0] rounded-br-[12px] rounded-tl-[45px] w-[44%]">
                       <Img
-                        className="h-[49px] md:h-auto mt-1 object-cover w-[49px]"
+                        className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                         src="images/img_plus.png"
                         alt="plus_Two"
                       />
@@ -916,7 +917,7 @@ const RestaurantDetailPageDesktopPage = () => {
                 src="images/img_image1.png"
                 alt="imageOne"
               />
-              <div className="absolute flex flex-col gap-6 items-start justify-start right-[6%] top-[11%] w-[84%]">
+              {/* <div className="absolute flex flex-col gap-6 items-start justify-start right-[6%] top-[11%] w-[84%]">
                 <Text
                   className="leading-[38.00px] md:text-3xl sm:text-[28px] text-[32px] text-white-A700"
                   size="txtPoppinsBold32WhiteA700"
@@ -988,7 +989,8 @@ const RestaurantDetailPageDesktopPage = () => {
                     </span>
                   </Text>
                 </div>
-              </div>
+              </div> */}
+              {/* end */}
             </div>
             <div className="h-[1065px] md:h-[1228px] sm:h-[715px] mt-[50px] md:px-5 relative w-full">
               <div className="h-[1065px] m-auto w-full">
@@ -1002,7 +1004,7 @@ const RestaurantDetailPageDesktopPage = () => {
                         Customer Reviews
                       </Text>
                       <List
-                        className="sm:flex-col flex-row gap-[22px] grid grid-cols-2"
+                        className="sm:flex-col flex-row gap-[22px] grid grid-cols-2 hover:scale-105 focus:scale-105"
                         orientation="horizontal"
                       >
                         <div className="bg-orange-600 flex flex-col h-[75px] items-center justify-start sm:ml-[0] p-[19px] rotate-[-180deg] rounded-[37px] w-full">
