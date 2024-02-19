@@ -21,7 +21,7 @@ const LoginPage = () => {
             className="mt-1.5 text-base text-blue_gray-700"
             size="txtPoppinsRegular16Bluegray700"
           >
-            How to i get started lorem ipsum dolor at?
+            Login to deliever your order!
           </Text>
           <div className="flex flex-col items-center justify-start mt-[31px] w-full">
             <Input
@@ -57,14 +57,29 @@ const LoginPage = () => {
               size="md"
             ></Input>
             <Button
-              className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[124px] mt-7 rounded-[16px] text-center text-xs"
+              className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[124px] mt-7 rounded-[16px] text-center text-xs hover:scale-110"
               onClick={() => navigate("/fooddeliverydashboard")}
               size="2xl"
               variant="gradient"
               color="orange_A100_yellow_700"
+              
             >
               Login Now
             </Button>
+            
+           
+            <div className="h-6 md:h-[54px] mt-[30px] relative w-full">
+            <button
+    className="absolute h-full inset-[0] justify-center m-auto text-base font-bold text-blue_gray-700 w-max hover:text-blue-600"
+    size="txtPoppinsRegular16Bluegray700"
+>
+    Don't have an account yet? Sign Up
+</button>
+
+
+              
+            </div>
+            <Line className="absolute bg-deep_purple-50 h-px inset-[0] justify-center m-auto w-full" />
             <div className="h-6 md:h-[54px] mt-[30px] relative w-full">
               <Text
                 className="absolute h-full inset-[0] justify-center m-auto text-base text-blue_gray-700 w-max"
@@ -72,52 +87,61 @@ const LoginPage = () => {
               >
                 Login with Others
               </Text>
-              <Line className="absolute bg-deep_purple-50 h-px inset-[0] justify-center m-auto w-full" />
+              
             </div>
+            
             <List
               className="flex flex-col gap-[19px] items-center mt-[31px] w-full"
               orientation="vertical"
             >
-              <div className="border border-deep_purple-50 border-solid flex flex-1 flex-col items-center justify-start p-[13px] rounded-[16px] w-full">
-                <div className="flex flex-row gap-2 items-center justify-center w-[43%] md:w-full">
-                  <Img
-                    className="h-[35px] md:h-auto object-cover w-[21%]"
-                    src="images/img_google1.png"
-                    alt="googleOne"
-                  />
-                  <Text
-                    className="text-gray-900_02 text-xs"
-                    size="txtPoppinsRegular12Gray90002"
-                  >
-                    <span className="text-gray-900_02 font-poppins text-left font-normal">
-                      Login with{" "}
-                    </span>
-                    <span className="text-gray-900_02 font-poppins text-left font-bold">
-                      google
-                    </span>
-                  </Text>
-                </div>
-              </div>
-              <div className="border border-deep_purple-50 border-solid flex flex-1 flex-col items-center justify-start p-[13px] rounded-[16px] w-full">
-                <div className="flex flex-row gap-2 items-center justify-center w-[48%] md:w-full">
-                  <Img
-                    className="h-[35px] md:h-auto object-cover w-[19%]"
-                    src="images/img_facebook1.png"
-                    alt="facebookOne"
-                  />
-                  <Text
-                    className="text-gray-900_02 text-xs"
-                    size="txtPoppinsRegular12Gray90002"
-                  >
-                    <span className="text-gray-900_02 font-poppins text-left font-normal">
-                      Login with{" "}
-                    </span>
-                    <span className="text-gray-900_02 font-poppins text-left font-bold">
-                      Facebook
-                    </span>
-                  </Text>
-                </div>
-              </div>
+              <div className="border border-deep_purple-50 border-solid flex flex-1 flex-col items-center justify-start p-[13px] rounded-[16px] w-full hover:scale-110">
+    <button
+        className="flex flex-row gap-2 items-center justify-center w-[43%] md:w-full transform transition-transform duration-300 focus:outline-none"
+    >
+        <Img
+            className="h-[35px] md:h-auto object-cover w-[25%] rounded-full"  
+            src="images/img_google1.png" 
+            alt="googleOne"
+        />
+        <Text
+            className="text-gray-900_02 text-xs"
+            size="txtPoppinsRegular12Gray90002"
+        >
+            <span className="text-gray-900_02 font-poppins text-left font-normal">
+                Login with{" "}
+            </span>
+            <span className="text-gray-900_02 font-poppins text-left font-bold">
+                Google
+            </span>
+        </Text>
+    </button>
+</div>
+
+
+<div className="border border-deep_purple-50 border-solid flex flex-1 flex-col items-center justify-start p-[13px] rounded-[16px] w-full">
+    <button
+        className="flex flex-row gap-2 items-center justify-center w-[48%] md:w-full transform transition-transform duration-300 hover:scale-110 focus:outline-none"
+        // Add your onClick function
+    >
+        <Img
+            className="h-[35px] md:h-auto object-cover w-[19%]"
+            src="images/img_facebook1.png"
+            alt="facebookOne"
+        />
+        <Text
+            className="text-gray-900_02 text-xs"
+            size="txtPoppinsRegular12Gray90002"
+        >
+            <span className="text-gray-900_02 font-poppins text-left font-normal">
+                Login with{" "}
+            </span>
+            <span className="text-gray-900_02 font-poppins text-left font-bold">
+                Facebook
+            </span>
+        </Text>
+    </button>
+</div>
+
             </List>
           </div>
         </div>
