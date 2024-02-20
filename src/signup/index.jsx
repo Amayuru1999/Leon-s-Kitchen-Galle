@@ -125,7 +125,7 @@ const Signup = () => {
     className="absolute h-full inset-[0] justify-center m-auto text-base font-bold text-blue_gray-700 w-max hover:text-blue-600"
     size="txtPoppinsRegular16Bluegray700"
 >
-    Don't have an account yet? Sign Up
+    Already have an account? Login now
 </button>
 
 
@@ -137,7 +137,7 @@ const Signup = () => {
                 className="absolute h-full inset-[0] justify-center m-auto text-base text-blue_gray-700 w-max"
                 size="txtPoppinsRegular16Bluegray700"
               >
-                Login with Others
+                Sign Up with Others
               </Text>
               
             </div>
@@ -160,7 +160,7 @@ const Signup = () => {
             size="txtPoppinsRegular12Gray90002"
         >
             <span className="text-gray-900_02 font-poppins text-left font-normal">
-                Login with{" "}
+            Sign Up with{" "}
             </span>
             <span className="text-gray-900_02 font-poppins text-left font-bold">
                 Google
@@ -185,7 +185,7 @@ const Signup = () => {
             size="txtPoppinsRegular12Gray90002"
         >
             <span className="text-gray-900_02 font-poppins text-left font-normal">
-                Login with{" "}
+            Sign Up with{" "}
             </span>
             <span className="text-gray-900_02 font-poppins text-left font-bold">
                 Facebook
