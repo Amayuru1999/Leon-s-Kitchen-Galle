@@ -332,7 +332,7 @@ const HomeDesktopLighterVersionPage = () => {
   </div>
 </a>
 
-                <a href="#" className="block bg-gray-100 border border-black-900_19 border-solid flex flex-col gap-2 justify-start pb-2 rounded-[12px] w-full overflow-hidden focus:outline-none">
+                <a href="#" className=" bg-gray-100 border border-black-900_19 border-solid flex flex-col gap-2 justify-start pb-2 rounded-[12px] w-full overflow-hidden focus:outline-none">
   <Img
     className="h-[203px] md:h-auto object-cover rounded-tl-[12px] rounded-tr-[12px] w-full transition-transform duration-300 transform hover:scale-105 focus:scale-105"
     src="images/img_rectangle15.png"
@@ -354,7 +354,7 @@ const HomeDesktopLighterVersionPage = () => {
   </div>
 </a>
 
-<a href="#" className="block bg-gray-100 border border-black-900_19 border-solid flex flex-col gap-[9px] justify-start pb-2 rounded-[12px] w-full overflow-hidden focus:outline-none">
+<a href="#" className=" bg-gray-100 border border-black-900_19 border-solid flex flex-col gap-[9px] justify-start pb-2 rounded-[12px] w-full overflow-hidden focus:outline-none">
   <Img
     className="h-[203px] md:h-auto object-cover rounded-tl-[12px] rounded-tr-[12px] w-full transition-transform duration-300 transform hover:scale-105 focus:scale-105"
     src="images/img_rectangle17.png"
