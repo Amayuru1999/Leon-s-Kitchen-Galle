@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "pages/Home";
 import NotFound from "pages/NotFound";
+import Signup from "signup";
 const Menu = React.lazy(() => import("pages/Menu"));
 const OrdersCurrent = React.lazy(() => import("pages/OrdersCurrent"));
 const FoodDeliveryDashboard = React.lazy(
@@ -44,6 +45,7 @@ const ProjectRoutes = () => {
           <Route path="/orderscurrent" element={<OrdersCurrent />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/dhiwise-dashboard" element={<Home />} />
+          <Route path="/signup" element={<Signup/>}/>
         </Routes>
       </Router>
     </React.Suspense>
