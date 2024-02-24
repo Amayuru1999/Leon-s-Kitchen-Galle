@@ -38,6 +38,10 @@ transporter.verify((error,success)=>{
 //Password handler
 const bcrypt=require('bcrypt');
 
+//path for static verified page
+const path=require("path");
+const { error } = require('console');
+
 //Sign up
 router.post('/signup',(req,res)=>{
     let{name,email,password,mobileNumber}=req.body;
@@ -177,6 +181,102 @@ const sendVerificationEmail =({_id,email},res)=>{
             })
         })
 }
+
+//verify email
+router.get("/verify/:userId/:uniqueString",(req,res)=>{
+    let{userId,uniqueString}=req.params;
+
+    UserVerification
+        .find({userId})
+        .then((result)=>{
+            if(result.length>0){
+                //user verification record exists so we proceed
+                const {expiresAt}=result[0];
+                const hashedUniqueString=result[0].uniqueString;
+
+                //checking for expired unique string 
+                if(expiresAt<Date.now()){
+                    //record has expired so we delete it
+                    UserVerification
+                        .deleteOne({userId})
+                        .then(result=>{
+                            User
+                                .deleteOne({_id: userId})
+                                .then(()=>{
+                                    let message="Link has expired.Please sign up again";
+                                    res.redirect(`/user/verified/error=true&message=${message}`);
+                                })
+                                .catch(error=>{
+                                    let message="Clearing user with expired unique string failed";
+                                    res.redirect(`/user/verified/error=true&message=${message}`);
+                                })
+                        })
+                        .catch((error)=>{
+                            console.log(error);
+                            let message="An error occurred while clearing expired user verification record";
+                            res.redirect(`/user/verified/error=true&message=${message}`);
+                        })
+
+                }else{
+                    //valid record exists so we validate the user string
+                    //First compare the hashed unique string
+
+                    bcrypt
+                        .compare(uniqueString,hashedUniqueString)
+                        .then(result =>{
+                            if(result){
+                                //string match
+
+                                User
+                                    .updateOne({_id:userId},{verified:true})
+                                    .then(()=>{
+                                        UserVerification
+                                            .deleteOne({userId})
+                                            .then(()=>{
+                                                res.sendFile(path.join(__dirname,"./../views/verified.html"))
+                                            })
+                                            .catch(error=>{
+                                                console.log(error);
+                                                let message="An error occurred while finalizing successful verification.";
+                                                res.redirect(`/user/verified/error=true&message=${message}`);
+                                            })
+                                    })
+                                    .catch(error=>{
+                                        console.log(error);
+                                        let message="An error occurred while updating user record to show verified.";
+                                        res.redirect(`/user/verified/error=true&message=${message}`);
+                                    })
+                            }else{
+                                //existing record but incorrect verification details passed
+                                let message="Invalid verification details passed.Check your inbox.";
+                            res.redirect(`/user/verified/error=true&message=${message}`);
+                            }
+                        })
+                        .catch(error=>{
+                            let message="An error occurred while comparing strings";
+                            res.redirect(`/user/verified/error=true&message=${message}`);
+                        })
+                }
+
+            }else{
+                //user verification record doesn't exist
+                let message="Account record doesn't exist or has been verified already.Please sign up or log in."
+                res.redirect(`/user/verified/error=true&message=${message}`);
+            }
+        })
+        .catch((error)=>{
+            console.log(error);
+            let message="An error occurred while checking for existing user verification record";
+            res.redirect(`/user/verified/error=true&message=${message}`);
+        })
+})
+
+//Verified page route
+router.get("/verified",(req,res)=>{
+    res.sendFile(path.join(__dirname,"./../views/verified.html"));
+})
+
+
 //Sign in
 router.post('/signin',(req,res)=>{
     let{email,password}=req.body;
@@ -196,7 +296,14 @@ router.post('/signin',(req,res)=>{
             if(data.length){
                 //User exists
 
-                const hashedPassword=data[0].password;
+                //check if user is verified
+                if(!data[0].verified){
+                    res.json({
+                        status:"FAILED",
+                        message:"Email hasn't been verified yet.Check your inbox."
+                    })
+                }else{
+                    const hashedPassword=data[0].password;
                 bcrypt.compare(password,hashedPassword).then(result=>{
                     if(result){
                         //Password match
@@ -218,6 +325,8 @@ router.post('/signin',(req,res)=>{
                         message:"An error occured while comparing passwords"
                     })
                 })
+                }
+                
             }else{
                 res.json({
                     status:"FAILED",
