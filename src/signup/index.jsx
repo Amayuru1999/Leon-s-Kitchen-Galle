@@ -1,16 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
+import axios from 'axios'
 
 import { Button, Img, Input, Line, List, Text } from "components";
 
 const Signup = () => {
+  const [error,setError]=useState("")
   const navigate = useNavigate();
+  const [data,setData]=useState({
+    name:"",
+    email:"",
+    password:"",
+    mobileNumber:""
+  })
 
+// const handleSubmit=async(e)=>{
+//   e.preventDefault();
+//   try{
+//     const url="http://localhost:8080/api/users";
+//     const {data:res}=await axios.post(url,data);
+//     navigate("/login")
+//     console.log(res.message)
+//   }catch(error){
+//     if(error.response &&
+//       error.response.status>=400 &&
+//       error.response.status<=500){
+//         setError(error.response.data.message)
+//       }
+//   }
+// }
+
+const registerUser=(e)=>{
+  e.preventDefault()
+}
   return (
     <>
       <div className="bg-white-A700 flex sm:flex-col md:flex-col flex-row font-poppins sm:gap-10 md:gap-10 items-center justify-between mx-auto pb-1 pl-1 w-full">
-        <div className="flex flex-col items-center justify-start md:ml-[0] ml-[140px] md:px-5 w-[22%] md:w-full">
+        <div className="flex flex-col items-center justify-start md:ml-[0] ml-[140px] md:px-5 w-[22%] md:w-full" >
           <Text
             className="text-3xl sm:text-[26px] md:text-[28px] text-black-900 uppercase"
             size="txtPoppinsBold30"
@@ -23,13 +50,18 @@ const Signup = () => {
           >
             Create an account,It's free!
           </Text>
+          
           <div className="flex flex-col items-center justify-start mt-[31px] w-full">
+            <form onSubmit={registerUser}>
             <Input
-              name="groupOne"
+              name="name"
               placeholder="Name"
               className="leading-[normal] p-0 placeholder:text-gray-900_02 text-left text-xs w-full"
               wrapClassName="flex rounded-[16px] w-full"
               type="text"
+              onChange={(e)=>setData({...data,name:e.target.value})}
+              value={data.name}
+              required
               prefix={
                 <Img
                   className="mr-1.5 my-auto"
@@ -41,30 +73,36 @@ const Signup = () => {
               size="md"
             ></Input>
             <Input
-  name="email" 
-  placeholder="Email"  
-  className="leading-[normal] p-0 placeholder:text-gray-900_02 text-left text-xs w-full"
-  wrapClassName="flex mt-[21px] rounded-[16px] w-full"
-  type="email" 
-  prefix={
-    <Img
-      className="mr-1.5 my-auto"
-      src="images/email.svg"
-      alt="Frame"
-      style={{ width: '16px', height: '16px' }}  
-    />
-  }
-  color="yellow_700_cc"
-  size="md"
-></Input>
+                name="email" 
+                placeholder="Email"  
+                className="leading-[normal] p-0 placeholder:text-gray-900_02 text-left text-xs w-full"
+                wrapClassName="flex mt-[21px] rounded-[16px] w-full"
+                type="email"
+                onChange={(e)=>setData({...data,email:e.target.value})}
+                value={data.email}
+                required
+                prefix={
+                    <Img
+                      className="mr-1.5 my-auto"
+                      src="images/email.svg"
+                      alt="Frame"
+                      style={{ width: '16px', height: '16px' }}  
+                    />
+                  }
+                  color="yellow_700_cc"
+                  size="md"
+                ></Input>
 
 
             <Input
-              name="groupTwo"
+              name="password"
               placeholder="Password"
               className="leading-[normal] p-0 placeholder:text-gray-900_02 text-left text-xs w-full"
               wrapClassName="flex mt-[21px] rounded-[16px] w-full"
               type="password"
+              onChange={(e)=>setData({...data,password:e.target.value})}
+                value={data.password}
+                required
               prefix={
                 <Img
                   className="mr-1.5 my-auto"
@@ -75,12 +113,15 @@ const Signup = () => {
               color="yellow_700_cc"
               size="md"
             ></Input>
-            <Input
-              name="groupTwo"
+            {/* <Input
+              name="confirmpassword"
               placeholder="Confirm Password"
               className="leading-[normal] p-0 placeholder:text-gray-900_02 text-left text-xs w-full"
               wrapClassName="flex mt-[21px] rounded-[16px] w-full"
               type="password"
+              onChange={handleChange}
+              value={data.confirmpassword}
+              required
               prefix={
                 <Img
                   className="mr-1.5 my-auto"
@@ -90,43 +131,48 @@ const Signup = () => {
               }
               color="yellow_700_cc"
               size="md"
-            ></Input>
+            ></Input> */}
             <Input
-  name="mobile" 
-  placeholder="Phone Number"  
-  className="leading-[normal] p-0 placeholder:text-gray-900_02 text-left text-xs w-full"
-  wrapClassName="flex mt-[21px] rounded-[16px] w-full"
-  type="mobile" 
-  prefix={
-    <Img
-      className="mr-1.5 my-auto"
-      src="images/mobile.svg"
-      alt="Frame"
-      style={{ width: '16px', height: '16px' }}  
-    />
-  }
-  color="yellow_700_cc"
-  size="md"
-></Input>
+              name="mobileNumber" 
+              placeholder="Phone Number"  
+              className="leading-[normal] p-0 placeholder:text-gray-900_02 text-left text-xs w-full"
+              wrapClassName="flex mt-[21px] rounded-[16px] w-full"
+              type="mobile" 
+              onChange={(e)=>setData({...data,mobileNumber:e.target.value})}
+              value={data.mobileNumber}
+              required
+              prefix={
+              <Img
+                className="mr-1.5 my-auto"
+                src="images/mobile.svg"
+                alt="Frame"
+                style={{ width: '16px', height: '16px' }}  
+              />
+            }
+            color="yellow_700_cc"
+            size="md"
+          ></Input>
+          {error && <div>{error}</div>}
             <Button
               className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[124px] mt-7 rounded-[16px] text-center text-xs hover:scale-110"
               onClick={() => navigate("/fooddeliverydashboard")}
               size="2xl"
               variant="gradient"
               color="orange_A100_yellow_700"
+              type="submit"
               
             >
               Sign Up
             </Button>
-            
+            </form>
            
             <div className="h-6 md:h-[54px] mt-[30px] relative w-full">
             <button
-    className="absolute h-full inset-[0] justify-center m-auto text-base font-bold text-blue_gray-700 w-max hover:text-blue-600"
-    size="txtPoppinsRegular16Bluegray700"
->
-    Don't have an account yet? Sign Up
-</button>
+                className="absolute h-full inset-[0] justify-center m-auto text-base font-bold text-blue_gray-700 w-max hover:text-blue-600"
+                size="txtPoppinsRegular16Bluegray700"
+                >
+                Already have an account? Login now
+            </button>
 
 
               
@@ -137,7 +183,7 @@ const Signup = () => {
                 className="absolute h-full inset-[0] justify-center m-auto text-base text-blue_gray-700 w-max"
                 size="txtPoppinsRegular16Bluegray700"
               >
-                Login with Others
+                Sign Up with Others
               </Text>
               
             </div>
@@ -160,7 +206,7 @@ const Signup = () => {
             size="txtPoppinsRegular12Gray90002"
         >
             <span className="text-gray-900_02 font-poppins text-left font-normal">
-                Login with{" "}
+            Sign Up with{" "}
             </span>
             <span className="text-gray-900_02 font-poppins text-left font-bold">
                 Google
@@ -185,7 +231,7 @@ const Signup = () => {
             size="txtPoppinsRegular12Gray90002"
         >
             <span className="text-gray-900_02 font-poppins text-left font-normal">
-                Login with{" "}
+            Sign Up with{" "}
             </span>
             <span className="text-gray-900_02 font-poppins text-left font-bold">
                 Facebook
