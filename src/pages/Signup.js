@@ -57,7 +57,9 @@ const Signup = ({ signupUser }) => {
             name: "",
           }}
           validationSchema={Yup.object({
-            email: Yup.string().email("Invalid email address").required("Required"),
+            email: Yup.string()
+              .email("Invalid email address")
+              .required("Required"),
             password: Yup.string()
               .min(8, "Password is too short")
               .max(30, "Password is too long")
@@ -76,17 +78,23 @@ const Signup = ({ signupUser }) => {
                 name="name"
                 type="text"
                 label="Full Name"
-                placeholder="Olga Simpson"
+                placeholder="Name"
                 icon={<FiUser />}
               />
               <TextInput
                 name="email"
                 type="text"
                 label="Email Address"
-                placeholder="olga1@example.com"
+                placeholder="Email"
                 icon={<FiMail />}
               />
-              <TextInput name="mobileNumber" type="text" label="Mobile" icon={<FiPhone />} />
+              <TextInput
+                name="mobileNumber"
+                type="text"
+                label="Mobile"
+                placeholder="+94"
+                icon={<FiPhone />}
+              />
               <TextInput
                 name="password"
                 type="password"
@@ -103,7 +111,9 @@ const Signup = ({ signupUser }) => {
               />
               <ButtonGroup>
                 {!isSubmitting && (
-                  <StyledFormButton type="submit" onClick={signupUser}>Signup</StyledFormButton>
+                  <StyledFormButton type="submit" onClick={signupUser}>
+                    Signup
+                  </StyledFormButton>
                 )}
 
                 {/* {isSubmitting && (
@@ -114,7 +124,9 @@ const Signup = ({ signupUser }) => {
           )}
         </Formik>
         {signupSuccess && (
-          <div style={{ color: "green", marginTop: "10px" }}>Check your email for further instructions!</div>
+          <div style={{ color: "green", marginTop: "10px" }}>
+            Check your email for further instructions!
+          </div>
         )}
         <ExtraText>
           Already have an account? <TextLink to="/login">Login</TextLink>

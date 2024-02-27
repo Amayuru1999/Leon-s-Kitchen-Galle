@@ -47,8 +47,8 @@ export const StyledSubTitle = styled.p`
 `;
 
 export const Avatar = styled.div`
-  width: 85px;
-  height: 85px;
+  width: 400px;
+  height: 300px;
   border-radius: 50px;
   background-image: url(${(props) => props.image});
   background-size: cover;
@@ -117,7 +117,7 @@ export const StyledLabel = styled.p`
 export const StyledFormArea = styled.div`
   background-color: ${(props) => props.bg || colors.light1};
   text-align: center;
-  padding: 45px 55px;
+  padding: 400px 55px;
 `;
 
 export const StyledFormButton = styled.button`

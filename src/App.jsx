@@ -15,7 +15,7 @@
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/HomeDesktopLighterVersion/index";
 
 // styled components
 import { StyledContainer } from "./components/Styles";
