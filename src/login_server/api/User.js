@@ -6,6 +6,7 @@ const User=require('./../models/User');
 
 //mongodb user verification model
 const UserVerification=require('./../models/UserVerification');
+const PasswordReset=require('./../models/PasswordReset');
 
 //email handler
 const nodemailer=require("nodemailer");
@@ -343,5 +344,71 @@ router.post('/signin',(req,res)=>{
     }
     
 })
+
+//Password reset stuff
+router.post("/requestPasswordReset",(req,res)=>{
+    const{email,redirectUrl}=req.body;
+    //check if email exists
+    User
+        .find({email})
+        .then((data)=>{
+            if(data.length){
+                //user exists
+
+                //check if user is verified
+                if(!data[0].verified){
+                    res.json({
+                        status:"FAILED",
+                        message:"Email hasn't been verified yet.Check your inbox"
+                    })
+                }
+                else{
+                    //proceed with email to reset password
+                    sendResetEmail(data[0],redirectUrl,res);
+                }
+
+            }else{
+                res.json({
+                    status:"FAILED",
+                    message:"No account with supplied email"
+                })
+            }
+
+        })
+        .catch(err=>{
+            console.log(error);
+            res.json({
+                status:"FAILED",
+                message:"An error occurred while checking existing user"
+            })
+        })
+})
+//send password reset email
+const sendResetEmail=({_id,email},redirectUrl,res)=>{
+    const resetString=uuidv4+_id;
+
+    //First we clear all existing reset records
+    PasswordReset
+        .deleteMany({userId: _id})
+        .then(result=>{
+            //Reset records deleted successfully
+            //Now we send the email
+            const mailOptions={
+                from:process.env.AUTH_EMAIL,
+                to:email,
+                subject:"Password Reset",
+                html:`<p>We heard that you lost the passowrd.</p><p>Don't worry,use the link below to reset it.</p><p>This link
+                <b>expires in 60 minutes.</b>.</p><p>Press <a href=${redirectUrl + "/" + _id +"/"+resetString}>here</a>to proceed.</p>`,
+            }
+        })
+        .catch(error=>{
+            //error while clearing existing records
+            console.log(error)
+            res.json({
+                status:"FAILED",
+                message:"Clearing existing password reset records failed."
+            })
+        })
+}
 
 module.exports=router;
