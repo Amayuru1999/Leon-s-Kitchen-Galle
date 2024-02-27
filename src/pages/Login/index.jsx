@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -6,7 +7,9 @@ import { Button, Img, Input, Line, List, Text } from "components";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-
+  
+  
+ 
   return (
     <>
       <div className="bg-white-A700 flex sm:flex-col md:flex-col flex-row font-poppins sm:gap-10 md:gap-10 items-center justify-between mx-auto pb-1 pl-1 w-full">
@@ -25,11 +28,12 @@ const LoginPage = () => {
           </Text>
           <div className="flex flex-col items-center justify-start mt-[31px] w-full">
             <Input
-              name="groupOne"
-              placeholder="Username"
+              name="email"
+              placeholder="Email"
               className="leading-[normal] p-0 placeholder:text-gray-900_02 text-left text-xs w-full"
               wrapClassName="flex rounded-[16px] w-full"
               type="text"
+              
               prefix={
                 <Img
                   className="mr-1.5 my-auto"
@@ -41,11 +45,12 @@ const LoginPage = () => {
               size="md"
             ></Input>
             <Input
-              name="groupTwo"
+              name="password"
               placeholder="Password"
               className="leading-[normal] p-0 placeholder:text-gray-900_02 text-left text-xs w-full"
               wrapClassName="flex mt-[21px] rounded-[16px] w-full"
               type="password"
+              
               prefix={
                 <Img
                   className="mr-1.5 my-auto"
