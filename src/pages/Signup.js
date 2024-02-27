@@ -45,8 +45,8 @@ const Signup = ({ signupUser }) => {
     <div>
       <StyledFormArea>
         <Avatar image={Logo} />
-        <StyledTitle color={colors.theme} size={30}>
-          Member Signup
+        <StyledTitle color={colors.theme} size={35}>
+          Signup
         </StyledTitle>
         <Formik
           initialValues={{
@@ -77,7 +77,7 @@ const Signup = ({ signupUser }) => {
               <TextInput
                 name="name"
                 type="text"
-                label="Full Name"
+                label="Name"
                 placeholder="Name"
                 icon={<FiUser />}
               />
@@ -99,14 +99,14 @@ const Signup = ({ signupUser }) => {
                 name="password"
                 type="password"
                 label="Password"
-                placeholder="********"
+                placeholder="Password"
                 icon={<FiLock />}
               />
               <TextInput
                 name="repeatPassword"
                 type="password"
                 label="Repeat Password"
-                placeholder="********"
+                placeholder="Repeat Password"
                 icon={<FiLock />}
               />
               <ButtonGroup>
@@ -132,7 +132,7 @@ const Signup = ({ signupUser }) => {
           Already have an account? <TextLink to="/login">Login</TextLink>
         </ExtraText>
       </StyledFormArea>
-      <CopyrightText>All rights reserved &copy;2024</CopyrightText>
+      <CopyrightText>All rights reserved &copy; 2024</CopyrightText>
     </div>
   );
 };

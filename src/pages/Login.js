@@ -38,8 +38,8 @@ import {
       <div>
         <StyledFormArea>
           <Avatar image={Logo} />
-          <StyledTitle color={colors.theme} size={30}>
-            Member Login
+          <StyledTitle color={colors.theme} size={35}>
+            Login
           </StyledTitle>
           <Formik
             initialValues={{
@@ -66,7 +66,7 @@ import {
                   name="email"
                   type="text"
                   label="Email Address"
-                  placeholder="olga1@example.com"
+                  placeholder="Email"
                   icon={<FiMail />}
                 />
   
@@ -74,7 +74,7 @@ import {
                   name="password"
                   type="password"
                   label="Password"
-                  placeholder="********"
+                  placeholder="Password"
                   icon={<FiLock />}
                 />
                 <ButtonGroup>
@@ -98,7 +98,7 @@ import {
             New here? <TextLink to="/signup">Signup</TextLink>
           </ExtraText>
         </StyledFormArea>
-        <CopyrightText>All rights reserved &copy;2022</CopyrightText>
+        <CopyrightText>All rights reserved &copy; 2024</CopyrightText>
       </div>
     );
   };

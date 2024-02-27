@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { logoutUser } from "./../../auth/actions/userActions";
 
 // React router
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
   const navigate = useNavigate();
@@ -23,19 +23,6 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                   alt="One"
                 />
                 <Text className="mb-2">Welcome, {user.name}</Text>
-                <Button className="bg-black-900_01 flex flex-col font-poppins items-start justify-end p-4 rounded-[30px] w-[21%] md:w-full focus:outline-none border border-white-A700 hover:bg-gray-400 transition duration-300 absolute top-2 right-2" to="#" onClick={() => logoutUser(navigate)} >
-                <div className="flex flex-row gap-3 items-center justify-start md:ml-[0] ml-[9px] w-[81%] md:w-full">
-                    <img
-                      className="h-[27px] md:h-auto object-cover rounded-[1px] w-[19%]"
-                      src="images/img_maleuser.png"
-                      alt="maleuser"
-                    />
-                    <span className="text-lg text-white-A700">
-                    Logout
-                    </span>
-                  </div>
-                  
-                </Button>
               </div>
               <div className="flex md:flex-col flex-row gap-[53px] items-center justify-end md:ml-[0] ml-[383px] mt-[38px] w-3/4 md:w-full">
                 <div className="flex relative w-3/4 md:w-full">
@@ -57,16 +44,18 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                     </button>
                   </div>
                 </div>
-                <button className="bg-black-900_01 flex flex-col font-poppins items-start justify-end p-4 rounded-[30px] w-[21%] md:w-full focus:outline-none border border-white-A700 hover:bg-gray-400 transition duration-300">
-                  <div className="flex flex-row gap-3 items-center justify-start md:ml-[0] ml-[9px] w-[81%] md:w-full">
+                <button
+                  className="bg-black-900_01 flex flex-col font-poppins items-center justify-center p-4 rounded-[30px] w-[21%] md:w-full focus:outline-none border border-white-A700 hover:bg-gray-400 transition duration-300 "
+                  to="#"
+                  onClick={() => logoutUser(navigate)}
+                >
+                  <div className="flex flex-row gap-3 items-center justify-center w-[81%] md:w-full">
                     <img
                       className="h-[27px] md:h-auto object-cover rounded-[1px] w-[19%]"
                       src="images/img_maleuser.png"
                       alt="maleuser"
                     />
-                    <span className="text-lg text-white-A700">
-                      Login/Signup
-                    </span>
+                    <span className="text-lg text-white-A700">Logout</span>
                   </div>
                 </button>
               </div>
@@ -899,4 +888,6 @@ const mapStateToProps = ({ session }) => ({
   user: session.user,
 });
 // export default HomeDesktopLighterVersionPage;
-export default connect(mapStateToProps, { logoutUser })(HomeDesktopLighterVersionPage);
+export default connect(mapStateToProps, { logoutUser })(
+  HomeDesktopLighterVersionPage
+);

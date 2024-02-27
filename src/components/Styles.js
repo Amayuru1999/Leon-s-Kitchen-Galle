@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-import background from "../assets/bg.png";
+import background from "../assets/bg.jpg";
 
 // React router
 import { Link } from "react-router-dom";
 
 export const colors = {
   primary: "#fff",
-  theme: "#BE185D",
+  theme: "#013220",
   light1: "#F3F4F6",
   light2: "#E5E7EB",
   dark1: "#1F2937",
@@ -36,6 +36,7 @@ export const StyledTitle = styled.h2`
   color: ${(props) => (props.color ? props.color : colors.primary)};
   padding: 5px;
   margin-bottom: 20px;
+  font-weight: bold;
 `;
 
 export const StyledSubTitle = styled.p`
@@ -117,7 +118,7 @@ export const StyledLabel = styled.p`
 export const StyledFormArea = styled.div`
   background-color: ${(props) => props.bg || colors.light1};
   text-align: center;
-  padding: 400px 55px;
+  padding: 20px 55px;
 `;
 
 export const StyledFormButton = styled.button`
