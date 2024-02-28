@@ -400,6 +400,46 @@ const sendResetEmail=({_id,email},redirectUrl,res)=>{
                 html:`<p>We heard that you lost the passowrd.</p><p>Don't worry,use the link below to reset it.</p><p>This link
                 <b>expires in 60 minutes.</b>.</p><p>Press <a href=${redirectUrl + "/" + _id +"/"+resetString}>here</a>to proceed.</p>`,
             }
+            //hash the reset string
+            const saltRounds=10;
+            bcrypt
+                .hash(resetString,saltRounds)
+                .then(hashedResetString=>{
+                    //set values in password reset collection
+                    const newPasswordReset=new PasswordReset({
+                        userId: _id,
+                        resetString:hashedResetString,
+                        createdAt:Date.now(),
+                        expiresAt:Date.now()+3600000
+                    })
+                    newPasswordReset
+                        .save()
+                        .then(()=>{
+                            transporter
+                                .sendMail(mailOptions)
+                                .then(()=>{
+                                    //reset email sent and password reset record saved
+                                    res.json({
+                                        status:"Pending",
+                                        message:"Password reset email sent",
+                                    })
+                                })
+                        })
+                        .catch(error=>{
+                            console.log(error);
+                            res.json({
+                                status:"FAILED",
+                                message:"Couldn't save password reset data!",
+                            })
+                        })
+                })
+                .catch(error=>{
+                    console.log(error);
+                    res.json({
+                        status:"FAILED",
+                        message:"An error occured while hashing the password reset data!",
+                    })
+                })
         })
         .catch(error=>{
             //error while clearing existing records
