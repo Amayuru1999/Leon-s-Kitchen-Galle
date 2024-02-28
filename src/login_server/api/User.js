@@ -42,6 +42,7 @@ const bcrypt=require('bcrypt');
 //path for static verified page
 const path=require("path");
 const { error } = require('console');
+const { errorMonitor } = require('events');
 
 //Sign up
 router.post('/signup',(req,res)=>{
@@ -385,7 +386,7 @@ router.post("/requestPasswordReset",(req,res)=>{
 })
 //send password reset email
 const sendResetEmail=({_id,email},redirectUrl,res)=>{
-    const resetString=uuidv4+_id;
+    const resetString=uuidv4()+_id;
 
     //First we clear all existing reset records
     PasswordReset
@@ -450,5 +451,124 @@ const sendResetEmail=({_id,email},redirectUrl,res)=>{
             })
         })
 }
+
+//Actually reset the password
+router.post("/resetPassword",(req,res)=>{
+    let{userId,resetString,newPassword}=req.body;
+    PasswordReset
+        .find({userId})
+        .then(result=>{
+            if(result.length>0){
+                //password reset record exists so we proceed
+
+                const {expiresAt}=result[0];
+                const hashedResetString=result[0].resetString;
+
+                //checking for expired reset string
+                if(expiresAt<Date.now()){
+                    PasswordReset
+                        .deleteOne({userId})
+                        .then(()=>{
+                            //Reset record deleted successfully
+                            res.json({
+                                status:"FAILED",
+                                message:"Password reset link has expired"
+                            })
+                        }
+
+                        )
+                        .catch(error=>{
+                            //deletion failed
+                            res.json({
+                                status:"FAILED",
+                                message:"Clearing password reset record failed."
+                            })
+                        })
+                }else{
+                    //valid reset record exists so we validate the reset string
+                    //First compare the hashed reset string
+                    bcrypt
+                        .compare(resetString,hashedResetString)
+                        .then((result)=>{
+                            if(result){
+                                //strings matched
+                                //hash password again
+
+                                const saltRounds=10;
+                                bcrypt
+                                    .hash(newPassword,saltRounds)
+                                    .then(hashedNewPassword=>{
+                                        //Update user password
+
+                                        User
+                                            .updateOne({_id:userId},{password:hashedNewPassword})
+                                            .then(()=>{
+                                                //update complete.Now delete reset record
+                                                PasswordReset
+                                                    .deleteOne({userId})
+                                                    .then(()=>{
+                                                        //both user record and reset record updated
+                                                        res.json({
+                                                            status:"SUCCESS",
+                                                            message:"Password has been reset successfully."
+                                                })
+                                                    })
+                                                    .catch(error=>{
+                                                        console.log(error);
+                                                        res.json({
+                                                            status:"FAILED",
+                                                            message:"An error occurred while finalizing password reset."
+                                                })
+                                                    })
+                                            })
+                                            .catch(error=>{
+                                                console.log(error);
+                                                res.json({
+                                                    status:"FAILED",
+                                                    message:"Updating user password failed."
+                                                })
+                                            })
+                                    })
+                                    .catch(error=>{
+                                        console.log(error);
+                                        res.json({
+                                            status:"FAILED",
+                                            message:"An error occured while hashing new password."
+                                        })
+                                    })
+
+                            }else{
+                                //Existing record but incorrect reset string passed.
+                                res.json({
+                                    status:"FAILED",
+                                    message:"Invalid password reset details passed."
+                                })
+                            }
+                        })
+                        .catch(error=>{
+                            res.json({
+                                status:"FAILED",
+                                message:"Comparing password reset strings failed."
+                            })
+                        })
+                }
+
+            }else{
+                //Password reset record doesn't exist
+                res.json({
+                    status:"FAILED",
+                    message:"Password reset request not found."
+                })
+            }
+        })
+        .catch(error=>{
+            console.log(error)
+            res.json({
+                status:"FAILED",
+                message:"Checking for existing password reset records failed."
+            })
+        })
+
+})
 
 module.exports=router;
