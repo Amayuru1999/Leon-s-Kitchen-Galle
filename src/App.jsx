@@ -17,9 +17,8 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/HomeDesktopLighterVersion/index";
 
-// styled components
 import { StyledContainer } from "./components/Styles";
-
+import { Link } from "react-router-dom";
 // Loader css
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
@@ -29,7 +28,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"; // Updated impo
 import AuthRoute from "./components/AuthRoute";
 import BasicRoute from "./components/BasicRoute";
 import { connect } from "react-redux";
-
+import ForgottenPassword from "pages/ForgottenPassword";
+import EmailSent from "pages/EmailSent";
+import PasswordReset from "pages/PasswordReset";
 function App({ checked }) {
   return (
     <BrowserRouter>
@@ -40,6 +41,9 @@ function App({ checked }) {
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/" element={<Home />} />
+            <Route path="/forgottenpassword" element={<ForgottenPassword />} />
+            <Route path="/emailsent/:userEmail?/:reset?" element={<EmailSent />} />
+            <Route path="/passwordreset/:userId?/:resetString" element={<PasswordReset />} />
           </Routes>
         </StyledContainer>
       )}
