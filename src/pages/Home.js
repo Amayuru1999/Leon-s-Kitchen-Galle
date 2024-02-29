@@ -26,7 +26,7 @@ import {
         >
           <Avatar image={Logo} />
         </div>
-        <StyledTitle size={65}>Welcome to DELVE</StyledTitle>
+        <StyledTitle size={65}>Welcome to Leon's Kitchen</StyledTitle>
         <StyledSubTitle size={27}>Feel free to explore our page</StyledSubTitle>
         <ButtonGroup>
           <StyledButton to="/login">Login</StyledButton>

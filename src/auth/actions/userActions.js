@@ -126,3 +126,89 @@ export const logoutUser = (navigate) => {
     navigate("/");
   };
 };
+
+export const forgottenPassword = (
+  credentials,
+  navigate,
+  setFieldError,
+  setSubmitting
+) => {
+  // Make checks and get some data
+  return () => {
+    console.log("aaaaa");
+    axios
+      .post(
+        "http://localhost:5000/user/requestPasswordReset",
+        credentials,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        const { data } = response;
+
+        if (data.status === "FAILED") {
+          const { message } = data;
+
+          // check for specific error
+          if (message.toLowerCase().includes("user") || message.toLowerCase().includes("password") || message.toLowerCase().includes("email")) {
+            
+          } {
+            setFieldError("email",message)
+          }
+        } else if (data.status === "PENDING") {
+          const {email}=credentials;
+          navigate(`/emailsent/${email}/${true}`)
+        }
+
+        //complete submission
+        setSubmitting(false);
+      })
+      .catch((err) => console.error(err));
+  };
+};
+
+//Actuall reset
+export const resetPassword = (
+  credentials,
+  navigate,
+  setFieldError,
+  setSubmitting
+) => {
+  // Make checks and get some data
+  return () => {
+    console.log("aaaaa");
+    axios
+      .post(
+        "http://localhost:5000/user/resetPassword",
+        credentials,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        const { data } = response;
+
+        if (data.status === "FAILED") {
+          const { message } = data;
+
+          // check for specific error
+          if (message.toLowerCase().includes("password")) {
+            
+          } {
+            setFieldError("newPassword",message)
+          }
+        } else if (data.status === "SUCCESS") {
+          navigate(`/emailsent`)
+        }
+
+        //complete submission
+        setSubmitting(false);
+      })
+      .catch((err) => console.error(err));
+  };
+};
