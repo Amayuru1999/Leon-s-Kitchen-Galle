@@ -1,8 +1,19 @@
 import React from "react";
+import { useState } from "react";
 
+import { useNavigate } from "react-router-dom";
+import { logoutUser } from "./../../auth/actions/userActions";
+import { Link } from "react-router-dom";
 import { Button, Img, Input, Line, List, Text } from "components";
+import { connect } from "react-redux";
 
-const OrderingPagePage = () => {
+const OrderingPagePage = ({ logoutUser, user }) => {
+  const navigate = useNavigate();
+  const [cartItemCount, setCartItemCount] = useState(0);
+
+  const updateCartItemCount = (newCount) => {
+    setCartItemCount(newCount);
+  };
   return (
     <>
       <div className="bg-white-A700 flex flex-col font-poppins items-center justify-end mx-auto w-full">
@@ -10,50 +21,62 @@ const OrderingPagePage = () => {
           <div className="sm:h-[2131px] md:h-[2145px] h-[2335px] max-w-[1528px] mx-auto md:px-5 relative w-full">
             <div className="absolute sm:h-[2131px] md:h-[2145px] h-[2271px] inset-[0] justify-center m-auto w-full">
               <div className="absolute flex flex-col font-manrope inset-x-[0] justify-start mx-auto top-[0] w-full">
+              <div className="border border-black-900_19 border-solid flex flex-col items-center justify-end p-[13px] rounded-bl-[12px] rounded-br-[12px] w-full">
                 <Img
-                  className="h-[38px] md:h-auto md:ml-[0] ml-[37px] object-cover w-[2%]"
+                  className="h-[38px] md:h-auto md:ml-[0] ml-[23px] mt-1 object-cover w-[2%]"
                   src="images/img_.png"
-                  alt="Four"
+                  alt="One"
                 />
-                <div className="flex md:flex-col flex-row gap-[39px] items-center justify-end md:ml-[0] ml-[585px] mt-[51px] w-[59%] md:w-full">
-                  <div className="h-[45px] relative w-[70%] md:w-full">
-                    <div className="absolute bg-orange-600 h-[45px] inset-y-[0] my-auto right-[24%] rounded-[22px] w-[29%]"></div>
-                    <Text
-                      className="absolute bottom-[18%] inset-x-[0] mx-auto text-black-900 text-lg w-max"
-                      size="txtManropeSemiBold18"
-                    >
-                      <span className="text-black-900 font-poppins text-left font-medium">
-                        Home
-                      </span>
-                      <span className="text-black-900 font-poppins text-left font-medium">
-                        {" "}
-                        Special Offers{" "}
-                      </span>
-                      <span className="text-white-A700 font-poppins text-left font-medium">
-                        Restaurants
-                      </span>
-                      <span className="text-black-900 font-poppins text-left font-medium">
-                        {" "}
-                        Track Order
-                      </span>
-                    </Text>
-                  </div>
-                  <div className="bg-black-900_01 flex flex-col font-poppins items-start justify-end p-4 rounded-[30px] w-[27%] md:w-full">
-                    <div className="flex flex-row gap-3 items-center justify-start md:ml-[0] ml-[9px] w-[81%] md:w-full">
-                      <Img
-                        className="h-[27px] md:h-auto object-cover rounded-[1px] w-[19%]"
-                        src="images/img_maleuser.png"
-                        alt="maleuser"
+                <Text className="mb-2">Welcome, {user.name}</Text>
+              </div>
+                <div className="flex md:flex-col flex-row gap-[53px] items-center justify-end md:ml-[0] ml-[383px] mt-[38px] w-3/4 md:w-full">
+                <div className="flex relative w-3/4 md:w-full">
+                  <div className="flex ml-[-93px] items-center gap-4">
+                    <button className="text-white font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
+                      Home
+                    </button>
+                    <button className="text-black-900_01 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
+                      Browse Menu
+                    </button>
+                    <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
+                      Special Offers
+                    </button>
+                    <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
+                      Restaurants
+                    </button>
+                    <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
+                      Track Order
+                    </button>
+                    <button className="flex items-center text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button relative">
+                      <img
+                        src="images/cart.svg"
+                        alt="Cart"
+                        className="h-6 w-20 mr-2" // Adjust the size as needed and add margin-right
                       />
-                      <Text
-                        className="text-lg text-white-A700"
-                        size="txtPoppinsMedium18"
-                      >
-                        Login/Signup
-                      </Text>
-                    </div>
+                      <span>Cart</span>
+                      {cartItemCount > 0 && (
+                        <span className="absolute top-0 right-0 bg-red-500 text-white font-bold rounded-full px-2">
+                          {cartItemCount}
+                        </span>
+                      )}
+                    </button>
                   </div>
                 </div>
+                <button
+                  className="bg-black-900_01 flex flex-col font-poppins items-center justify-center p-4 rounded-[30px] w-[21%] md:w-full focus:outline-none border border-white-A700 hover:bg-gray-400 transition duration-300 "
+                  to="#"
+                  onClick={() => logoutUser(navigate)}
+                >
+                  <div className="flex flex-row gap-3 items-center justify-center w-[81%] md:w-full">
+                    <img
+                      className="h-[27px] md:h-auto object-cover rounded-[1px] w-[19%]"
+                      src="images/img_maleuser.png"
+                      alt="maleuser"
+                    />
+                    <span className="text-lg text-white-A700">Logout</span>
+                  </div>
+                </button>
+              </div>
                 <div className="font-poppins md:h-[1913px] h-[1942px] sm:h-[1981px] mt-[41px] relative w-full">
                   <div className="flex flex-col h-full items-center justify-start m-auto w-full">
                     <div className="flex flex-col md:gap-10 gap-[158px] items-start justify-start w-full">
@@ -1394,5 +1417,10 @@ const OrderingPagePage = () => {
     </>
   );
 };
-
-export default OrderingPagePage;
+const mapStateToProps = ({ session }) => ({
+  user: session.user,
+});
+// export default OrderingPagePage;
+export default connect(mapStateToProps, { logoutUser })(
+  OrderingPagePage
+);

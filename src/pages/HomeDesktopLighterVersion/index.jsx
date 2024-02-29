@@ -1,5 +1,6 @@
 import React from "react";
 import "./index.css";
+import { useState } from "react";
 
 import { Button, Img, Input, Line, List, Text } from "components";
 import { connect } from "react-redux";
@@ -7,9 +8,16 @@ import { logoutUser } from "./../../auth/actions/userActions";
 
 // React router
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
   const navigate = useNavigate();
+  const [cartItemCount, setCartItemCount] = useState(0);
+
+  const updateCartItemCount = (newCount) => {
+    setCartItemCount(newCount);
+  };
+
   return (
     <>
       <div className="bg-white-A700 flex flex-col font-manrope items-center justify-start mx-auto w-full">
@@ -24,6 +32,7 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                 />
                 <Text className="mb-2">Welcome, {user.name}</Text>
               </div>
+
               <div className="flex md:flex-col flex-row gap-[53px] items-center justify-end md:ml-[0] ml-[383px] mt-[38px] w-3/4 md:w-full">
                 <div className="flex relative w-3/4 md:w-full">
                   <div className="flex ml-[-93px] items-center gap-4">
@@ -41,6 +50,19 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                     </button>
                     <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
                       Track Order
+                    </button>
+                    <button className="flex items-center text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button relative">
+                      <img
+                        src="images/cart.svg"
+                        alt="Cart"
+                        className="h-6 w-20 mr-2" // Adjust the size as needed and add margin-right
+                      />
+                      <span>Cart</span>
+                      {cartItemCount > 0 && (
+                        <span className="absolute top-0 right-0 bg-red-500 text-white font-bold rounded-full px-2">
+                          {cartItemCount}
+                        </span>
+                      )}
                     </button>
                   </div>
                 </div>
@@ -216,11 +238,16 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                     href="#"
                     className="block h-[325px] m-auto object-cover rounded-[12px] w-full overflow-hidden focus:outline-none"
                   >
-                    <img
-                      className="h-[325px] m-auto object-cover w-full transition-transform duration-300 transform hover:scale-105 focus:scale-105"
-                      src="images/img_rectangle9.png"
-                      alt="rectangleNine"
-                    />
+                    <Link
+                      to="/restaurantdetailpagedesktop"
+                      className="block h-[325px] m-auto rounded-[12px] w-full overflow-hidden focus:outline-none"
+                    >
+                      <img
+                        className="h-[325px] m-auto object-cover w-full transition-transform duration-300 transform hover:scale-105 focus:scale-105"
+                        src="images/img_rectangle9.png"
+                        alt="rectangleNine"
+                      />
+                    </Link>
                   </a>
                   <div className="absolute bottom-[11%] flex flex-col items-center justify-start left-[9%]">
                     <Text
