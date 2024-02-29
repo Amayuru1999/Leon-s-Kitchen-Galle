@@ -45,8 +45,8 @@ const Signup = ({ signupUser }) => {
     <div>
       <StyledFormArea>
         <Avatar image={Logo} />
-        <StyledTitle color={colors.theme} size={30}>
-          Member Signup
+        <StyledTitle color={colors.theme} size={35}>
+          Signup
         </StyledTitle>
         <Formik
           initialValues={{
@@ -57,7 +57,9 @@ const Signup = ({ signupUser }) => {
             name: "",
           }}
           validationSchema={Yup.object({
-            email: Yup.string().email("Invalid email address").required("Required"),
+            email: Yup.string()
+              .email("Invalid email address")
+              .required("Required"),
             password: Yup.string()
               .min(8, "Password is too short")
               .max(30, "Password is too long")
@@ -75,35 +77,43 @@ const Signup = ({ signupUser }) => {
               <TextInput
                 name="name"
                 type="text"
-                label="Full Name"
-                placeholder="Olga Simpson"
+                label="Name"
+                placeholder="Name"
                 icon={<FiUser />}
               />
               <TextInput
                 name="email"
                 type="text"
                 label="Email Address"
-                placeholder="olga1@example.com"
+                placeholder="Email"
                 icon={<FiMail />}
               />
-              <TextInput name="mobileNumber" type="text" label="Mobile" icon={<FiPhone />} />
+              <TextInput
+                name="mobileNumber"
+                type="text"
+                label="Mobile"
+                placeholder="+94"
+                icon={<FiPhone />}
+              />
               <TextInput
                 name="password"
                 type="password"
                 label="Password"
-                placeholder="********"
+                placeholder="Password"
                 icon={<FiLock />}
               />
               <TextInput
                 name="repeatPassword"
                 type="password"
                 label="Repeat Password"
-                placeholder="********"
+                placeholder="Repeat Password"
                 icon={<FiLock />}
               />
               <ButtonGroup>
                 {!isSubmitting && (
-                  <StyledFormButton type="submit" onClick={signupUser}>Signup</StyledFormButton>
+                  <StyledFormButton type="submit" onClick={signupUser}>
+                    Signup
+                  </StyledFormButton>
                 )}
 
                 {/* {isSubmitting && (
@@ -114,13 +124,15 @@ const Signup = ({ signupUser }) => {
           )}
         </Formik>
         {signupSuccess && (
-          <div style={{ color: "green", marginTop: "10px" }}>Check your email for further instructions!</div>
+          <div style={{ color: "green", marginTop: "10px" }}>
+            Check your email for further instructions!
+          </div>
         )}
         <ExtraText>
           Already have an account? <TextLink to="/login">Login</TextLink>
         </ExtraText>
       </StyledFormArea>
-      <CopyrightText>All rights reserved &copy;2024</CopyrightText>
+      <CopyrightText>All rights reserved &copy; 2024</CopyrightText>
     </div>
   );
 };

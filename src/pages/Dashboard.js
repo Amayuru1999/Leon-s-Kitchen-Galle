@@ -40,9 +40,9 @@ import {
         <StyledFormArea bg={colors.dark2}>
           <StyledTitle size={65}>Welcome, {user.name}</StyledTitle>
           <ExtraText color={colors.light1}>{user.email}</ExtraText>
-          <ExtraText color={colors.light1}>
+          {/* <ExtraText color={colors.light1}>
             {new Date(user.dateOfBirth).toLocaleDateString()}
-          </ExtraText>
+          </ExtraText> */}
           <ButtonGroup>
             <StyledButton to="#" onClick={() => logoutUser(navigate)}>
               Logout
