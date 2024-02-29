@@ -31,6 +31,8 @@ import { connect } from "react-redux";
 import ForgottenPassword from "pages/ForgottenPassword";
 import EmailSent from "pages/EmailSent";
 import PasswordReset from "pages/PasswordReset";
+import RestaurantDetailPageDesktopPage from "pages/RestaurantDetailPageDesktop";
+import OrderingPagePage from "pages/OrderingPage";
 function App({ checked }) {
   return (
     <BrowserRouter>
@@ -48,6 +50,11 @@ function App({ checked }) {
                 <Route path=":reset" element={<EmailSent/>}/>
               </Route>
             </Route>
+            <Route
+            path="/restaurantdetailpagedesktop"
+            element={<RestaurantDetailPageDesktopPage />}
+          />
+          <Route path="/orderingpage" element={<OrderingPagePage />} />
             {/* <Route
   path="/passwordreset/:userId?/:resetString?"
   element={<PasswordReset />}
