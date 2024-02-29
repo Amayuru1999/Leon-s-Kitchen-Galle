@@ -42,8 +42,23 @@ function App({ checked }) {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/" element={<Home />} />
             <Route path="/forgottenpassword" element={<ForgottenPassword />} />
-            <Route path="/emailsent/:userEmail?/:reset?" element={<EmailSent />} />
-            <Route path="/passwordreset/:userId?/:resetString" element={<PasswordReset />} />
+            {/* <Route path="/emailsent/:userEmail/:reset" element={<EmailSent />} /> */}
+            <Route path="emailsent">
+              <Route path=":userEmail">
+                <Route path=":reset" element={<EmailSent/>}/>
+              </Route>
+            </Route>
+            {/* <Route
+  path="/passwordreset/:userId?/:resetString?"
+  element={<PasswordReset />}
+/> */}
+            <Route path="passwordreset">
+              <Route path=":userId">
+                <Route path=":resetString"  element={<PasswordReset/>}/>
+              </Route>
+            </Route>
+
+
           </Routes>
         </StyledContainer>
       )}
