@@ -1,6 +1,6 @@
 import React from "react";
 import "./index.css";
-import { useState } from "react";
+import { useState ,useRef} from "react";
 
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "./../../auth/actions/userActions";
@@ -11,6 +11,13 @@ import { connect } from "react-redux";
 
 const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
   const navigate = useNavigate();
+  const divRef = useRef(null);
+  const [showDiv, setShowDiv] = useState(false);
+
+  const handleButtonClick = () => {
+    // Toggle the state when the button is clicked
+    divRef.current.scrollIntoView({ behavior: "smooth" });
+  };
   const handleAddToCart = async (itemName, itemDescription, itemPrice) => {
     try {
       // Prepare the item data
@@ -171,13 +178,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
               />
               <Text className="mb-2">Welcome, {user.name}</Text>
             </div>
-            {/* <div className="absolute bg-gray-50_01 border border-black-900_19 border-solid flex flex-col inset-x-[0] items-start justify-end mx-auto p-[13px] rounded-bl-[12px] rounded-br-[12px] top-[0] w-full">
-              <Img
-                className="h-[38px] md:h-auto md:ml-[0] ml-[23px] mt-1 object-cover w-[2%]"
-                src="images/img_.png"
-                alt="Two"
-              />
-            </div> */}
+            
             
               
             </div>
@@ -194,33 +195,25 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       >
                         All Offers from Leon’s Kitchen Galle
                       </Text>
-                      {/* <Text
-            className="md:mt-0 mt-[5px] text-black-900_90 text-lg"
-            size="txtPoppinsSemiBold18Black90090"
-        >
-            Search from menu...
-        </Text> */}
                     </div>
                     <div className="absolute bg-orange-600 h-24 inset-x-0 mx-auto top-[100px] w-full">
                       <div className="flex items-center justify-center h-full">
                         {" "}
                         {/* Center items vertically and horizontally */}
                         <div className="space-x-16 text-center">
-                          <button className="text-black font-bold text-lg bg-transparent px-4 py-2 rounded hover:bg-gray-300 hover:text-orange-600 focus:outline-none">
+                          <button className="text-black font-bold text-lg bg-transparent px-4 py-2 rounded hover:bg-gray-300 hover:text-orange-600 focus:outline-none"
+                          onClick={handleButtonClick}>
                             Fried Rice
                           </button>
-                          <button className="text-black font-bold text-lg bg-transparent px-4 py-2 rounded hover:bg-gray-300 hover:text-orange-600 focus:outline-none">
-                            Spaghetti
-                          </button>
-                          <button className="text-black font-bold text-lg bg-transparent px-4 py-2 rounded hover:bg-gray-300 hover:text-orange-600 focus:outline-none">
-                            Snacks
-                          </button>
-                          <button className="text-black font-bold text-lg bg-transparent px-4 py-2 rounded hover:bg-gray-300 hover:text-orange-600 focus:outline-none">
+                          <button className="text-black font-bold text-lg bg-transparent px-4 py-2 rounded hover:bg-gray-300 hover:text-orange-600 focus:outline-none"
+                          onClick={handleButtonClick}>
                             Kottu
                           </button>
-                          <button className="text-black font-bold text-lg bg-transparent px-4 py-2 rounded hover:bg-gray-300 hover:text-orange-600 focus:outline-none">
-                            Cold drinks
+                          <button className="text-black font-bold text-lg bg-transparent px-4 py-2 rounded hover:bg-gray-300 hover:text-orange-600 focus:outline-none"
+                          onClick={handleButtonClick}>
+                            Cold Drinks
                           </button>
+                          
                         </div>
                       </div>
                     </div>
@@ -236,21 +229,16 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                 />
               </div>
             </div>
-            {/* <div className="absolute border border-black-900_01 border-solid flex flex-col items-start justify-end p-[17px] right-[9%] rounded-[31px] top-[0] w-1/5">
-              <Img
-                className="h-[26px] md:h-auto md:ml-[0] ml-[11px] mt-[3px] object-cover w-[26px]"
-                src="images/img_searchmore.png"
-                alt="searchmore"
-              />
-            </div> */}
+            
           </div>
           <Text
-            className="mt-[35px] sm:text-[34px] md:text-[40px] text-[44px] text-orange-400"
+            className="mt-[65px] sm:text-[34px] md:text-[40px] text-[44px] text-orange-400 "
             size="txtPoppinsBold44"
           >
             Fried Rice
           </Text>
-          <div className="gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 justify-center max-w-[1528px] min-h-[auto] mt-[18px] mx-auto md:px-5 w-full">
+          <div ref={divRef} className="gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 justify-center max-w-[1528px] min-h-[auto] mt-[18px] mx-auto md:px-5 w-full">
+        
             <div
               className="common-pointer bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105"
               
@@ -293,7 +281,6 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                 </div>
               </div>
             </div>
-            {/* end */}
             <div
               className="common-pointer bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105"
               
@@ -500,7 +487,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
           >
             Kottu
           </Text>
-          <div className="gap-5 grid sm:grid-cols-1 md:grid-cols-3 grid-cols-3 justify-center max-w-[1528px] min-h-[auto] mt-10 mx-auto md:px-5 w-full">
+          <div ref={divRef} className="gap-5 grid sm:grid-cols-1 md:grid-cols-3 grid-cols-3 justify-center max-w-[1528px] min-h-[auto] mt-10 mx-auto md:px-5 w-full">
             <div
               className="common-pointer bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105"
             >
@@ -755,7 +742,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
             orientation="horizontal"
           >
             <div
-              className="common-pointer bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105"
+              ref={divRef} className="common-pointer bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105"
               
             >
               <div className="flex flex-row items-center justify-between mt-0.5 w-[98%] md:w-full">
