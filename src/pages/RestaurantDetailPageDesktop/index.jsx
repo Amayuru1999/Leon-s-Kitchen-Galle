@@ -657,6 +657,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
+                      onClick={() => handleAddToCart("SeaFood Kottu", "With splendid one chicken leg", "Rs. 1950")}
                     />
                   </div>
                 </div>
@@ -696,6 +697,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
+                      onClick={() => handleAddToCart("Prawn Kottu", "With splendid one chicken leg", "Rs. 2200")}
                     />
                   </div>
                 </div>
@@ -735,6 +737,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
+                      onClick={() => handleAddToCart("Pork Kottu", "With splendid one chicken leg", "Rs. 1900")}
                     />
                   </div>
                 </div>
@@ -753,7 +756,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
           >
             <div
               className="common-pointer bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105"
-              onClick={() => navigate("/orderingpage")}
+              
             >
               <div className="flex flex-row items-center justify-between mt-0.5 w-[98%] md:w-full">
                 <div className="flex flex-col md:gap-10 gap-[111px] items-start justify-start">
@@ -781,6 +784,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
+                      onClick={() => handleAddToCart("Cocacola", "With splendid one chicken leg", "Rs. 180")}
                     />
                   </div>
                 </div>
@@ -813,6 +817,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
+                      onClick={() => handleAddToCart("RedBull", "With splendid one chicken leg", "Rs. 180")}
                     />
                   </div>
                 </div>
@@ -845,6 +850,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
+                      onClick={() => handleAddToCart("Sprite", "With splendid one chicken leg", "Rs. 180")}
                     />
                   </div>
                 </div>
@@ -884,6 +890,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
+                      onClick={() => handleAddToCart("Cocacola Zero", "With splendid one chicken leg", "Rs. 180")}
                     />
                   </div>
                 </div>
@@ -916,6 +923,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus_One"
+                      onClick={() => handleAddToCart("Kinley", "With splendid one chicken leg", "Rs. 180")}
                     />
                   </div>
                 </div>
@@ -948,6 +956,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus_Two"
+                      onClick={() => handleAddToCart("Kinley", "With splendid one chicken leg", "Rs. 180")}
                     />
                   </div>
                 </div>
@@ -960,80 +969,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
               src="images/img_image1.png"
               alt="imageOne"
             />
-            {/* <div className="absolute flex flex-col gap-6 items-start justify-start right-[6%] top-[11%] w-[84%]">
-                <Text
-                  className="leading-[38.00px] md:text-3xl sm:text-[28px] text-[32px] text-white-A700"
-                  size="txtPoppinsBold32WhiteA700"
-                >
-                  <span className="text-white-A700 font-poppins text-left font-bold">
-                    <>
-                      McDonald’s
-                      <br />
-                    </>
-                  </span>
-                  <span className="md:text-xl sm:text-lg text-orange-600 font-poppins text-left text-[22px] font-semibold">
-                    South London
-                  </span>
-                </Text>
-                <div className="flex sm:flex-col flex-row md:gap-10 items-start justify-between w-full">
-                  <a
-                    href="http://mcdonalds.uk/"
-                    className="text-lg text-white-A700"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <Text size="txtPoppinsBold18WhiteA700">
-                      <span className="text-white-A700 font-poppins text-left font-normal">
-                        <>
-                          Tooley St, London Bridge, London SE1 2TF,
-                          <br />
-                          United Kingdom
-                          <br />
-                        </>
-                      </span>
-                      <span className="text-white-A700 font-poppins text-left font-bold">
-                        <>
-                          Phone number
-                          <br />
-                        </>
-                      </span>
-                      <span className="md:text-[22px] sm:text-xl text-orange-600 font-poppins text-left text-2xl font-normal">
-                        <>
-                          +934443-43
-                          <br />
-                        </>
-                      </span>
-                      <span className="text-white-A700 font-poppins text-left font-bold">
-                        <>
-                          Website
-                          <br />
-                        </>
-                      </span>
-                      <span className="md:text-[22px] sm:text-xl text-orange-600 font-poppins text-left text-2xl font-normal">
-                        <>
-                          http://mcdonalds.uk/
-                          <br />
-                        </>
-                      </span>
-                    </Text>
-                  </a>
-                  <Text
-                    className="sm:mt-0 mt-3 text-base text-black-900_01"
-                    size="txtPoppinsRegular16Black90001"
-                  >
-                    <span className="text-black-900_01 font-poppins text-left font-semibold">
-                      McDonald’s
-                    </span>
-                    <span className="text-black-900_01 font-poppins text-left font-normal">
-                      <>
-                        <br />
-                        South London
-                      </>
-                    </span>
-                  </Text>
-                </div>
-              </div> */}
-            {/* end */}
+            
           </div>
           <div className="h-[1065px] md:h-[1228px] sm:h-[715px] mt-[50px] md:px-5 relative w-full">
             <div className="h-[1065px] m-auto w-full">
