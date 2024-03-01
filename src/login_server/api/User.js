@@ -7,6 +7,7 @@ const User=require('./../models/User');
 //mongodb user verification model
 const UserVerification=require('./../models/UserVerification');
 const PasswordReset=require('./../models/PasswordReset');
+const Cart=require('./../models/Cart')
 
 //email handler
 const nodemailer=require("nodemailer");
@@ -43,6 +44,39 @@ const bcrypt=require('bcrypt');
 const path=require("path");
 const { error } = require('console');
 const { errorMonitor } = require('events');
+
+//add item to the cart
+// Inside your /cart/add route
+router.post('/cart/add', async (req, res) => {
+  try {
+    const { userId, name, description, price } = req.body;
+
+    // Create a new instance of Cart model
+    const newCartItem = new Cart({
+      userId,
+      name,
+      description,
+      price,
+    });
+
+    // Save the new cart item to the database
+    await newCartItem.save();
+
+    res.json({
+      status: "SUCCESS",
+      message: "Item added to the cart successfully",
+      data: newCartItem,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      status: "FAILED",
+      message: "An error occurred while adding the item to the cart",
+    });
+  }
+});
+
+
 
 //Sign up
 router.post('/signup',(req,res)=>{

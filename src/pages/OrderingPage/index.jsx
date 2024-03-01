@@ -21,7 +21,7 @@ const OrderingPagePage = ({ logoutUser, user }) => {
           <div className="sm:h-[2131px] md:h-[2145px] h-[2335px] max-w-[1528px] mx-auto md:px-5 relative w-full">
             <div className="absolute sm:h-[2131px] md:h-[2145px] h-[2271px] inset-[0] justify-center m-auto w-full">
               <div className="absolute flex flex-col font-manrope inset-x-[0] justify-start mx-auto top-[0] w-full">
-              <div className="border border-black-900_19 border-solid flex flex-col items-center justify-end p-[13px] rounded-bl-[12px] rounded-br-[12px] w-full">
+              <div className="border border-black-900_19 border-solid flex flex-col items-center justify-end p-[13px] rounded-bl-[12px] top=[10px] rounded-br-[12px] w-full">
                 <Img
                   className="h-[38px] md:h-auto md:ml-[0] ml-[23px] mt-1 object-cover w-[2%]"
                   src="images/img_.png"
@@ -30,62 +30,58 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                 <Text className="mb-2">Welcome, {user.name}</Text>
               </div>
                 <div className="flex md:flex-col flex-row gap-[53px] items-center justify-end md:ml-[0] ml-[383px] mt-[38px] w-3/4 md:w-full">
-                <div className="flex relative w-3/4 md:w-full">
-                  <div className="flex ml-[-93px] items-center gap-4">
-                    <button className="text-white font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
-                      Home
-                    </button>
-                    <button className="text-black-900_01 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
-                      Browse Menu
-                    </button>
-                    <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
-                      Special Offers
-                    </button>
-                    <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
-                      Restaurants
-                    </button>
-                    <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
-                      Track Order
-                    </button>
-                    <button className="flex items-center text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button relative">
+                  <div className="flex relative w-3/4 md:w-full">
+                    <div className="flex ml-[-93px] items-center gap-4">
+                      <button className="text-white font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
+                        Home
+                      </button>
+                      <button className="text-black-900_01 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
+                        Browse Menu
+                      </button>
+                      <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
+                        Special Offers
+                      </button>
+                      <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
+                        Restaurants
+                      </button>
+                      <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
+                        Track Order
+                      </button>
+                      <button className="flex items-center text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button relative">
+                        <img
+                          src="images/cart.svg"
+                          alt="Cart"
+                          className="h-6 w-20 mr-2" // Adjust the size as needed and add margin-right
+                        />
+                        <span>Cart</span>
+                        {cartItemCount > 0 && (
+                          <span className="absolute top-0 right-0 bg-red-500 text-white font-bold rounded-full px-2">
+                            {cartItemCount}
+                          </span>
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                  <button
+                    className="bg-black-900_01 flex flex-col font-poppins items-center justify-center p-4 rounded-[30px] w-[21%] md:w-full focus:outline-none border border-white-A700 hover:bg-gray-400 transition duration-300 "
+                    to="#"
+                    onClick={() => logoutUser(navigate)}
+                  >
+                    <div className="flex flex-row gap-3 items-center justify-center w-[81%] md:w-full">
                       <img
-                        src="images/cart.svg"
-                        alt="Cart"
-                        className="h-6 w-20 mr-2" // Adjust the size as needed and add margin-right
+                        className="h-[27px] md:h-auto object-cover rounded-[1px] w-[19%]"
+                        src="images/img_maleuser.png"
+                        alt="maleuser"
                       />
-                      <span>Cart</span>
-                      {cartItemCount > 0 && (
-                        <span className="absolute top-0 right-0 bg-red-500 text-white font-bold rounded-full px-2">
-                          {cartItemCount}
-                        </span>
-                      )}
-                    </button>
-                  </div>
+                      <span className="text-lg text-white-A700">Logout</span>
+                    </div>
+                  </button>
                 </div>
-                <button
-                  className="bg-black-900_01 flex flex-col font-poppins items-center justify-center p-4 rounded-[30px] w-[21%] md:w-full focus:outline-none border border-white-A700 hover:bg-gray-400 transition duration-300 "
-                  to="#"
-                  onClick={() => logoutUser(navigate)}
-                >
-                  <div className="flex flex-row gap-3 items-center justify-center w-[81%] md:w-full">
-                    <img
-                      className="h-[27px] md:h-auto object-cover rounded-[1px] w-[19%]"
-                      src="images/img_maleuser.png"
-                      alt="maleuser"
-                    />
-                    <span className="text-lg text-white-A700">Logout</span>
-                  </div>
-                </button>
-              </div>
                 <div className="font-poppins md:h-[1913px] h-[1942px] sm:h-[1981px] mt-[41px] relative w-full">
                   <div className="flex flex-col h-full items-center justify-start m-auto w-full">
                     <div className="flex flex-col md:gap-10 gap-[158px] items-start justify-start w-full">
                       <div className="h-[477px] md:h-[527px] relative w-full">
-                        <Img
-                          className="h-[477px] m-auto object-cover rounded-[12px] w-full"
-                          src="images/img_rectangle43.png"
-                          alt="rectangleFortyThree"
-                        />
+                        
                         <div className="absolute h-[477px] md:h-[527px] inset-[0] justify-center m-auto w-full">
                           <Img
                             className="h-[477px] m-auto object-cover rounded-[12px] w-full"
@@ -765,18 +761,14 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                 alt="remove_Two"
               />
             </div>
-            <div className="absolute flex flex-col md:gap-10 gap-[430px] justify-start left-[2%] top-[0] w-[22%]">
-              <Img
-                className="h-[239px] md:h-auto mr-[63px] object-cover w-[81%]"
-                src="images/img_32700620370740.png"
-                alt="32700620370740"
-              />
-              <Img
-                className="h-[191px] md:h-auto md:ml-[0] ml-[167px] object-cover w-[49%]"
-                src="images/img_32700620370740.png"
-                alt="32700620370740_One"
-              />
-            </div>
+            <div className="absolute flex flex-col md:gap-10 gap-[430px] justify-start left-[2%] top-[65px] w-[22%]">
+  <Img
+    className="h-[239px] md:h-auto mr-[63px] object-cover w-[81%]"
+    src="images/img_32700620370740.png"
+    alt="32700620370740"
+  />
+</div>
+
           </div>
           <div className="flex md:flex-col flex-row gap-[21px] items-center justify-end mt-[23px] md:px-5 w-[58%] md:w-full">
             <div className="flex flex-col gap-[38px] justify-start w-[47%] md:w-full">
@@ -1421,6 +1413,4 @@ const mapStateToProps = ({ session }) => ({
   user: session.user,
 });
 // export default OrderingPagePage;
-export default connect(mapStateToProps, { logoutUser })(
-  OrderingPagePage
-);
+export default connect(mapStateToProps, { logoutUser })(OrderingPagePage);

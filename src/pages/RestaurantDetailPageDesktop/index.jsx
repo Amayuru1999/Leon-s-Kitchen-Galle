@@ -11,6 +11,40 @@ import { connect } from "react-redux";
 
 const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
   const navigate = useNavigate();
+  const handleAddToCart = async (itemName, itemDescription, itemPrice) => {
+    try {
+      // Prepare the item data
+      const itemData = {
+        name: itemName,
+        description: itemDescription,
+        price: itemPrice,
+        userId:user.email
+        // Add other item details as needed
+      };
+  
+      // Make a POST request to your backend endpoint
+      const response = await fetch('http://localhost:5000/user/cart/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(itemData),
+      });
+  
+      if (response.ok) {
+        // Handle success, e.g., show a success message
+        console.log(`Item ${itemName} added to the cart successfully`);
+      } else {
+        // Handle failure, e.g., show an error message
+        console.error(`Failed to add item ${itemName} to the cart`);
+      }
+    } catch (error) {
+      // Handle unexpected errors
+      console.error('An error occurred:', error);
+    }
+  };
+  
+  
 
   return (
     <>
@@ -219,7 +253,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
           <div className="gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 justify-center max-w-[1528px] min-h-[auto] mt-[18px] mx-auto md:px-5 w-full">
             <div
               className="common-pointer bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105"
-              onClick={() => navigate("/orderingpage")}
+              
             >
               <div className="flex sm:flex-col flex-row gap-[30px] items-center justify-between mt-0.5 w-[98%] md:w-full">
                 <div className="flex flex-col gap-[46px] items-start justify-start">
@@ -253,6 +287,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-300"
                       src="images/img_plus.png"
                       alt="plus"
+                      onClick={() => handleAddToCart("Chicken Fried Rice", "With splendid one chicken leg", "Rs. 1300")}
                     />
                   </div>
                 </div>
@@ -261,7 +296,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
             {/* end */}
             <div
               className="common-pointer bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105"
-              onClick={() => navigate("/orderingpage")}
+              
             >
               <div className="flex sm:flex-col flex-row gap-[30px] items-center justify-between mt-0.5 w-[98%] md:w-full">
                 <div className="flex flex-col items-start justify-start">
@@ -295,6 +330,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
+                      onClick={() => handleAddToCart("Egg Fried Rice", "With splendid one chicken leg", "Rs. 1000")}
                     />
                   </div>
                 </div>
@@ -334,6 +370,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
+                      onClick={() => handleAddToCart("SeaFood Fried Rice", "Expended sri Lankan spices with With splendid one chicken leg", "Rs. 1900")}
                     />
                   </div>
                 </div>
@@ -372,6 +409,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
+                      onClick={() => handleAddToCart("Mix Fried Rice", "With splendid one chicken leg", "Rs. 2100")}
                     />
                   </div>
                 </div>
@@ -410,6 +448,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
+                      onClick={() => handleAddToCart("Vegetable Fried Rice", "With splendid one chicken leg", "Rs. 800")}
                     />
                   </div>
                 </div>
@@ -448,6 +487,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
+                      onClick={() => handleAddToCart("Grill Chicken Fried Rice", "With splendid one chicken leg", "Rs. 1500")}
                     />
                   </div>
                 </div>
@@ -463,7 +503,6 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
           <div className="gap-5 grid sm:grid-cols-1 md:grid-cols-3 grid-cols-3 justify-center max-w-[1528px] min-h-[auto] mt-10 mx-auto md:px-5 w-full">
             <div
               className="common-pointer bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105"
-              onClick={() => navigate("/orderingpage")}
             >
               <div className="flex sm:flex-col flex-row gap-2.5 items-center justify-start mt-0.5 w-[98%] md:w-full">
                 <div className="flex flex-col items-start justify-start">
@@ -498,6 +537,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
+                      onClick={() => handleAddToCart("Cheese Kottu", "With splendid one chicken leg", "Rs. 1500")}
                     />
                   </div>
                 </div>
@@ -537,6 +577,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
+                      onClick={() => handleAddToCart("Chicken Kottu", "With splendid one chicken leg", "Rs. 1300")}
                     />
                   </div>
                 </div>
@@ -576,6 +617,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
+                      onClick={() => handleAddToCart("Egg Kottu", "With splendid one chicken leg", "Rs. 1000")}
                     />
                   </div>
                 </div>
