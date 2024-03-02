@@ -11,13 +11,58 @@ import { connect } from "react-redux";
 
 const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
   const navigate = useNavigate();
-  const divRef = useRef(null);
-  const [showDiv, setShowDiv] = useState(false);
+  const drinksRef=useRef(null);
+  const friedRiceRef = useRef(null);
+  const kottuRef = useRef(null);
+ 
+  const handleLogout = async () => {
+    try {
+      // Make a request to your backend endpoint to clear the user's cart
+      const response = await fetch('http://localhost:5000/user/cart/clear', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId: user.email }),
+      });
+  
+      if (response.ok) {
+        // Handle success, e.g., show a success message
+        console.log('User logged out successfully');
+      } else {
+        // Handle failure, e.g., show an error message
+        console.error('Failed to log out user');
+      }
+    } catch (error) {
+      // Handle unexpected errors
+      console.error('An error occurred during logout:', error);
+    }
+  };
 
   const handleButtonClick = () => {
-    // Toggle the state when the button is clicked
-    divRef.current.scrollIntoView({ behavior: "smooth" });
+    if (friedRiceRef.current) {
+      setTimeout(() => {
+        friedRiceRef.current.scrollIntoView({ behavior: "smooth" });
+      }, 5000);
+    }
+  
+    if (kottuRef.current) {
+      setTimeout(() => {
+        kottuRef.current.scrollIntoView({ behavior: "smooth" });
+      }, 5000); // 500 milliseconds delay
+    }
+  
+    if (drinksRef.current) {
+      setTimeout(() => {
+        drinksRef.current.scrollIntoView({ behavior: "smooth" });
+      }, 5000); // 1000 milliseconds delay, adjust as needed
+    }
   };
+  
+  
+  
+  
+  
   const handleAddToCart = async (itemName, itemDescription, itemPrice) => {
     try {
       // Prepare the item data
@@ -153,13 +198,26 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                     <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
                       Track Order
                     </button>
+                    <button className="flex items-center text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button relative">
+                      <img
+                        src="images/cart.svg"
+                        alt="Cart"
+                        className="h-6 w-20 mr-1" // Adjust the size as needed and add margin-right
+                      />
+                      <span>Cart</span>
+                      
+                    </button>
                   </div>
+                  
                   
                 </div>
                 <button
-                  className="bg-black-900_01 flex flex-col font-poppins items-center justify-center p-4 rounded-[30px] w-[21%] md:w-full focus:outline-none border border-white-A700 hover:bg-gray-400 transition duration-300 "
+                  className="bg-black-900_01 flex flex-col font-poppins items-center justify-center p-4 rounded-[30px] w-[10%] md:w-full focus:outline-none border border-white-A700 hover:bg-gray-400 transition duration-300 "
                   to="#"
-                  onClick={() => logoutUser(navigate)}
+                  onClick={() => {
+                    logoutUser(navigate); // Assuming logoutUser is a function that logs out the user
+                    handleLogout(); // Assuming handleLogout clears the user's cart
+                  }}
                 >
                   <div className="flex flex-row gap-3 items-center justify-center w-[81%] md:w-full">
                     <img
@@ -202,15 +260,15 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                         {/* Center items vertically and horizontally */}
                         <div className="space-x-16 text-center">
                           <button className="text-black font-bold text-lg bg-transparent px-4 py-2 rounded hover:bg-gray-300 hover:text-orange-600 focus:outline-none"
-                          onClick={handleButtonClick}>
+                          onClick={() => handleButtonClick(friedRiceRef)}>
                             Fried Rice
                           </button>
                           <button className="text-black font-bold text-lg bg-transparent px-4 py-2 rounded hover:bg-gray-300 hover:text-orange-600 focus:outline-none"
-                          onClick={handleButtonClick}>
+                          onClick={() => handleButtonClick(kottuRef)}>
                             Kottu
                           </button>
                           <button className="text-black font-bold text-lg bg-transparent px-4 py-2 rounded hover:bg-gray-300 hover:text-orange-600 focus:outline-none"
-                          onClick={handleButtonClick}>
+                          onClick={() => handleButtonClick(drinksRef)}>
                             Cold Drinks
                           </button>
                           
@@ -237,7 +295,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
           >
             Fried Rice
           </Text>
-          <div ref={divRef} className="gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 justify-center max-w-[1528px] min-h-[auto] mt-[18px] mx-auto md:px-5 w-full">
+          <div ref={friedRiceRef} className="gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 justify-center max-w-[1528px] min-h-[auto] mt-[18px] mx-auto md:px-5 w-full">
         
             <div
               className="common-pointer bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105"
@@ -487,7 +545,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
           >
             Kottu
           </Text>
-          <div ref={divRef} className="gap-5 grid sm:grid-cols-1 md:grid-cols-3 grid-cols-3 justify-center max-w-[1528px] min-h-[auto] mt-10 mx-auto md:px-5 w-full">
+          <div ref={kottuRef} className="gap-5 grid sm:grid-cols-1 md:grid-cols-3 grid-cols-3 justify-center max-w-[1528px] min-h-[auto] mt-10 mx-auto md:px-5 w-full">
             <div
               className="common-pointer bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105"
             >
@@ -741,8 +799,8 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
             className="sm:flex-col flex-row gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 justify-center max-w-[1528px] mt-[42px] mx-auto md:px-5 w-full"
             orientation="horizontal"
           >
-            <div
-              ref={divRef} className="common-pointer bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105"
+            <div ref={drinksRef}
+               className="common-pointer bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105"
               
             >
               <div className="flex flex-row items-center justify-between mt-0.5 w-[98%] md:w-full">
