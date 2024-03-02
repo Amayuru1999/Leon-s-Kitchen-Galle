@@ -76,7 +76,22 @@ router.post('/cart/add', async (req, res) => {
   }
 });
 
-
+router.post('/cart/clear', async (req, res) => {
+    try {
+      const userId = req.body.userId;
+  
+      // Clear the user's cart in the database
+      await Cart.deleteMany({ userId });
+  
+      res.status(200).json({ message: 'Cart cleared successfully' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        status: "FAILED",
+        message: "An error occurred while clearing the user's cart",
+      });
+    }
+  });
 
 //Sign up
 router.post('/signup',(req,res)=>{

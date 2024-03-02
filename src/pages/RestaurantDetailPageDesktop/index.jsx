@@ -1,7 +1,8 @@
 import React from "react";
 import "./index.css";
-import { useState } from "react";
-
+import { useState ,useRef} from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "./../../auth/actions/userActions";
 import { Link } from "react-router-dom";
@@ -11,6 +12,61 @@ import { connect } from "react-redux";
 
 const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
   const navigate = useNavigate();
+  const drinksRef=useRef(null);
+  const friedRiceRef = useRef(null);
+  const kottuRef = useRef(null);
+
+  
+
+ 
+  const handleLogout = async () => {
+    try {
+      // Make a request to your backend endpoint to clear the user's cart
+      const response = await fetch('http://localhost:5000/user/cart/clear', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId: user.email }),
+      });
+  
+      if (response.ok) {
+        // Handle success, e.g., show a success message
+        console.log('User logged out successfully');
+      } else {
+        // Handle failure, e.g., show an error message
+        console.error('Failed to log out user');
+      }
+    } catch (error) {
+      // Handle unexpected errors
+      console.error('An error occurred during logout:', error);
+    }
+  };
+
+  const handleButtonClick = () => {
+    if (friedRiceRef.current) {
+      setTimeout(() => {
+        friedRiceRef.current.scrollIntoView({ behavior: "smooth" });
+      }, 5000);
+    }
+  
+    if (kottuRef.current) {
+      setTimeout(() => {
+        kottuRef.current.scrollIntoView({ behavior: "smooth" });
+      }, 5000); // 500 milliseconds delay
+    }
+  
+    if (drinksRef.current) {
+      setTimeout(() => {
+        drinksRef.current.scrollIntoView({ behavior: "smooth" });
+      }, 5000); // 1000 milliseconds delay, adjust as needed
+    }
+  };
+  
+  
+  
+  
+  
   const handleAddToCart = async (itemName, itemDescription, itemPrice) => {
     try {
       // Prepare the item data
@@ -18,7 +74,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
         name: itemName,
         description: itemDescription,
         price: itemPrice,
-        userId:user.email
+        userId: user.email,
         // Add other item details as needed
       };
   
@@ -31,20 +87,14 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
         body: JSON.stringify(itemData),
       });
   
-      if (response.ok) {
-        // Handle success, e.g., show a success message
-        console.log(`Item ${itemName} added to the cart successfully`);
-      } else {
-        // Handle failure, e.g., show an error message
-        console.error(`Failed to add item ${itemName} to the cart`);
-      }
+     
     } catch (error) {
       // Handle unexpected errors
       console.error('An error occurred:', error);
     }
   };
   
-  
+  const notify = () => toast("Added to the cart successfully!");
 
   return (
     <>
@@ -146,13 +196,26 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                     <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
                       Track Order
                     </button>
+                    <button className="flex items-center text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button relative">
+                      <img
+                        src="images/cart.svg"
+                        alt="Cart"
+                        className="h-6 w-20 mr-1" // Adjust the size as needed and add margin-right
+                      />
+                      <span>Cart</span>
+                      
+                    </button>
                   </div>
+                  
                   
                 </div>
                 <button
-                  className="bg-black-900_01 flex flex-col font-poppins items-center justify-center p-4 rounded-[30px] w-[21%] md:w-full focus:outline-none border border-white-A700 hover:bg-gray-400 transition duration-300 "
+                  className="bg-black-900_01 flex flex-col font-poppins items-center justify-center p-4 rounded-[30px] w-[10%] md:w-full focus:outline-none border border-white-A700 hover:bg-gray-400 transition duration-300 "
                   to="#"
-                  onClick={() => logoutUser(navigate)}
+                  onClick={() => {
+                    logoutUser(navigate); // Assuming logoutUser is a function that logs out the user
+                    handleLogout(); // Assuming handleLogout clears the user's cart
+                  }}
                 >
                   <div className="flex flex-row gap-3 items-center justify-center w-[81%] md:w-full">
                     <img
@@ -171,13 +234,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
               />
               <Text className="mb-2">Welcome, {user.name}</Text>
             </div>
-            {/* <div className="absolute bg-gray-50_01 border border-black-900_19 border-solid flex flex-col inset-x-[0] items-start justify-end mx-auto p-[13px] rounded-bl-[12px] rounded-br-[12px] top-[0] w-full">
-              <Img
-                className="h-[38px] md:h-auto md:ml-[0] ml-[23px] mt-1 object-cover w-[2%]"
-                src="images/img_.png"
-                alt="Two"
-              />
-            </div> */}
+            
             
               
             </div>
@@ -194,33 +251,25 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       >
                         All Offers from Leon’s Kitchen Galle
                       </Text>
-                      {/* <Text
-            className="md:mt-0 mt-[5px] text-black-900_90 text-lg"
-            size="txtPoppinsSemiBold18Black90090"
-        >
-            Search from menu...
-        </Text> */}
                     </div>
                     <div className="absolute bg-orange-600 h-24 inset-x-0 mx-auto top-[100px] w-full">
                       <div className="flex items-center justify-center h-full">
                         {" "}
                         {/* Center items vertically and horizontally */}
                         <div className="space-x-16 text-center">
-                          <button className="text-black font-bold text-lg bg-transparent px-4 py-2 rounded hover:bg-gray-300 hover:text-orange-600 focus:outline-none">
+                          <button className="text-black font-bold text-lg bg-transparent px-4 py-2 rounded hover:bg-gray-300 hover:text-orange-600 focus:outline-none"
+                          onClick={() => handleButtonClick(friedRiceRef)}>
                             Fried Rice
                           </button>
-                          <button className="text-black font-bold text-lg bg-transparent px-4 py-2 rounded hover:bg-gray-300 hover:text-orange-600 focus:outline-none">
-                            Spaghetti
-                          </button>
-                          <button className="text-black font-bold text-lg bg-transparent px-4 py-2 rounded hover:bg-gray-300 hover:text-orange-600 focus:outline-none">
-                            Snacks
-                          </button>
-                          <button className="text-black font-bold text-lg bg-transparent px-4 py-2 rounded hover:bg-gray-300 hover:text-orange-600 focus:outline-none">
+                          <button className="text-black font-bold text-lg bg-transparent px-4 py-2 rounded hover:bg-gray-300 hover:text-orange-600 focus:outline-none"
+                          onClick={() => handleButtonClick(kottuRef)}>
                             Kottu
                           </button>
-                          <button className="text-black font-bold text-lg bg-transparent px-4 py-2 rounded hover:bg-gray-300 hover:text-orange-600 focus:outline-none">
-                            Cold drinks
+                          <button className="text-black font-bold text-lg bg-transparent px-4 py-2 rounded hover:bg-gray-300 hover:text-orange-600 focus:outline-none"
+                          onClick={() => handleButtonClick(drinksRef)}>
+                            Cold Drinks
                           </button>
+                          
                         </div>
                       </div>
                     </div>
@@ -236,21 +285,16 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                 />
               </div>
             </div>
-            {/* <div className="absolute border border-black-900_01 border-solid flex flex-col items-start justify-end p-[17px] right-[9%] rounded-[31px] top-[0] w-1/5">
-              <Img
-                className="h-[26px] md:h-auto md:ml-[0] ml-[11px] mt-[3px] object-cover w-[26px]"
-                src="images/img_searchmore.png"
-                alt="searchmore"
-              />
-            </div> */}
+            
           </div>
           <Text
-            className="mt-[35px] sm:text-[34px] md:text-[40px] text-[44px] text-orange-400"
+            className="mt-[65px] sm:text-[34px] md:text-[40px] text-[44px] text-orange-400 "
             size="txtPoppinsBold44"
           >
             Fried Rice
           </Text>
-          <div className="gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 justify-center max-w-[1528px] min-h-[auto] mt-[18px] mx-auto md:px-5 w-full">
+          <div ref={friedRiceRef} className="gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 justify-center max-w-[1528px] min-h-[auto] mt-[18px] mx-auto md:px-5 w-full">
+        
             <div
               className="common-pointer bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105"
               
@@ -287,13 +331,14 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-300"
                       src="images/img_plus.png"
                       alt="plus"
-                      onClick={() => handleAddToCart("Chicken Fried Rice", "With splendid one chicken leg", "Rs. 1300")}
+                      onClick={() => {handleAddToCart("Chicken Fried Rice", "With splendid one chicken leg", "Rs. 1300")
+                      notify();}}
                     />
+                    <ToastContainer />
                   </div>
                 </div>
               </div>
             </div>
-            {/* end */}
             <div
               className="common-pointer bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105"
               
@@ -330,8 +375,12 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
-                      onClick={() => handleAddToCart("Egg Fried Rice", "With splendid one chicken leg", "Rs. 1000")}
+                      onClick={() => {
+                        handleAddToCart("Egg Fried Rice", "With splendid one chicken leg", "Rs. 1000");
+                        notify();
+                      }}
                     />
+                    <ToastContainer />
                   </div>
                 </div>
               </div>
@@ -370,8 +419,10 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
-                      onClick={() => handleAddToCart("SeaFood Fried Rice", "Expended sri Lankan spices with With splendid one chicken leg", "Rs. 1900")}
+                      onClick={() => {handleAddToCart("SeaFood Fried Rice", "Expended sri Lankan spices with With splendid one chicken leg", "Rs. 1900")
+                      notify();}}
                     />
+                    <ToastContainer />
                   </div>
                 </div>
               </div>
@@ -409,8 +460,10 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
-                      onClick={() => handleAddToCart("Mix Fried Rice", "With splendid one chicken leg", "Rs. 2100")}
+                      onClick={() => {handleAddToCart("Mix Fried Rice", "With splendid one chicken leg", "Rs. 2100")
+                    notify();}}
                     />
+                    <ToastContainer />
                   </div>
                 </div>
               </div>
@@ -487,8 +540,11 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
-                      onClick={() => handleAddToCart("Grill Chicken Fried Rice", "With splendid one chicken leg", "Rs. 1500")}
+                      onClick={() => {handleAddToCart("Grill Chicken Fried Rice", "With splendid one chicken leg", "Rs. 1500")
+                      notify();
+                    }}
                     />
+                    <ToastContainer/>
                   </div>
                 </div>
               </div>
@@ -500,7 +556,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
           >
             Kottu
           </Text>
-          <div className="gap-5 grid sm:grid-cols-1 md:grid-cols-3 grid-cols-3 justify-center max-w-[1528px] min-h-[auto] mt-10 mx-auto md:px-5 w-full">
+          <div ref={kottuRef} className="gap-5 grid sm:grid-cols-1 md:grid-cols-3 grid-cols-3 justify-center max-w-[1528px] min-h-[auto] mt-10 mx-auto md:px-5 w-full">
             <div
               className="common-pointer bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105"
             >
@@ -537,8 +593,11 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
-                      onClick={() => handleAddToCart("Cheese Kottu", "With splendid one chicken leg", "Rs. 1500")}
+                      onClick={() => {handleAddToCart("Cheese Kottu", "With splendid one chicken leg", "Rs. 1500")
+                      notify();
+                    }}
                     />
+                    <ToastContainer/>
                   </div>
                 </div>
               </div>
@@ -577,8 +636,11 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
-                      onClick={() => handleAddToCart("Chicken Kottu", "With splendid one chicken leg", "Rs. 1300")}
+                      onClick={() => {handleAddToCart("Chicken Kottu", "With splendid one chicken leg", "Rs. 1300")
+                      notify();
+                    }}
                     />
+                    <ToastContainer/>
                   </div>
                 </div>
               </div>
@@ -617,8 +679,11 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
-                      onClick={() => handleAddToCart("Egg Kottu", "With splendid one chicken leg", "Rs. 1000")}
+                      onClick={() => {handleAddToCart("Egg Kottu", "With splendid one chicken leg", "Rs. 1000")
+                      notify();
+                    }}
                     />
+                    <ToastContainer/>
                   </div>
                 </div>
               </div>
@@ -657,8 +722,12 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
-                      onClick={() => handleAddToCart("SeaFood Kottu", "With splendid one chicken leg", "Rs. 1950")}
+                      onClick={() => {handleAddToCart("SeaFood Kottu", "With splendid one chicken leg", "Rs. 1950")
+                      notify();
+                    }}
+
                     />
+                    <ToastContainer/>
                   </div>
                 </div>
               </div>
@@ -697,8 +766,11 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
-                      onClick={() => handleAddToCart("Prawn Kottu", "With splendid one chicken leg", "Rs. 2200")}
+                      onClick={() => {handleAddToCart("Prawn Kottu", "With splendid one chicken leg", "Rs. 2200")
+                      notify();
+                    }}
                     />
+                    <ToastContainer/>
                   </div>
                 </div>
               </div>
@@ -737,8 +809,11 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
-                      onClick={() => handleAddToCart("Pork Kottu", "With splendid one chicken leg", "Rs. 1900")}
+                      onClick={() => {handleAddToCart("Pork Kottu", "With splendid one chicken leg", "Rs. 1900")
+                      notify();
+                    }}
                     />
+                    <ToastContainer/>
                   </div>
                 </div>
               </div>
@@ -754,8 +829,8 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
             className="sm:flex-col flex-row gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 justify-center max-w-[1528px] mt-[42px] mx-auto md:px-5 w-full"
             orientation="horizontal"
           >
-            <div
-              className="common-pointer bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105"
+            <div ref={drinksRef}
+               className="common-pointer bg-gray-50_02 border border-black-900_19 border-solid flex flex-1 flex-col items-center justify-end p-[22px] sm:px-5 rounded-[12px] shadow-bs1 w-full hover:scale-105 focus:scale-105"
               
             >
               <div className="flex flex-row items-center justify-between mt-0.5 w-[98%] md:w-full">
@@ -784,8 +859,11 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
-                      onClick={() => handleAddToCart("Cocacola", "With splendid one chicken leg", "Rs. 180")}
+                      onClick={() => {handleAddToCart("Cocacola", "With splendid one chicken leg", "Rs. 180")
+                      notify();
+                    }}
                     />
+                    <ToastContainer/>
                   </div>
                 </div>
               </div>
@@ -817,8 +895,11 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
-                      onClick={() => handleAddToCart("RedBull", "With splendid one chicken leg", "Rs. 180")}
+                      onClick={() => {handleAddToCart("RedBull", "With splendid one chicken leg", "Rs. 180")
+                      notify();
+                    }}
                     />
+                    <ToastContainer/>
                   </div>
                 </div>
               </div>
@@ -850,8 +931,11 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
-                      onClick={() => handleAddToCart("Sprite", "With splendid one chicken leg", "Rs. 180")}
+                      onClick={() => {handleAddToCart("Sprite", "With splendid one chicken leg", "Rs. 180")
+                      notify();
+                    }}
                     />
+                    <ToastContainer/>
                   </div>
                 </div>
               </div>
@@ -890,8 +974,11 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus"
-                      onClick={() => handleAddToCart("Cocacola Zero", "With splendid one chicken leg", "Rs. 180")}
+                      onClick={() => {handleAddToCart("Cocacola Zero", "With splendid one chicken leg", "Rs. 180")
+                      notify();
+                    }}
                     />
+                    <ToastContainer/>
                   </div>
                 </div>
               </div>
@@ -923,8 +1010,11 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus_One"
-                      onClick={() => handleAddToCart("Kinley", "With splendid one chicken leg", "Rs. 180")}
+                      onClick={() => {handleAddToCart("Kinley", "With splendid one chicken leg", "Rs. 180")
+                      notify();
+                    }}
                     />
+                    <ToastContainer/>
                   </div>
                 </div>
               </div>
@@ -956,8 +1046,11 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       className="h-[49px] md:h-auto mt-1 object-cover w-[49px] hover:scale-105 focus:scale-105"
                       src="images/img_plus.png"
                       alt="plus_Two"
-                      onClick={() => handleAddToCart("Kinley", "With splendid one chicken leg", "Rs. 180")}
+                      onClick={() => {handleAddToCart("Kinley", "With splendid one chicken leg", "Rs. 180")
+                      notify();
+                    }}
                     />
+                    <ToastContainer/>
                   </div>
                 </div>
               </div>
