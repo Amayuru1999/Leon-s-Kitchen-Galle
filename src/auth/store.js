@@ -16,3 +16,4 @@ const store = createStore(
 sessionService.initSessionService(store);
 
 export default store;
+//amayuru
