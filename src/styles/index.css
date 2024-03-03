@@ -1,0 +1,111 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Poppins;
+}
+* {
+  box-sizing: border-box;
+  line-height: normal;
+  font-family: inherit;
+  margin: unset;
+}
+a {
+  display: block;
+}
+ul {
+  margin: 0;
+  margin-inline: 0 !important;
+  padding: 0;
+  list-style: none;
+}
+.ReactModal__Overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  background: transparent;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #6b6b6b;
+  border-radius: 10px;
+}
+input {
+  background-color: transparent;
+  width: 100%;
+}
+input:focus {
+  outline: none;
+}
+.alice-carousel__dots-item {
+  cursor: pointer;
+}
+
+
+
+
+.minutes{
+  margin-top: auto;
+ 
+  }
+
+
+  .bottom {
+    /* margin-left: auto; */
+    font-size: 17px;
+    margin-right: 2px;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+  }
+
+  .bottom1 {
+
+    margin-left: 20px;
+
+  }
+
+
+  .bottom2 {
+
+    margin-left: -22px;
+
+  }
+
+
+  .rice{
+    color: white;
+  }
+
+
+ .loginbutton{
+  margin-right: -500px;
+  
+ 
+
+
+ }
+
+
+ .subscribe{
+  margin-top: -20px;
+  margin-bottom: -15px;
+  margin-left: -60px;
+  margin-right: 20px;
+  padding: 20px;
+ 
+  border-radius: 10px;
+  /* box-shadow: 0 0 10px 0 rgba(82, 64, 64, 0.1); */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button{
+  margin-right: 10px;
+}
+
