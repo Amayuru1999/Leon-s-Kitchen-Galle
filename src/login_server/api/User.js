@@ -45,6 +45,22 @@ const path=require("path");
 const { error } = require('console');
 const { errorMonitor } = require('events');
 
+
+// Define a route to get items based on user email
+router.get('/cart/:userEmail', async (req, res) => {
+    const userEmail = req.params.userEmail;
+  
+    try {
+      // Assuming YourItemModel is your Mongoose model for items
+      const items = await Cart.find({ userId: userEmail });
+  
+      res.json(items);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
+
 //add item to the cart
 // Inside your /cart/add route
 router.post('/cart/add', async (req, res) => {
