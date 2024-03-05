@@ -56,3 +56,8 @@
   background-color: #ebf1fe;
   color: #2a7ade;
 }
+
+/* Add this part for the hover effect */
+.widgetLgButton:hover {
+  cursor: pointer;
+}
