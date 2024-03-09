@@ -155,9 +155,19 @@ export default function MacBookPro14OnePage() {
                     Expiry
                   </Text>
 
-                  <Text size="md" color="gray.700" ml="225px"  zIndex={1}  >
-                    Expiry
-                  </Text>
+                  <div style={{ position: "relative" }}>
+  <Text size="md" color="gray.700" ml="225px" zIndex={1}>
+    .
+  </Text>
+  <div style={{ position: "absolute", top: "-20px", left: "225px" }}>
+    <Text size="md" color="gray.700" zIndex={2}>
+      Expiry
+    </Text>
+  </div>
+</div>
+
+
+                 
                   <Flex mt="-15px" alignItems="center">
                   
                     {/* <Box color="green.800" pt="40px" pb="18px" textAlign="left" fontSize="23px" w="69%" px="33px">
