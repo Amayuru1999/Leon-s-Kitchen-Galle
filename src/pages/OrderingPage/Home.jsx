@@ -36,8 +36,8 @@ export default function OrderingPagePage() {
 
                     <div className="flex flex-row justify-start  w-full gap-[39px] ">
                       <div className="h-[45px] w-[70%] relative -0">
-                        <div className="h-[45px] w-[22%] right-[0%] bottom-0 top-4 m-auto bg-orange-600 absolute rounded-[22px]" />
-
+                        <div className="h-[45px] w-[22%] right-[-15%] bottom-0 top-14 m-auto bg-orange-600 absolute rounded-[22px]" />
+{/* 
 
 <div className="navbar">
   <Heading
@@ -67,14 +67,45 @@ export default function OrderingPagePage() {
                         Login/Signup
                       </Button>
 
-                    </div>
+                    </div> */}
+
+<div className="navbar flex justify-between items-center">
+  <Heading size="md" as="h6" className="w-max m-auto !text-black-900_01 !font-manrope flex items-center">
+    <span className="text-black-900_01 font-poppins font-medium">Home</span>
+    <span className="text-black-900_01 font-poppins font-medium" style={{ margin: '0 10px' }}>Special Offers</span>
+    <span className="text-white-A700 font-poppins font-medium" style={{ margin: '0 30px' }}>Restaurants</span>
+    <span className="text-black-900_01 font-poppins font-medium" style={{ margin: '0 1px' }}>Track Order</span>
+  </Heading>
+
+  <div className="login flex items-center">
+    <Button
+      color="black_900"
+      size="lg"
+      leftIcon={<Img src="images/img_male_user.png" alt="Male User" className="w-[30px] h-[27px] " />}
+      className="gap-[10px] font-medium min-w-[234px] rounded-[30px] ml-auto"
+    >
+      Login/Signup
+    </Button>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
 
                      
 
 
                     
 
-
+</div>
 
                     </div>
                   </div>
@@ -455,15 +486,52 @@ export default function OrderingPagePage() {
                             <Heading
                                     size="2xl"
                                     as="h4"
-                                    className="flex justify-center items-center h-[45px] w-[45px] !font-bold bg-orange-600 text-center rounded-[22px] ml-[-22px] mt-[18px] "
+                                    className="flex justify-center items-center h-[45px] w-[45px] !font-bold bg-orange-600 text-center rounded-[22px] ml-[-22px] mt-[30px] "
                                   >
                                     1x
                                   </Heading>
-                            <Heading size="s" as="h6" className="ml-[20px]  !text-black-900 mt-[30px]">
+                            <Heading size="s" as="h6" className="ml-[20px]  !text-black-900 mt-[35px]">
                               Mixed Fried Rice
                             </Heading>
                             
                           </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         </div>
                         <div className="flex flex-col w-full mt-[49px] gap-4">
                           <div className="flex flex-col items-center justify-start w-full pt-6">
@@ -598,7 +666,7 @@ export default function OrderingPagePage() {
                 </div>
               </div>
             </div>
-            <Heading size="3xl" as="h2" className="left-0 top-[32%] m-auto !text-black-900_01 absolute">
+            <Heading size="3xl" as="h2" className="left-0 top-[31%] m-auto !text-black-900_01 absolute">
               Order from{" "}
             </Heading>
             <div className="flex flex-col items-center justify-start w-[13%] bottom-[10%] left-[2%] m-auto absolute ">

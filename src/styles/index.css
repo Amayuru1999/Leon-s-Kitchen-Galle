@@ -109,3 +109,26 @@ input:focus {
   margin-right: 10px;
 }
 
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: 120%;
+  margin-left: 400px;
+}
+
+/* No additional CSS required */
+
+
+
+.login{
+  margin-right: 20px;
+  margin-bottom: 5px;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: right;
+}
