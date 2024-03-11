@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
@@ -10,10 +10,24 @@ import { connect } from "react-redux";
 const OrderingPagePage = ({ logoutUser, user }) => {
   const navigate = useNavigate();
   const [cartItemCount, setCartItemCount] = useState(0);
+  const [cartData, setCartData] = useState([]);
 
   const updateCartItemCount = (newCount) => {
     setCartItemCount(newCount);
   };
+
+  useEffect(() => {
+    // Fetch cart data from the server
+    fetch('http://localhost:5000/user/cart')
+      .then(response => response.json())
+      .then(data => {
+        setCartData(data);
+        // Update cart item count based on the length of the fetched data
+        updateCartItemCount(data.length);
+      })
+      .catch(err => console.log(err));
+  }, []); 
+  
   return (
     <>
       <div className="bg-white-A700 flex flex-col font-poppins items-center justify-end mx-auto w-full">
@@ -21,14 +35,14 @@ const OrderingPagePage = ({ logoutUser, user }) => {
           <div className="sm:h-[2131px] md:h-[2145px] h-[2335px] max-w-[1528px] mx-auto md:px-5 relative w-full">
             <div className="absolute sm:h-[2131px] md:h-[2145px] h-[2271px] inset-[0] justify-center m-auto w-full">
               <div className="absolute flex flex-col font-manrope inset-x-[0] justify-start mx-auto top-[0] w-full">
-              <div className="border border-black-900_19 border-solid flex flex-col items-center justify-end p-[13px] rounded-bl-[12px] top=[10px] rounded-br-[12px] w-full">
-                <Img
-                  className="h-[38px] md:h-auto md:ml-[0] ml-[23px] mt-1 object-cover w-[2%]"
-                  src="images/img_.png"
-                  alt="One"
-                />
-                <Text className="mb-2">Welcome, {user.name}</Text>
-              </div>
+                <div className="border border-black-900_19 border-solid flex flex-col items-center justify-end p-[13px] rounded-bl-[12px] top=[10px] rounded-br-[12px] w-full">
+                  <Img
+                    className="h-[38px] md:h-auto md:ml-[0] ml-[23px] mt-1 object-cover w-[2%]"
+                    src="images/img_.png"
+                    alt="One"
+                  />
+                  <Text className="mb-2">Welcome, {user.name}</Text>
+                </div>
                 <div className="flex md:flex-col flex-row gap-[53px] items-center justify-end md:ml-[0] ml-[383px] mt-[38px] w-3/4 md:w-full">
                   <div className="flex relative w-3/4 md:w-full">
                     <div className="flex ml-[-93px] items-center gap-4">
@@ -81,7 +95,6 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                   <div className="flex flex-col h-full items-center justify-start m-auto w-full">
                     <div className="flex flex-col md:gap-10 gap-[158px] items-start justify-start w-full">
                       <div className="h-[477px] md:h-[527px] relative w-full">
-                        
                         <div className="absolute h-[477px] md:h-[527px] inset-[0] justify-center m-auto w-full">
                           <Img
                             className="h-[477px] m-auto object-cover rounded-[12px] w-full"
@@ -157,20 +170,16 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                   </div>
                 </div>
               </div>
-              <Text
-                className="absolute right-[7%] text-black-900_90 text-lg top-[32%]"
-                size="txtPoppinsSemiBold18Black90090"
-              >
-                Search from menu...
-              </Text>
-              <div className="absolute border border-black-900_01 border-solid flex flex-col items-start justify-end p-[18px] right-[1%] rounded-[31px] top-[31%] w-[23%]">
-                <Img
-                  className="h-[26px] md:h-auto ml-2.5 md:ml-[0] object-cover w-[26px]"
-                  src="images/img_searchmore.png"
-                  alt="searchmore"
-                />
-              </div>
-              <List
+              <div className="flex flex-col gap-[16px] items-center justify-start w-full">
+        {cartData.map((item, index) => (
+          // Customize the rendering based on your cart item structure
+          <div key={index}>
+            <Text>{item.productName}</Text>
+            {/* Add more details as needed */}
+          </div>
+        ))}
+      </div>
+              {/* <List
                 className="absolute bottom-[20%] flex flex-col font-poppins gap-[31px] inset-x-[0] items-center mx-auto w-1/2"
                 orientation="vertical"
               >
@@ -180,7 +189,7 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                       className="md:text-3xl sm:text-[28px] text-[32px] text-black-900"
                       size="txtPoppinsSemiBold32"
                     >
-                      Fried Rice
+                      Cart
                     </Text>
                     <div className="bg-gray-100_01 border border-blue_gray-100_01 border-solid flex flex-row items-center justify-between p-2.5 rounded-[26px] w-[39%] sm:w-full">
                       <Text
@@ -246,12 +255,14 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                                 Medium
                               </Text>
                               <div className="bg-teal-800 flex flex-col items-end justify-end p-2 rounded">
-                                <Text
-                                  className="mr-[5px] text-sm text-white-A700"
-                                  size="txtPoppinsBold14"
-                                >
+                              <Button
+                              className="cursor-pointer font-bold min-w-[90px] rounded text-center text-sm"
+                              color="teal_800"
+                              size="md"
+                              variant="fill"
+                            >
                                   Rs.1350
-                                </Text>
+                                </Button>
                               </div>
                             </div>
                             <div className="absolute border border-black-900_6c border-solid h-[58px] inset-[0] justify-center m-auto rounded w-full"></div>
@@ -265,23 +276,20 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                                 Large
                               </Text>
                               <div className="bg-teal-800 flex flex-col items-end justify-end p-2 rounded">
-                                <Text
-                                  className="mr-1 text-sm text-white-A700"
-                                  size="txtPoppinsBold14"
-                                >
+                              <Button
+                              className="cursor-pointer font-bold min-w-[90px] rounded text-center text-sm"
+                              color="teal_800"
+                              size="md"
+                              variant="fill"
+                            >
                                   Rs.1950
-                                </Text>
+                                </Button>
                               </div>
                             </div>
                             <div className="absolute border border-black-900_6c border-solid h-[58px] inset-[0] justify-center m-auto rounded w-full"></div>
                           </div>
                         </div>
-                        <Text
-                          className="md:ml-[0] ml-[197px] mt-[38px] text-sm text-white-A700"
-                          size="txtPoppinsBold14"
-                        >
-                          £32.90
-                        </Text>
+                        
                       </div>
                     </div>
                   </div>
@@ -373,7 +381,7 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                     </div>
                   </div>
                 </div>
-              </List>
+              </List> */}
               <div className="absolute bottom-[1%] flex flex-col font-poppins inset-x-[0] items-center justify-start mx-auto w-1/2">
                 <div className="bg-gray-50_02 border border-black-900_19 border-solid flex flex-col items-center justify-start p-[27px] sm:px-5 rounded-lg shadow-bs1 w-full">
                   <div className="flex flex-col items-start justify-start mb-2 w-full">
@@ -762,13 +770,12 @@ const OrderingPagePage = ({ logoutUser, user }) => {
               />
             </div>
             <div className="absolute flex flex-col md:gap-10 gap-[430px] justify-start left-[2%] top-[65px] w-[22%]">
-  <Img
-    className="h-[239px] md:h-auto mr-[63px] object-cover w-[81%]"
-    src="images/img_32700620370740.png"
-    alt="32700620370740"
-  />
-</div>
-
+              <Img
+                className="h-[239px] md:h-auto mr-[63px] object-cover w-[81%]"
+                src="images/img_32700620370740.png"
+                alt="32700620370740"
+              />
+            </div>
           </div>
           <div className="flex md:flex-col flex-row gap-[21px] items-center justify-end mt-[23px] md:px-5 w-[58%] md:w-full">
             <div className="flex flex-col gap-[38px] justify-start w-[47%] md:w-full">

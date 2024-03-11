@@ -196,7 +196,9 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                     <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
                       Track Order
                     </button>
-                    <button className="flex items-center text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button relative">
+                    <button className="flex items-center text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button relative"
+                    onClick={navigate('/orderingpage')}
+                    >
                       <img
                         src="images/cart.svg"
                         alt="Cart"
