@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
@@ -10,10 +10,24 @@ import { connect } from "react-redux";
 const OrderingPagePage = ({ logoutUser, user }) => {
   const navigate = useNavigate();
   const [cartItemCount, setCartItemCount] = useState(0);
+  const [cartData, setCartData] = useState([]);
 
   const updateCartItemCount = (newCount) => {
     setCartItemCount(newCount);
   };
+
+  useEffect(() => {
+    // Fetch cart data from the server
+    fetch('http://localhost:5000/user/cart')
+      .then(response => response.json())
+      .then(data => {
+        setCartData(data);
+        // Update cart item count based on the length of the fetched data
+        updateCartItemCount(data.length);
+      })
+      .catch(err => console.log(err));
+  }, []); 
+  
   return (
     <>
       <div className="bg-white-A700 flex flex-col font-poppins items-center justify-end mx-auto w-full">
@@ -156,8 +170,16 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                   </div>
                 </div>
               </div>
-
-              <List
+              <div className="flex flex-col gap-[16px] items-center justify-start w-full">
+        {cartData.map((item, index) => (
+          // Customize the rendering based on your cart item structure
+          <div key={index}>
+            <Text>{item.productName}</Text>
+            {/* Add more details as needed */}
+          </div>
+        ))}
+      </div>
+              {/* <List
                 className="absolute bottom-[20%] flex flex-col font-poppins gap-[31px] inset-x-[0] items-center mx-auto w-1/2"
                 orientation="vertical"
               >
@@ -359,7 +381,7 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                     </div>
                   </div>
                 </div>
-              </List>
+              </List> */}
               <div className="absolute bottom-[1%] flex flex-col font-poppins inset-x-[0] items-center justify-start mx-auto w-1/2">
                 <div className="bg-gray-50_02 border border-black-900_19 border-solid flex flex-col items-center justify-start p-[27px] sm:px-5 rounded-lg shadow-bs1 w-full">
                   <div className="flex flex-col items-start justify-start mb-2 w-full">

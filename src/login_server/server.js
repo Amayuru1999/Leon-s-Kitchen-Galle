@@ -1,4 +1,4 @@
-
+require('dotenv').config()
 //mongodb
 require('./config/db');
 
