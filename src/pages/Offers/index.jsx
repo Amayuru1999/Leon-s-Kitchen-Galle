@@ -16,58 +16,80 @@ export default function OffersPage() {
               <Img
                 src="images/img_327006203_70740.png"
                 alt="image"
-                className="w-[63%] md:h-auto sm:w-full object-cover"
+                style={{ width: "250px", height: "200px" }}
+                className="w-full h-auto sm:w-[50%] object-cover"
               />
               {/* <a
                 href="#"
                 className="flex justify-center items-center w-[120px] h-[65px] pl-5 pr-[35px] py-[17px] sm:pr-5 bg-blue_gray-100 rounded-[20px]"
-              > */}
+              >
                 <Heading size="xs" as="h5" className="!text-gray-800">
                   Home
                 </Heading>
-              {/* </a> */}
+              </a> */}
             </div>
+            
             <div className="flex flex-col items-end justify-start w-[74%] md:w-full mt-[18px] gap-[21px] md:mt-0">
               <div className="flex flex-row sm:flex-col justify-between items-center w-[73%] md:w-full sm:gap-10">
                 <Heading size="md" as="h1" className="mt-px sm:mt-0 !text-blue_gray-900">
                   Welcome, Alisa
                 </Heading>
-                {/* <a
+                <a
                   href="#"
-                  className="flex justify-center items-center w-[150px] h-[50px] pt-3 pb-[7px] pl-6 pr-[35px] sm:px-5 bg-black-900 rounded-[20px]"
-                > */}
+                  className="flex justify-center items-center w-[150px] h-[50px] pt-3 pb-[7px] pl-6 pr-[35px] sm:px-5 bg-black-900 rounded-[20px] mr-10"
+                >
                   <Heading size="xs" as="h5" className="!text-white-A700">
                     Logout
                   </Heading>
-                {/* </a> */}
+                </a>
               </div>
+
               <div className="flex flex-row md:flex-col justify-between w-full md:gap-10">
-                <div className="flex flex-row justify-start md:h-auto p-4 bg-blue_gray-100 rounded-[20px]">
+                {/* <div className="flex flex-row justify-start md:h-auto p-4 bg-blue_gray-100 rounded-[20px] mr-4">
                   <Heading size="xs" as="h5" className="mt-px !text-gray-800">
-                    Browse Menu
+                    Home
                   </Heading>
-                </div>
-                <Heading
+                </div> */}
+
+                <Button color="blue_gray_100" size="md" className="sm:pr-5 min-w-[165px] font-bold rounded-[20px] mr-8">
+                  Home
+                </Button>
+
+                <Button color="blue_gray_100" size="md" className="sm:pr-5 min-w-[165px] font-bold rounded-[20px] mr-8">
+                  Browse Menu
+                </Button>
+
+                <Button color="blue_gray_100" style={{ backgroundColor: "yellow" }} size="md" className="sm:pr-5 font-bold min-w-[165px] rounded-[20px] mr-8">
+                  Special Offers
+                </Button>
+
+                {/* <Heading
                   size="xs"
                   as="h5"
-                  className="flex justify-center items-center w-[180px] h-[65px] pl-[11px] pr-[26px] py-[17px] sm:pr-5 !text-gray-50 bg-amber-600_01 rounded-[20px]"
+                  className="flex justify-center items-center w-[180px] h-[65px] pl-[11px] pr-[26px] py-[17px] sm:pr-5 !text-gray-50 bg-amber-600_01 rounded-[20px] mr-4"
                 >
                   Special Offers{" "}
-                </Heading>
-                <Button color="blue_gray_100" size="md" className="sm:pr-5 font-bold min-w-[165px] rounded-[20px]">
+                </Heading> */}
+
+                <Button color="blue_gray_100" size="md" className="sm:pr-5 min-w-[165px] font-bold rounded-[20px] mr-8">
                   Restaurants
                 </Button>
-                <Button color="blue_gray_100" size="md" className="font-bold min-w-[150px] rounded-[20px]">
+                <Button color="blue_gray_100" size="md" className="font-bold min-w-[165px] rounded-[20px] mr-8">
                   Track Order
                 </Button>
-                <Button color="blue_gray_100" size="md" className="sm:px-5 font-bold min-w-[150px] rounded-[20px]">
+                <Button color="blue_gray_100" size="md" className="sm:px-5 min-w-[165px] font-bold rounded-[20px] mr-8">
                   Cart
                 </Button>
-                <div className="flex flex-row justify-start md:h-auto p-[17px] bg-blue_gray-100 rounded-[20px]">
+
+                <Button color="blue_gray_100" size="md" className="sm:px-5 min-w-[165px] font-bold rounded-[20px] mr-8">
+                  Back
+                </Button>
+
+                {/* <div className="flex flex-row justify-start md:h-auto p-[17px] min-w-[165px] bg-blue_gray-100 rounded-[20px] mr-8">
                   <Heading size="xs" as="h5" className="ml-1.5 !text-gray-800">
                     Back
                   </Heading>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
