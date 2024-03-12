@@ -9,16 +9,28 @@ export default function OffersPage() {
         <title>Speciel offers</title>
         <meta name="description" content="Web site created using create-react-app" />
       </Helmet>
-      <div className="flex flex-col items-center justify-center w-full pb-[215px] gap-[63px] md:pb-5 bg-gray-100">
+      {/* <div className="flex flex-col items-center justify-center w-full pb-[215px] gap-[63px] md:pb-5 bg-gray-100"> */}
+      <div className="flex flex-col items-center gap-[20px] md:pb-5 bg-gray-100">
         <header className="flex flex-row justify-center items-center w-full bg-white-A700">
-          <div className="flex flex-row md:flex-col justify-between items-center w-full mx-auto md:gap-10 md:px-5 max-w-[1854px]">
+          {/* <div className="flex flex-row md:flex-col justify-between items-center w-full mx-auto md:gap-10 md:px-5 max-w-[1854px]"> */}
+          <div className="flex flex-row  items-center  ">
             <div className="flex flex-row sm:flex-col justify-between items-center w-auto gap-[37px] sm:gap-10">
+
+            <div style={{ marginRight: "40px" }}> {/* Added div container with marginRight */}
               <Img
                 src="images/img_327006203_70740.png"
                 alt="image"
                 style={{ width: "250px", height: "200px" }}
                 className="w-full h-auto sm:w-[50%] object-cover"
               />
+            </div>
+
+              {/* <Img
+                src="images/img_327006203_70740.png"
+                alt="image"
+                style={{ width: "250px", height: "200px", marginRight: "5px" }}
+                className="w-full h-auto sm:w-[50%] object-cover"
+              /> */}
               {/* <a
                 href="#"
                 className="flex justify-center items-center w-[120px] h-[65px] pl-5 pr-[35px] py-[17px] sm:pr-5 bg-blue_gray-100 rounded-[20px]"
@@ -51,15 +63,15 @@ export default function OffersPage() {
                   </Heading>
                 </div> */}
 
-                <Button color="blue_gray_100" size="md" className="sm:pr-5 min-w-[165px] font-bold rounded-[20px] mr-8">
+                <Button color="blue_gray_100" size="md" className="sm:pr-5 min-w-[150px] font-bold rounded-[20px] mr-7">
                   Home
                 </Button>
 
-                <Button color="blue_gray_100" size="md" className="sm:pr-5 min-w-[165px] font-bold rounded-[20px] mr-8">
+                <Button color="blue_gray_100" size="md" className="sm:pr-5 min-w-[150px] font-bold rounded-[20px] mr-7">
                   Browse Menu
                 </Button>
 
-                <Button color="blue_gray_100" style={{ backgroundColor: "yellow" }} size="md" className="sm:pr-5 font-bold min-w-[165px] rounded-[20px] mr-8">
+                <Button color="blue_gray_100" style={{ backgroundColor: "yellow" }} size="md" className="sm:pr-5 font-bold min-w-[150px] rounded-[20px] mr-7">
                   Special Offers
                 </Button>
 
@@ -71,17 +83,17 @@ export default function OffersPage() {
                   Special Offers{" "}
                 </Heading> */}
 
-                <Button color="blue_gray_100" size="md" className="sm:pr-5 min-w-[165px] font-bold rounded-[20px] mr-8">
+                <Button color="blue_gray_100" size="md" className="sm:pr-5 min-w-[150px] font-bold rounded-[20px] mr-7">
                   Restaurants
                 </Button>
-                <Button color="blue_gray_100" size="md" className="font-bold min-w-[165px] rounded-[20px] mr-8">
+                <Button color="blue_gray_100" size="md" className="font-bold min-w-[150px] rounded-[20px] mr-7">
                   Track Order
                 </Button>
-                <Button color="blue_gray_100" size="md" className="sm:px-5 min-w-[165px] font-bold rounded-[20px] mr-8">
+                <Button color="blue_gray_100" size="md" className="sm:px-5 min-w-[150px] font-bold rounded-[20px] mr-7">
                   Cart
                 </Button>
 
-                <Button color="blue_gray_100" size="md" className="sm:px-5 min-w-[165px] font-bold rounded-[20px] mr-8">
+                <Button color="blue_gray_100" size="md" className="sm:px-5 min-w-[150px] font-bold rounded-[20px] mr-7">
                   Back
                 </Button>
 
@@ -95,8 +107,8 @@ export default function OffersPage() {
           </div>
         </header>
         <div className="flex flex-col items-center justify-start w-full gap-[42px] md:px-5 max-w-[1816px]">
-          <div className="flex flex-row justify-center w-[13%] md:w-full">
-            <Heading size="md" as="h1" className="!text-blue_gray-900">
+          <div className="flex flex-row justify-center w-[13%] md:w-full mt-1">
+            <Heading size="md" as="h1" className="!text-blue_gray-900 whitespace-nowrap inline-block">
               Today Offers
             </Heading>
           </div>
