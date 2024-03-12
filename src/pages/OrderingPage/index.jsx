@@ -15,19 +15,31 @@ const OrderingPagePage = ({ logoutUser, user }) => {
   const updateCartItemCount = (newCount) => {
     setCartItemCount(newCount);
   };
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
-    // Fetch cart data from the server
-    fetch('http://localhost:5000/user/cart')
-      .then(response => response.json())
-      .then(data => {
-        setCartData(data);
-        // Update cart item count based on the length of the fetched data
-        updateCartItemCount(data.length);
-      })
-      .catch(err => console.log(err));
-  }, []); 
-  
+    const fetchCartData = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/user/cart/${user.email}`
+        );
+        console.log(response); // Add this line to log the response
+        if (!response.ok) {
+          throw new Error(`Failed to fetch data. Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setItems(data);
+      } catch (error) {
+        console.error("Error fetching cart data:", error.message);
+      }
+    };
+
+    fetchCartData();
+  }, [user.email]);
+
+  // Run the effect whenever userEmail changes
+
   return (
     <>
       <div className="bg-white-A700 flex flex-col font-poppins items-center justify-end mx-auto w-full">
@@ -144,15 +156,6 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                           </div>
                         </div>
                       </div>
-                      <div className="bg-gray-50_03 border border-gray-400 border-solid flex flex-col gap-12 justify-start py-[49px] rounded-[12px] w-1/4 md:w-full">
-                        <Text
-                          className="md:ml-[0] ml-[109px] md:text-3xl sm:text-[28px] text-[32px] text-black-900"
-                          size="txtPoppinsSemiBold32"
-                        >
-                          Menu
-                        </Text>
-                        <div className="bg-black-900_01 h-[67px] mb-[1044px] w-full"></div>
-                      </div>
                     </div>
                   </div>
                   <div className="absolute bg-orange-600 flex flex-row gap-[13px] items-center justify-center left-[0] p-3.5 rounded-br-[12px] rounded-tr-[12px] top-[23%] w-[22%]">
@@ -168,378 +171,52 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                       Open until 3:00 AM
                     </Text>
                   </div>
-                </div>
-              </div>
-              <div className="flex flex-col gap-[16px] items-center justify-start w-full">
-        {cartData.map((item, index) => (
-          // Customize the rendering based on your cart item structure
-          <div key={index}>
-            <Text>{item.productName}</Text>
-            {/* Add more details as needed */}
-          </div>
-        ))}
-      </div>
-              {/* <List
-                className="absolute bottom-[20%] flex flex-col font-poppins gap-[31px] inset-x-[0] items-center mx-auto w-1/2"
-                orientation="vertical"
-              >
-                <div className="flex flex-col gap-[45px] items-center justify-start w-full">
-                  <div className="flex sm:flex-col flex-row sm:gap-10 items-center justify-between w-[94%] md:w-full">
-                    <Text
-                      className="md:text-3xl sm:text-[28px] text-[32px] text-black-900"
-                      size="txtPoppinsSemiBold32"
-                    >
-                      Cart
-                    </Text>
-                    <div className="bg-gray-100_01 border border-blue_gray-100_01 border-solid flex flex-row items-center justify-between p-2.5 rounded-[26px] w-[39%] sm:w-full">
-                      <Text
-                        className="ml-[30px] text-base text-black-900"
-                        size="txtPoppinsRegular16"
-                      >
-                        Sort by Pricing
-                      </Text>
-                      <Img
-                        className="h-[30px] md:h-auto mr-[3px] mt-0.5 object-cover w-[30px]"
-                        src="images/img_forwardbutton.png"
-                        alt="forwardbutton"
-                      />
-                    </div>
-                  </div>
-                  <div className="flex flex-col items-center justify-start w-full">
-                    <div className="bg-gray-50_02 border border-black-900_19 border-solid flex flex-col items-center justify-start p-[27px] sm:px-5 rounded-lg shadow-bs1 w-full">
-                      <div className="flex flex-col items-start justify-start mb-2 w-full">
-                        <div className="flex sm:flex-col flex-row sm:gap-10 items-start justify-between w-full">
-                          <div className="flex flex-col gap-[57px] items-start justify-start sm:mt-0 mt-3.5">
-                            <Text
-                              className="text-2xl md:text-[22px] text-black-900 sm:text-xl"
-                              size="txtPoppinsSemiBold24Black900"
-                            >
-                              Mixed Fried Rice
-                            </Text>
-                            <Text
-                              className="text-black-900 text-sm"
-                              size="txtPoppinsRegular14"
-                            >
-                              LEON’S KITCHEN Mixed Fried Rice
-                            </Text>
-                          </div>
-                          <Img
-                            className="h-[191px] md:h-auto rounded-[50%] w-[191px]"
-                            src="images/img_rectangle46_191x191.png"
-                            alt="rectangleFortySix"
-                          />
-                        </div>
-                        <div className="flex sm:flex-col flex-row sm:gap-5 items-center justify-start mt-[31px] w-[81%] md:w-full">
-                          <div className="bg-black-900_01 border border-blue_gray-400 border-solid flex flex-row gap-[21px] items-center justify-end p-2 rounded w-[33%] sm:w-full">
-                            <Text
-                              className="text-sm text-white-A700"
-                              size="txtPoppinsBold14"
-                            >
-                              Small
-                            </Text>
-                            <Button
-                              className="cursor-pointer font-bold min-w-[90px] rounded text-center text-sm"
-                              color="teal_800"
-                              size="md"
-                              variant="fill"
-                            >
-                              Rs.850
-                            </Button>
-                          </div>
-                          <div className="h-[58px] sm:ml-[0] ml-[5px] relative w-[35%] sm:w-full">
-                            <div className="flex flex-row gap-[21px] h-full items-center justify-between m-auto w-[90%]">
-                              <Text
-                                className="text-black-900 text-sm"
-                                size="txtPoppinsBold14Black900"
-                              >
-                                Medium
-                              </Text>
-                              <div className="bg-teal-800 flex flex-col items-end justify-end p-2 rounded">
-                              <Button
-                              className="cursor-pointer font-bold min-w-[90px] rounded text-center text-sm"
-                              color="teal_800"
-                              size="md"
-                              variant="fill"
-                            >
-                                  Rs.1350
-                                </Button>
+                  <List
+                    className="absolute bottom-[50%] flex flex-col font-poppins gap-[31px] inset-x-[0] items-center mx-auto w-1/2"
+                    orientation="vertical"
+                  >
+                    <div className="flex flex-col gap-[45px] items-center justify-start w-full">
+                      <div className="flex sm:flex-col flex-row sm:gap-10 items-center justify-between w-[94%] md:w-full">
+                        <Text
+                          className="md:text-3xl sm:text-[28px] text-[32px] text-black-900"
+                          size="txtPoppinsSemiBold32"
+                        >
+                          Cart
+                        </Text>
+                      </div>
+                      <div className="flex flex-col items-center justify-start w-full">
+                        {items.map((menuItem) => (
+                          <div
+                            key={menuItem.id}
+                            className="bg-gray-50_02 border border-black-900_19 border-solid flex flex-col items-center justify-start p-[27px] sm:px-5 rounded-lg shadow-bs1 w-full mb-4"
+                          >
+                            <div className="flex flex-col items-start justify-start mb-2 w-full">
+                              <div className="flex sm:flex-col flex-row sm:gap-10 items-start justify-between w-full">
+                                <div className="flex flex-col gap-[57px] items-start justify-start sm:mt-0 mt-3.5">
+                                  <Text
+                                    className="text-2xl md:text-[22px] text-black-900 sm:text-xl"
+                                    size="txtPoppinsSemiBold24Black900"
+                                  >
+                                    {menuItem.name}
+                                  </Text>
+                                  <Text
+                                    className="text-black-900 text-sm"
+                                    size="txtPoppinsRegular14"
+                                  >
+                                    {menuItem.price}
+                                  </Text>
+                                </div>
                               </div>
                             </div>
-                            <div className="absolute border border-black-900_6c border-solid h-[58px] inset-[0] justify-center m-auto rounded w-full"></div>
                           </div>
-                          <div className="h-[58px] ml-1.5 sm:ml-[0] relative w-[32%] sm:w-full">
-                            <div className="flex flex-row gap-6 h-full items-center justify-between m-auto w-[89%]">
-                              <Text
-                                className="text-black-900 text-sm"
-                                size="txtPoppinsBold14Black900"
-                              >
-                                Large
-                              </Text>
-                              <div className="bg-teal-800 flex flex-col items-end justify-end p-2 rounded">
-                              <Button
-                              className="cursor-pointer font-bold min-w-[90px] rounded text-center text-sm"
-                              color="teal_800"
-                              size="md"
-                              variant="fill"
-                            >
-                                  Rs.1950
-                                </Button>
-                              </div>
-                            </div>
-                            <div className="absolute border border-black-900_6c border-solid h-[58px] inset-[0] justify-center m-auto rounded w-full"></div>
-                          </div>
-                        </div>
-                        
+                        ))}
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div className="flex flex-col items-center justify-start w-full">
-                  <div className="bg-gray-50_02 border border-black-900_19 border-solid flex flex-col items-center justify-start p-[27px] sm:px-5 rounded-lg shadow-bs1 w-full">
-                    <div className="flex flex-col items-start justify-start mb-2 w-full">
-                      <div className="flex md:flex-col flex-row md:gap-10 items-start justify-between w-full">
-                        <div className="flex flex-col gap-14 items-start justify-start md:mt-0 mt-[17px]">
-                          <Text
-                            className="text-2xl md:text-[22px] text-black-900 sm:text-xl"
-                            size="txtPoppinsSemiBold24Black900"
-                          >
-                            LEON’S KITCHEN Special Fried Rice
-                          </Text>
-                          <Text
-                            className="text-black-900 text-sm"
-                            size="txtPoppinsRegular14"
-                          >
-                            LEON’S KITCHEN Special Fried Rice
-                          </Text>
-                        </div>
-                        <Img
-                          className="h-[191px] md:h-auto rounded-[50%] w-[191px]"
-                          src="images/img_rectangle46_23.png"
-                          alt="rectangleFortySix"
-                        />
-                      </div>
-                      <div className="flex sm:flex-col flex-row sm:gap-5 items-center justify-start mt-[31px] w-[81%] md:w-full">
-                        <div className="bg-black-900_01 border border-blue_gray-400 border-solid flex flex-row gap-[21px] items-center justify-end p-2 rounded w-[33%] sm:w-full">
-                          <Text
-                            className="text-sm text-white-A700"
-                            size="txtPoppinsBold14"
-                          >
-                            Small
-                          </Text>
-                          <Text
-                            className="bg-teal-800 h-[39px] justify-center pl-3.5 sm:pr-5 pr-7 py-2 rounded text-sm text-white-A700 w-[90px]"
-                            size="txtPoppinsBold14"
-                          >
-                            Rs.950
-                          </Text>
-                        </div>
-                        <div className="h-[58px] sm:ml-[0] ml-[5px] relative w-[35%] sm:w-full">
-                          <div className="flex flex-row gap-[21px] h-full items-center justify-between m-auto w-[90%]">
-                            <Text
-                              className="text-black-900 text-sm"
-                              size="txtPoppinsBold14Black900"
-                            >
-                              Medium
-                            </Text>
-                            <div className="bg-teal-800 flex flex-col items-center justify-end p-2 rounded">
-                              <Text
-                                className="text-sm text-white-A700"
-                                size="txtPoppinsBold14"
-                              >
-                                Rs.1350
-                              </Text>
-                            </div>
-                          </div>
-                          <div className="absolute border border-black-900_6c border-solid h-[58px] inset-[0] justify-center m-auto rounded w-full"></div>
-                        </div>
-                        <div className="h-[58px] ml-1.5 sm:ml-[0] relative w-[32%] sm:w-full">
-                          <div className="flex flex-row gap-6 h-full items-center justify-between m-auto w-[89%]">
-                            <Text
-                              className="text-black-900 text-sm"
-                              size="txtPoppinsBold14Black900"
-                            >
-                              Large
-                            </Text>
-                            <div className="bg-teal-800 flex flex-col items-end justify-end p-[7px] rounded">
-                              <Text
-                                className="mr-[5px] mt-0.5 text-sm text-white-A700"
-                                size="txtPoppinsBold14"
-                              >
-                                Rs.1950
-                              </Text>
-                            </div>
-                          </div>
-                          <div className="absolute border border-black-900_6c border-solid h-[58px] inset-[0] justify-center m-auto rounded w-full"></div>
-                        </div>
-                      </div>
-                      <Text
-                        className="md:ml-[0] ml-[197px] mt-[38px] text-sm text-white-A700"
-                        size="txtPoppinsBold14"
-                      >
-                        £32.90
-                      </Text>
-                    </div>
-                  </div>
-                </div>
-              </List> */}
-              <div className="absolute bottom-[1%] flex flex-col font-poppins inset-x-[0] items-center justify-start mx-auto w-1/2">
-                <div className="bg-gray-50_02 border border-black-900_19 border-solid flex flex-col items-center justify-start p-[27px] sm:px-5 rounded-lg shadow-bs1 w-full">
-                  <div className="flex flex-col items-start justify-start mb-2 w-full">
-                    <div className="flex sm:flex-col flex-row sm:gap-10 items-start justify-between w-full">
-                      <div className="flex flex-col gap-[57px] items-start justify-start sm:mt-0 mt-3.5">
-                        <Text
-                          className="text-2xl md:text-[22px] text-black-900 sm:text-xl"
-                          size="txtPoppinsSemiBold24Black900"
-                        >
-                          Chicken Fried Rice
-                        </Text>
-                        <Text
-                          className="text-black-900 text-sm"
-                          size="txtPoppinsRegular14"
-                        >
-                          LEON’S KITCHEN Chicken Fried Rice
-                        </Text>
-                      </div>
-                      <Img
-                        className="h-[191px] md:h-auto rounded-[50%] w-[191px]"
-                        src="images/img_rectangle46_24.png"
-                        alt="rectangleFortySix"
-                      />
-                    </div>
-                    <div className="flex sm:flex-col flex-row sm:gap-5 items-center justify-start mt-[31px] w-[81%] md:w-full">
-                      <div className="bg-black-900_01 border border-blue_gray-400 border-solid flex flex-row gap-[21px] items-center justify-end p-2 rounded w-[33%] sm:w-full">
-                        <Text
-                          className="text-sm text-white-A700"
-                          size="txtPoppinsBold14"
-                        >
-                          Small
-                        </Text>
-                        <Button
-                          className="cursor-pointer font-bold min-w-[90px] rounded text-center text-sm"
-                          color="teal_800"
-                          size="md"
-                          variant="fill"
-                        >
-                          Rs.700
-                        </Button>
-                      </div>
-                      <List
-                        className="sm:flex-col flex-row gap-1.5 grid grid-cols-2 sm:ml-[0] ml-[5px] w-[67%] sm:w-full"
-                        orientation="horizontal"
-                      >
-                        <div className="h-[58px] relative w-full">
-                          <div className="flex flex-row gap-[21px] h-full items-center justify-between m-auto w-[90%]">
-                            <Text
-                              className="text-black-900 text-sm"
-                              size="txtPoppinsBold14Black900"
-                            >
-                              Medium
-                            </Text>
-                            <div className="bg-teal-800 flex flex-col items-start justify-end p-2 rounded">
-                              <Text
-                                className="md:ml-[0] ml-[7px] text-sm text-white-A700"
-                                size="txtPoppinsBold14"
-                              >
-                                Rs.1200
-                              </Text>
-                            </div>
-                          </div>
-                          <div className="absolute border border-black-900_6c border-solid h-[58px] inset-[0] justify-center m-auto rounded w-full"></div>
-                        </div>
-                        <div className="h-[58px] relative w-full">
-                          <div className="flex flex-row gap-6 h-full items-center justify-between m-auto w-[89%]">
-                            <Text
-                              className="text-black-900 text-sm"
-                              size="txtPoppinsBold14Black900"
-                            >
-                              Large
-                            </Text>
-                            <div className="bg-teal-800 flex flex-col items-center justify-end p-2 rounded">
-                              <Text
-                                className="text-sm text-white-A700"
-                                size="txtPoppinsBold14"
-                              >
-                                Rs.1700
-                              </Text>
-                            </div>
-                          </div>
-                          <div className="absolute border border-black-900_6c border-solid h-[58px] inset-[0] justify-center m-auto rounded w-full"></div>
-                        </div>
-                      </List>
-                    </div>
-                    <Text
-                      className="md:ml-[0] ml-[197px] mt-[38px] text-sm text-white-A700"
-                      size="txtPoppinsBold14"
-                    >
-                      £32.90
-                    </Text>
-                  </div>
-                </div>
-              </div>
-              <div className="absolute bottom-[0] flex flex-col font-poppins md:gap-10 gap-[88px] justify-start left-[0] w-[15%]">
-                <Text
-                  className="md:text-3xl sm:text-[28px] text-[32px] text-black-900"
-                  size="txtPoppinsSemiBold32"
-                >
-                  Order from{" "}
-                </Text>
-                <div className="flex flex-col gap-[39px] items-start justify-start md:ml-[0] ml-[33px] w-[85%] md:w-full">
-                  <Img
-                    className="h-[55px] md:h-auto object-cover w-[55px]"
-                    src="images/img_restaurantmenu.png"
-                    alt="restaurantmenu"
-                  />
-                  <div className="flex flex-col items-center justify-start w-full">
-                    <Text
-                      className="leading-[83.00px] text-[22px] text-gray-900 sm:text-lg md:text-xl"
-                      size="txtPoppinsBold22Gray900"
-                    >
-                      <>
-                        Fried Rice
-                        <br />
-                        Spaghetti
-                        <br />
-                        Salad
-                        <br />
-                        Pasta
-                        <br />
-                        Omelette <br />
-                        Noodles
-                        <br />
-                        Kottu
-                        <br />
-                        French Frice
-                        <br />
-                        Mongolian
-                        <br />
-                        Sausages
-                        <br />
-                        Turkey
-                        <br />
-                        Cashew
-                        <br />
-                        Mutton
-                        <br />
-                        Nasi
-                      </>
-                    </Text>
-                  </div>
+                  </List>
                 </div>
               </div>
             </div>
-            <div className="absolute bg-orange-600 flex flex-row gap-[21px] items-center justify-center p-[33px] sm:px-5 right-[0] rounded-lg top-[35%] w-1/4">
-              <Img
-                className="h-[58px] md:h-auto ml-3.5 object-cover w-[58px]"
-                src="images/img_clock_29x29.png"
-                alt="clock_One"
-              />
-              <Text
-                className="mr-[31px] text-lg text-white-A700"
-                size="txtPoppinsSemiBold18"
-              >
-                Open until 10:00 PM
-              </Text>
-            </div>
+
             <div className="absolute bottom-[0] md:h-[1360px] h-[1363px] right-[0] w-[30%] sm:w-full">
               <div className="md:h-[1360px] h-[1363px] m-auto w-full">
                 <div className="absolute bg-gray-50 border border-black-900_1c border-solid flex flex-col h-full inset-y-[0] items-center justify-start my-auto pb-[13px] right-[0] rounded-[12px] w-[81%]">
@@ -721,11 +398,7 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                     </div>
                     <Line className="bg-black-900_33 h-px w-full" />
                   </div>
-                  <Img
-                    className="h-[35px] md:h-auto object-cover w-[35px]"
-                    src="images/img_remove.png"
-                    alt="remove"
-                  />
+                  
                 </div>
               </div>
               <div className="absolute flex flex-col items-center justify-start right-[0] top-[21%] w-[81%]">
@@ -758,16 +431,7 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                   <Line className="bg-black-900_33 h-px w-full" />
                 </div>
               </div>
-              <Img
-                className="absolute bottom-[41%] h-[35px] left-[0] object-cover w-[35px]"
-                src="images/img_remove.png"
-                alt="remove_One"
-              />
-              <Img
-                className="absolute bottom-[8%] h-[35px] left-[0] object-cover w-[35px]"
-                src="images/img_remove.png"
-                alt="remove_Two"
-              />
+              
             </div>
             <div className="absolute flex flex-col md:gap-10 gap-[430px] justify-start left-[2%] top-[65px] w-[22%]">
               <Img
