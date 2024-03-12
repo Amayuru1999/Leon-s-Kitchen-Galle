@@ -11,11 +11,34 @@ const OrderingPagePage = ({ logoutUser, user }) => {
   const navigate = useNavigate();
   const [cartItemCount, setCartItemCount] = useState(0);
   const [cartData, setCartData] = useState([]);
+  const [quantity, setQuantity] = useState(1);
+  
 
+  const handleIncreaseQuantity = (itemId) => {
+    setItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === itemId
+          ? { ...item, quantity: (item.quantity || 0) + 1 }
+          : item
+      )
+    );
+  };
+
+  // Function to handle decreasing quantity for a specific item
+  const handleDecreaseQuantity = (itemId) => {
+    setItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === itemId
+          ? { ...item, quantity: Math.max((item.quantity || 0) - 1, 0) }
+          : item
+      )
+    );
+  };
   const updateCartItemCount = (newCount) => {
     setCartItemCount(newCount);
   };
   const [items, setItems] = useState([]);
+
 
   useEffect(() => {
     const fetchCartData = async () => {
@@ -158,7 +181,7 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                       </div>
                     </div>
                   </div>
-                  <div className="absolute bg-orange-600 flex flex-row gap-[13px] items-center justify-center left-[0] p-3.5 rounded-br-[12px] rounded-tr-[12px] top-[23%] w-[22%]">
+                  <div className="absolute bg-orange-600 flex flex-row gap-[13px] items-center justify-center left-[0] p-3.5 rounded-br-[12px] rounded-tr-[12px] top-[23%] w-[25%]">
                     <Img
                       className="h-[29px] md:h-auto ml-[47px] object-cover w-[29px]"
                       src="images/img_clock_29x29.png"
@@ -168,51 +191,72 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                       className="mr-[45px] text-lg text-white-A700"
                       size="txtPoppinsSemiBold18"
                     >
-                      Open until 3:00 AM
+                      Open until 10:00 AM
                     </Text>
                   </div>
                   <List
-                    className="absolute bottom-[50%] flex flex-col font-poppins gap-[31px] inset-x-[0] items-center mx-auto w-1/2"
-                    orientation="vertical"
-                  >
-                    <div className="flex flex-col gap-[45px] items-center justify-start w-full">
-                      <div className="flex sm:flex-col flex-row sm:gap-10 items-center justify-between w-[94%] md:w-full">
-                        <Text
-                          className="md:text-3xl sm:text-[28px] text-[32px] text-black-900"
-                          size="txtPoppinsSemiBold32"
-                        >
-                          Cart
-                        </Text>
-                      </div>
-                      <div className="flex flex-col items-center justify-start w-full">
-                        {items.map((menuItem) => (
-                          <div
-                            key={menuItem.id}
-                            className="bg-gray-50_02 border border-black-900_19 border-solid flex flex-col items-center justify-start p-[27px] sm:px-5 rounded-lg shadow-bs1 w-full mb-4"
-                          >
-                            <div className="flex flex-col items-start justify-start mb-2 w-full">
-                              <div className="flex sm:flex-col flex-row sm:gap-10 items-start justify-between w-full">
-                                <div className="flex flex-col gap-[57px] items-start justify-start sm:mt-0 mt-3.5">
-                                  <Text
-                                    className="text-2xl md:text-[22px] text-black-900 sm:text-xl"
-                                    size="txtPoppinsSemiBold24Black900"
-                                  >
-                                    {menuItem.name}
-                                  </Text>
-                                  <Text
-                                    className="text-black-900 text-sm"
-                                    size="txtPoppinsRegular14"
-                                  >
-                                    {menuItem.price}
-                                  </Text>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
+        className="absolute bottom-[28%] flex flex-col font-poppins gap-[31px] inset-x-[0] items-center mx-auto w-1/2"
+        orientation="vertical"
+      >
+        <div className="flex flex-col gap-[45px] items-center justify-start w-full">
+          <div className="flex sm:flex-col flex-row sm:gap-10 items-center justify-between w-[94%] md:w-full">
+            <Text
+              className="md:text-3xl sm:text-[28px] text-[32px] text-black-900"
+              size="txtPoppinsSemiBold32"
+            >
+              Cart
+            </Text>
+          </div>
+          <div className="flex flex-col items-center justify-start w-full">
+            {items.map((menuItem) => (
+              <div
+                key={menuItem.id}
+                className="bg-gray-50_02 border border-black-900_19 border-solid flex flex-col items-center justify-start p-[27px] sm:px-5 rounded-lg shadow-bs1 w-full mb-4 relative"
+              >
+                <div className="flex flex-col items-start justify-start mb-2 w-full">
+                  <div className="flex sm:flex-col flex-row sm:gap-10 items-start justify-between w-full">
+                    <div className="flex flex-col gap-[57px] items-start justify-start sm:mt-0 mt-3.5">
+                      <Text
+                        className="text-2xl md:text-[22px] text-black-900 sm:text-xl"
+                        size="txtPoppinsSemiBold24Black900"
+                      >
+                        {menuItem.name}
+                      </Text>
+                      <Text
+                        className="text-black-900 text-sm"
+                        size="txtPoppinsRegular14"
+                      >
+                        {menuItem.price}
+                      </Text>
                     </div>
-                  </List>
+                  </div>
+                </div>
+
+                {/* Add counter with increase and decrease buttons */}
+                <div className="flex items-center absolute bottom-0 left-0 p-2">
+                  <button
+                    className="text-gray-500"
+                    onClick={() =>
+                      handleDecreaseQuantity(menuItem.id)
+                    }
+                  >
+                    -
+                  </button>
+                  <span className="mx-2">{menuItem.quantity}</span>
+                  <button
+                    className="text-green-500"
+                    onClick={() =>
+                      handleIncreaseQuantity(menuItem.id)
+                    }
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </List>
                 </div>
               </div>
             </div>
@@ -398,7 +442,6 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                     </div>
                     <Line className="bg-black-900_33 h-px w-full" />
                   </div>
-                  
                 </div>
               </div>
               <div className="absolute flex flex-col items-center justify-start right-[0] top-[21%] w-[81%]">
@@ -431,7 +474,6 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                   <Line className="bg-black-900_33 h-px w-full" />
                 </div>
               </div>
-              
             </div>
             <div className="absolute flex flex-col md:gap-10 gap-[430px] justify-start left-[2%] top-[65px] w-[22%]">
               <Img
