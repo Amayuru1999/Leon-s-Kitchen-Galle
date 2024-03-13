@@ -33,6 +33,7 @@ import EmailSent from "pages/EmailSent";
 import PasswordReset from "pages/PasswordReset";
 import RestaurantDetailPageDesktopPage from "pages/RestaurantDetailPageDesktop";
 import OrderingPagePage from "pages/OrderingPage";
+import HomeDesktopLighterVersion from "pages/HomeDesktopLighterVersion"
 function App({ checked }) {
   return (
     <BrowserRouter>
@@ -50,6 +51,7 @@ function App({ checked }) {
                 <Route path=":reset" element={<EmailSent/>}/>
               </Route>
             </Route>
+            
             <Route
             path="/restaurantdetailpagedesktop"
             element={<RestaurantDetailPageDesktopPage />}

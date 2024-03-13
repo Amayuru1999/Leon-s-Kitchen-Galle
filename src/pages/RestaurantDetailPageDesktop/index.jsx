@@ -196,17 +196,18 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                     <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
                       Track Order
                     </button>
-                    <button className="flex items-center text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button relative"
-                    onClick={navigate('/orderingpage')}
-                    >
-                      <img
-                        src="images/cart.svg"
-                        alt="Cart"
-                        className="h-6 w-20 mr-1" // Adjust the size as needed and add margin-right
-                      />
-                      <span>Cart</span>
-                      
-                    </button>
+                    <button
+  className="flex items-center text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button relative"
+  onClick={() => navigate('/orderingpage')}
+>
+  <img
+    src="images/cart.svg"
+    alt="Cart"
+    className="h-6 w-20 mr-1" // Adjust the size as needed and add margin-right
+  />
+  <span>Cart</span>
+</button>
+
                   </div>
                   
                   
@@ -425,7 +426,7 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                       notify();}}
                     />
                     <ToastContainer />
-                  </div>
+                  </div>  
                 </div>
               </div>
             </div>
