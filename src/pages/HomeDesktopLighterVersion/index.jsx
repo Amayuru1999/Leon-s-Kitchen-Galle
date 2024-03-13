@@ -17,6 +17,29 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
   const updateCartItemCount = (newCount) => {
     setCartItemCount(newCount);
   };
+  const handleLogout = async () => {
+    try {
+      // Make a request to your backend endpoint to clear the user's cart
+      const response = await fetch('http://localhost:5000/user/cart/clear', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId: user.email }),
+      });
+  
+      if (response.ok) {
+        // Handle success, e.g., show a success message
+        console.log('User logged out successfully');
+      } else {
+        // Handle failure, e.g., show an error message
+        console.error('Failed to log out user');
+      }
+    } catch (error) {
+      // Handle unexpected errors
+      console.error('An error occurred during logout:', error);
+    }
+  };
 
   return (
     <>
@@ -67,9 +90,12 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                   </div>
                 </div>
                 <button
-                  className="bg-black-900_01 flex flex-col font-poppins items-center justify-center p-4 rounded-[30px] w-[21%] md:w-full focus:outline-none border border-white-A700 hover:bg-gray-400 transition duration-300 "
+                  className="bg-black-900_01 flex flex-col font-poppins items-center justify-center p-4 rounded-[30px] w-[20%] md:w-full focus:outline-none border border-white-A700 hover:bg-gray-400 transition duration-300 "
                   to="#"
-                  onClick={() => logoutUser(navigate)}
+                  onClick={() => {
+                    logoutUser(navigate); // Assuming logoutUser is a function that logs out the user
+                    handleLogout(); // Assuming handleLogout clears the user's cart
+                  }}
                 >
                   <div className="flex flex-row gap-3 items-center justify-center w-[81%] md:w-full">
                     <img
