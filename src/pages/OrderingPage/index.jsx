@@ -9,58 +9,62 @@ import { connect } from "react-redux";
 
 const OrderingPagePage = ({ logoutUser, user }) => {
   const navigate = useNavigate();
-  const [cartItemCount, setCartItemCount] = useState(0);
-  const [cartData, setCartData] = useState([]);
-  const [quantity, setQuantity] = useState(1);
+  const [itemQuantities, setItemQuantities] = useState({});
+  const [items, setItems] = useState([]);
+
+  const incrementCounter = (menuItem) => {
+    if (menuItem && menuItem.id) {
+      setItemQuantities((prevQuantities) => ({
+        ...prevQuantities,
+        [menuItem.id]: (prevQuantities[menuItem.id] || 0) + 1,
+      }));
+      console.log("Incrementing menuItem:", menuItem);
+    } else {
+      console.warn("Attempting to increment with undefined menuItem or menuItem.id");
+    }
+  };
+  
+  // Change the function argument from itemId to menuItem
+  const decrementCounter = (menuItem) => {
+    if (menuItem && menuItem.id && itemQuantities[menuItem.id] && itemQuantities[menuItem.id] > 0) {
+      setItemQuantities((prevQuantities) => ({
+        ...prevQuantities,
+        [menuItem.id]: prevQuantities[menuItem.id] - 1,
+      }));
+      console.log("Decrementing menuItem:", menuItem);
+    } else {
+      console.warn("Attempting to decrement with undefined menuItem or menuItem.id or already at 0");
+    }
+  };
+  
+  
   const handleLogout = async () => {
     try {
       // Make a request to your backend endpoint to clear the user's cart
-      const response = await fetch('http://localhost:5000/user/cart/clear', {
-        method: 'POST',
+      const response = await fetch("http://localhost:5000/user/cart/clear", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ userId: user.email }),
       });
-  
+
       if (response.ok) {
         // Handle success, e.g., show a success message
-        console.log('User logged out successfully');
+        console.log("User logged out successfully");
       } else {
         // Handle failure, e.g., show an error message
-        console.error('Failed to log out user');
+        console.error("Failed to log out user");
       }
     } catch (error) {
       // Handle unexpected errors
-      console.error('An error occurred during logout:', error);
+      console.error("An error occurred during logout:", error);
     }
   };
 
-  const handleIncreaseQuantity = (itemId) => {
-    setItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === itemId
-          ? { ...item, quantity: (item.quantity || 0) + 1 }
-          : item
-      )
-    );
-  };
-
-  // Function to handle decreasing quantity for a specific item
-  const handleDecreaseQuantity = (itemId) => {
-    setItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === itemId
-          ? { ...item, quantity: Math.max((item.quantity || 0) - 1, 0) }
-          : item
-      )
-    );
-  };
-  const updateCartItemCount = (newCount) => {
-    setCartItemCount(newCount);
-  };
-  const [items, setItems] = useState([]);
-
+  useEffect(() => {
+    console.log("Current items:", items);
+  }, [items]);
 
   useEffect(() => {
     const fetchCartData = async () => {
@@ -103,12 +107,12 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                 <div className="flex md:flex-col flex-row gap-[53px] items-center justify-end md:ml-[0] ml-[383px] mt-[38px] w-3/4 md:w-full">
                   <div className="flex relative w-3/4 md:w-full">
                     <div className="flex ml-[-93px] items-center gap-4">
-                    <button
-  className="text-white font-poppins font-medium text-lg hover-effect focus:outline-none nav-button"
-  onClick={() => navigate('/dashboard')}
->
-  Home
-</button>
+                      <button
+                        className="text-white font-poppins font-medium text-lg hover-effect focus:outline-none nav-button"
+                        onClick={() => navigate("/dashboard")}
+                      >
+                        Home
+                      </button>
                       <button className="text-black-900_01 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
                         Browse Menu
                       </button>
@@ -128,31 +132,26 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                           className="h-6 w-20 mr-2" // Adjust the size as needed and add margin-right
                         />
                         <span>Cart</span>
-                        {cartItemCount > 0 && (
-                          <span className="absolute top-0 right-0 bg-red-500 text-white font-bold rounded-full px-2">
-                            {cartItemCount}
-                          </span>
-                        )}
                       </button>
                     </div>
                   </div>
                   <button
-                  className="bg-black-900_01 flex flex-col font-poppins items-center justify-center p-4 rounded-[30px] w-[20%] md:w-full focus:outline-none border border-white-A700 hover:bg-gray-400 transition duration-300 "
-                  to="#"
-                  onClick={() => {
-                    logoutUser(navigate); // Assuming logoutUser is a function that logs out the user
-                    handleLogout(); // Assuming handleLogout clears the user's cart
-                  }}
-                >
-                  <div className="flex flex-row gap-3 items-center justify-center w-[81%] md:w-full">
-                    <img
-                      className="h-[27px] md:h-auto object-cover rounded-[1px] w-[19%]"
-                      src="images/img_maleuser.png"
-                      alt="maleuser"
-                    />
-                    <span className="text-lg text-white-A700">Logout</span>
-                  </div>
-                </button>
+                    className="bg-black-900_01 flex flex-col font-poppins items-center justify-center p-4 rounded-[30px] w-[20%] md:w-full focus:outline-none border border-white-A700 hover:bg-gray-400 transition duration-300 "
+                    to="#"
+                    onClick={() => {
+                      logoutUser(navigate); // Assuming logoutUser is a function that logs out the user
+                      handleLogout(); // Assuming handleLogout clears the user's cart
+                    }}
+                  >
+                    <div className="flex flex-row gap-3 items-center justify-center w-[81%] md:w-full">
+                      <img
+                        className="h-[27px] md:h-auto object-cover rounded-[1px] w-[19%]"
+                        src="images/img_maleuser.png"
+                        alt="maleuser"
+                      />
+                      <span className="text-lg text-white-A700">Logout</span>
+                    </div>
+                  </button>
                 </div>
                 <div className="font-poppins md:h-[1913px] h-[1942px] sm:h-[1981px] mt-[41px] relative w-full">
                   <div className="flex flex-col h-full items-center justify-start m-auto w-full">
@@ -223,68 +222,64 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                     </Text>
                   </div>
                   <List
-        className="absolute bottom-[28%] flex flex-col font-poppins gap-[31px] inset-x-[0] items-center mx-auto w-1/2"
-        orientation="vertical"
-      >
-        <div className="flex flex-col gap-[45px] items-center justify-start w-full">
-          <div className="flex sm:flex-col flex-row sm:gap-10 items-center justify-between w-[94%] md:w-full">
-            <Text
-              className="md:text-3xl sm:text-[28px] text-[32px] text-black-900"
-              size="txtPoppinsSemiBold32"
-            >
-              Cart
-            </Text>
-          </div>
-          <div className="flex flex-col items-center justify-start w-full">
-            {items.map((menuItem) => (
-              <div
-                key={menuItem.id}
-                className="bg-gray-50_02 border border-black-900_19 border-solid flex flex-col items-center justify-start p-[27px] sm:px-5 rounded-lg shadow-bs1 w-full mb-4 relative"
-              >
-                <div className="flex flex-col items-start justify-start mb-2 w-full">
-                  <div className="flex sm:flex-col flex-row sm:gap-10 items-start justify-between w-full">
-                    <div className="flex flex-col gap-[57px] items-start justify-start sm:mt-0 mt-3.5">
-                      <Text
-                        className="text-2xl md:text-[22px] text-black-900 sm:text-xl"
-                        size="txtPoppinsSemiBold24Black900"
-                      >
-                        {menuItem.name}
-                      </Text>
-                      <Text
-                        className="text-black-900 text-sm"
-                        size="txtPoppinsRegular14"
-                      >
-                        {menuItem.price}
-                      </Text>
-                    </div>
-                  </div>
-                </div>
+                    className="absolute bottom-[28%] flex flex-col font-poppins gap-[31px] inset-x-[0] items-center mx-auto w-1/2"
+                    orientation="vertical"
+                  >
+                    <div className="flex flex-col gap-[45px] items-center justify-start w-full">
+                      <div className="flex sm:flex-col flex-row sm:gap-10 items-center justify-between w-[94%] md:w-full">
+                        <Text
+                          className="md:text-3xl sm:text-[28px] text-[32px] text-black-900"
+                          size="txtPoppinsSemiBold32"
+                        >
+                          Cart
+                        </Text>
+                      </div>
+                      <div className="flex flex-col items-center justify-start w-full">
+                        {items.map((menuItem) => (
+                          <div
+                            key={menuItem.id}
+                            className="bg-gray-50_02 border border-black-900_19 border-solid flex flex-col items-center justify-start p-[27px] sm:px-5 rounded-lg shadow-bs1 w-full mb-4 relative"
+                          >
+                            <div className="flex flex-col items-start justify-start mb-2 w-full">
+                              <div className="flex sm:flex-col flex-row sm:gap-10 items-start justify-between w-full">
+                                <div className="flex flex-col gap-[57px] items-start justify-start sm:mt-0 mt-3.5">
+                                  <Text
+                                    className="text-2xl md:text-[22px] text-black-900 sm:text-xl"
+                                    size="txtPoppinsSemiBold24Black900"
+                                  >
+                                    {menuItem.name}
+                                  </Text>
+                                  <Text
+                                    className="text-black-900 text-sm"
+                                    size="txtPoppinsRegular14"
+                                  >
+                                    {menuItem.price}
+                                  </Text>
+                                </div>
+                              </div>
+                            </div>
+                            <button
+  className="arrow-button"
+  onClick={() => incrementCounter(menuItem)}
+>
+  +
+</button>
+<span className="number">
+  {itemQuantities[menuItem.id] || 0}
+</span>
+<button
+  className="arrow-button"
+  onClick={() => decrementCounter(menuItem)}
+  disabled={itemQuantities[menuItem.id] === 0}
+>
+  -
+</button>
 
-                {/* Add counter with increase and decrease buttons */}
-                <div className="flex items-center absolute bottom-0 left-0 p-2">
-                  <button
-                    className="text-gray-500"
-                    onClick={() =>
-                      handleDecreaseQuantity(menuItem.id)
-                    }
-                  >
-                    -
-                  </button>
-                  <span className="mx-2">{menuItem.quantity}</span>
-                  <button
-                    className="text-green-500"
-                    onClick={() =>
-                      handleIncreaseQuantity(menuItem.id)
-                    }
-                  >
-                    +
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </List>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </List>
                 </div>
               </div>
             </div>

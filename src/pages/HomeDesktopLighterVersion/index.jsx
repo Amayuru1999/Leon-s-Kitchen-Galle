@@ -62,7 +62,9 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                     <button className="text-white font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
                       Home
                     </button>
-                    <button className="text-black-900_01 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
+                    <button className="text-black-900_01 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button"
+                    onClick={() => navigate('/restaurantdetailpagedesktop')}
+                    >
                       Browse Menu
                     </button>
                     <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
@@ -297,6 +299,7 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                       href="#"
                       className="block h-[325px] m-auto rounded-[12px] w-full overflow-hidden focus:outline-none"
                     >
+                      
                       <img
                         className="h-[325px] m-auto object-cover w-full transition-transform duration-300 transform hover:scale-105 focus:scale-105"
                         src="images/img_rectangle8_325x496.png"
@@ -308,11 +311,16 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                         href="#"
                         className="block h-[325px] m-auto rounded-[12px] w-full overflow-hidden focus:outline-none"
                       >
+                        <Link
+                      to="/restaurantdetailpagedesktop"
+                      className="block h-[325px] m-auto rounded-[12px] w-full overflow-hidden focus:outline-none"
+                    >
                         <img
                           className="h-[325px] m-auto object-cover w-full transition-transform duration-300 transform hover:scale-105 focus:scale-105"
                           src="images/img_rectangle9_325x496.png"
                           alt="rectangleNine"
                         />
+                        </Link>
                       </a>
                       <div className="absolute bottom-[11%] flex flex-col items-center justify-start left-[9%]">
                         <Text
@@ -338,11 +346,16 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                       href="#"
                       className="block h-[325px] m-auto object-cover rounded-[12px] w-full overflow-hidden focus:outline-none"
                     >
+                      <Link
+                      to="/restaurantdetailpagedesktop"
+                      className="block h-[325px] m-auto rounded-[12px] w-full overflow-hidden focus:outline-none"
+                    >
                       <img
                         className="h-[325px] m-auto object-cover w-full transition-transform duration-300 transform hover:scale-105 focus:scale-105"
                         src="images/img_rectangle9_1.png"
                         alt="rectangleNine"
                       />
+                      </Link>
                     </a>
                     <div className="absolute bottom-[11%] flex flex-col items-start justify-start left-[9%]">
                       <Text
