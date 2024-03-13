@@ -181,7 +181,9 @@ const RestaurantDetailPageDesktopPage = ({ logoutUser, user }) => {
                 
                 <div className="h-[45px] md:ml-[0] ml-[331px] relative w-[42%] md:w-full">
                   <div className="flex ml-[-300px] items-center gap-4">
-                    <button className="text-white font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
+                    <button className="text-white font-poppins font-medium text-lg hover-effect focus:outline-none nav-button"
+                    onClick={() => navigate('/dashboard')}
+                    >
                       Home
                     </button>
                     <button className="text-black-900_01 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">

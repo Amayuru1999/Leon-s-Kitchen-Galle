@@ -34,6 +34,7 @@ import PasswordReset from "pages/PasswordReset";
 import RestaurantDetailPageDesktopPage from "pages/RestaurantDetailPageDesktop";
 import OrderingPagePage from "pages/OrderingPage";
 import HomeDesktopLighterVersion from "pages/HomeDesktopLighterVersion"
+import MacBookPro14OnePage from "pages/MacBookPro14One";
 function App({ checked }) {
   return (
     <BrowserRouter>
@@ -56,6 +57,7 @@ function App({ checked }) {
             path="/restaurantdetailpagedesktop"
             element={<RestaurantDetailPageDesktopPage />}
           />
+          <Route path="/macbookpro14one" element={<MacBookPro14OnePage />} />
           <Route path="/orderingpage" element={<OrderingPagePage />} />
             {/* <Route
   path="/passwordreset/:userId?/:resetString?"
