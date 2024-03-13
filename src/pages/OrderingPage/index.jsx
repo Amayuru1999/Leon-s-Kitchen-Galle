@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faMinus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "./../../auth/actions/userActions";
 import { Link } from "react-router-dom";
@@ -11,6 +12,35 @@ const OrderingPagePage = ({ logoutUser, user }) => {
   const navigate = useNavigate();
   const [itemQuantities, setItemQuantities] = useState({});
   const [items, setItems] = useState([]);
+  const deleteItem = async (menuItem) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/user/cart/${user.email}/${menuItem._id}`,
+        {
+          method: "DELETE",
+        }
+      );
+  
+      console.log("Delete response status:", response.status);
+  
+      if (response.ok) {
+        // Item deleted successfully
+        console.log("Item deleted from the cart");
+        // Now, update the local state to reflect the changes
+        setItems((prevItems) =>
+          prevItems.filter((item) => item._id !== menuItem._id)
+        );
+      } else {
+        // Handle deletion failure
+        const errorData = await response.json();
+        console.error("Failed to delete item from the cart:", errorData);
+      }
+    } catch (error) {
+      console.error("An error occurred during item deletion:", error);
+    }
+  };
+  
+  
 
   const incrementCounter = (menuItem) => {
     console.log("Received menuItem in incrementCounter:", menuItem);
@@ -21,24 +51,32 @@ const OrderingPagePage = ({ logoutUser, user }) => {
         [menuItem._id]: (prevQuantities[menuItem._id] || 0) + 1,
       }));
     } else {
-      console.warn("Attempting to increment with undefined menuItem or menuItem._id");
+      console.warn(
+        "Attempting to increment with undefined menuItem or menuItem._id"
+      );
     }
   };
-  
+
   const decrementCounter = (menuItem) => {
     console.log("Received menuItem in decrementCounter:", menuItem);
-    if (menuItem && menuItem._id && itemQuantities[menuItem._id] && itemQuantities[menuItem._id] > 0) {
+    if (
+      menuItem &&
+      menuItem._id &&
+      itemQuantities[menuItem._id] &&
+      itemQuantities[menuItem._id] > 0
+    ) {
       console.log("Decrementing with menuItem:", menuItem);
       setItemQuantities((prevQuantities) => ({
         ...prevQuantities,
         [menuItem._id]: prevQuantities[menuItem._id] - 1,
       }));
     } else {
-      console.warn("Attempting to decrement with undefined menuItem or menuItem._id or already at 0");
+      console.warn(
+        "Attempting to decrement with undefined menuItem or menuItem._id or already at 0"
+      );
     }
   };
-  
-  
+
   const handleLogout = async () => {
     try {
       // Make a request to your backend endpoint to clear the user's cart
@@ -241,41 +279,50 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                             key={menuItem.id}
                             className="bg-gray-50_02 border border-black-900_19 border-solid flex flex-col items-center justify-start p-[27px] sm:px-5 rounded-lg shadow-bs1 w-full mb-4 relative"
                           >
-                            <div className="flex flex-col items-start justify-start mb-2 w-full">
-                              <div className="flex sm:flex-col flex-row sm:gap-10 items-start justify-between w-full">
-                                <div className="flex flex-col gap-[57px] items-start justify-start sm:mt-0 mt-3.5">
-                                  <Text
-                                    className="text-2xl md:text-[22px] text-black-900 sm:text-xl"
-                                    size="txtPoppinsSemiBold24Black900"
-                                  >
-                                    {menuItem.name}
-                                  </Text>
-                                  <Text
-                                    className="text-black-900 text-sm"
-                                    size="txtPoppinsRegular14"
-                                  >
-                                    {menuItem.price}
-                                  </Text>
-                                </div>
+                            <div className="flex flex-row items-start justify-between w-full">
+                              <div className="flex flex-col gap-[57px] items-start justify-start sm:mt-0 mt-3.5">
+                                <Text
+                                  className="text-2xl md:text-[22px] text-black-900 sm:text-xl"
+                                  size="txtPoppinsSemiBold24Black900"
+                                >
+                                  {menuItem.name}
+                                </Text>
+                                <Text
+                                  className="text-black-900 text-sm"
+                                  size="txtPoppinsRegular14"
+                                >
+                                  {menuItem.price}
+                                </Text>
                               </div>
+                              <div className="relative flex items-center gap-2">
+                                <button
+                                  className="arrow-button"
+                                  onClick={() => incrementCounter(menuItem)}
+                                >
+                                  <FontAwesomeIcon icon={faPlus} />
+                                </button>
+                                <span className="number">
+                                  {itemQuantities[menuItem._id] || 0}
+                                </span>
+                                <button
+                                  className="arrow-button"
+                                  onClick={() => decrementCounter(menuItem)}
+                                  disabled={itemQuantities[menuItem._id] === 0}
+                                >
+                                  <FontAwesomeIcon icon={faMinus} />
+                                </button>
+                                
+                              </div>
+                              
                             </div>
                             <button
-                              className="arrow-button"
-                              onClick={() => incrementCounter(menuItem)}
-                            >
-                              +
-                            </button>
-                            <span className="number">
-                              {itemQuantities[menuItem._id] || 0}
-                            </span>
-                            <button
-                              className="arrow-button"
-                              onClick={() => decrementCounter(menuItem)}
-                              disabled={itemQuantities[menuItem._id] === 0}
-                            >
-                              -
-                            </button>
+                                className="delete-button"
+                                onClick={() => deleteItem(menuItem)}
+                              >
+                                <FontAwesomeIcon icon={faTrash} />
+                              </button>
                           </div>
+                          
                         ))}
                       </div>
                     </div>
