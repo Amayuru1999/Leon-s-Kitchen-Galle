@@ -13,27 +13,28 @@ const OrderingPagePage = ({ logoutUser, user }) => {
   const [items, setItems] = useState([]);
 
   const incrementCounter = (menuItem) => {
-    if (menuItem && menuItem.id) {
+    console.log("Received menuItem in incrementCounter:", menuItem);
+    if (menuItem && menuItem._id) {
+      console.log("Incrementing with menuItem:", menuItem);
       setItemQuantities((prevQuantities) => ({
         ...prevQuantities,
-        [menuItem.id]: (prevQuantities[menuItem.id] || 0) + 1,
+        [menuItem._id]: (prevQuantities[menuItem._id] || 0) + 1,
       }));
-      console.log("Incrementing menuItem:", menuItem);
     } else {
-      console.warn("Attempting to increment with undefined menuItem or menuItem.id");
+      console.warn("Attempting to increment with undefined menuItem or menuItem._id");
     }
   };
   
-  // Change the function argument from itemId to menuItem
   const decrementCounter = (menuItem) => {
-    if (menuItem && menuItem.id && itemQuantities[menuItem.id] && itemQuantities[menuItem.id] > 0) {
+    console.log("Received menuItem in decrementCounter:", menuItem);
+    if (menuItem && menuItem._id && itemQuantities[menuItem._id] && itemQuantities[menuItem._id] > 0) {
+      console.log("Decrementing with menuItem:", menuItem);
       setItemQuantities((prevQuantities) => ({
         ...prevQuantities,
-        [menuItem.id]: prevQuantities[menuItem.id] - 1,
+        [menuItem._id]: prevQuantities[menuItem._id] - 1,
       }));
-      console.log("Decrementing menuItem:", menuItem);
     } else {
-      console.warn("Attempting to decrement with undefined menuItem or menuItem.id or already at 0");
+      console.warn("Attempting to decrement with undefined menuItem or menuItem._id or already at 0");
     }
   };
   
@@ -259,22 +260,21 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                               </div>
                             </div>
                             <button
-  className="arrow-button"
-  onClick={() => incrementCounter(menuItem)}
->
-  +
-</button>
-<span className="number">
-  {itemQuantities[menuItem.id] || 0}
-</span>
-<button
-  className="arrow-button"
-  onClick={() => decrementCounter(menuItem)}
-  disabled={itemQuantities[menuItem.id] === 0}
->
-  -
-</button>
-
+                              className="arrow-button"
+                              onClick={() => incrementCounter(menuItem)}
+                            >
+                              +
+                            </button>
+                            <span className="number">
+                              {itemQuantities[menuItem._id] || 0}
+                            </span>
+                            <button
+                              className="arrow-button"
+                              onClick={() => decrementCounter(menuItem)}
+                              disabled={itemQuantities[menuItem._id] === 0}
+                            >
+                              -
+                            </button>
                           </div>
                         ))}
                       </div>
