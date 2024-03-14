@@ -20,9 +20,9 @@ const OrderingPagePage = ({ logoutUser, user }) => {
           method: "DELETE",
         }
       );
-  
+
       console.log("Delete response status:", response.status);
-  
+
       if (response.ok) {
         // Item deleted successfully
         console.log("Item deleted from the cart");
@@ -39,8 +39,6 @@ const OrderingPagePage = ({ logoutUser, user }) => {
       console.error("An error occurred during item deletion:", error);
     }
   };
-  
-  
 
   const incrementCounter = (menuItem) => {
     console.log("Received menuItem in incrementCounter:", menuItem);
@@ -263,6 +261,7 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                   <List
                     className="absolute bottom-[28%] flex flex-col font-poppins gap-[31px] inset-x-[0] items-center mx-auto w-1/2"
                     orientation="vertical"
+                    style={{ right: "20%" }}
                   >
                     <div className="flex flex-col gap-[45px] items-center justify-start w-full">
                       <div className="flex sm:flex-col flex-row sm:gap-10 items-center justify-between w-[94%] md:w-full">
@@ -298,6 +297,7 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                                 <button
                                   className="arrow-button"
                                   onClick={() => incrementCounter(menuItem)}
+                                  style={{ fontSize: "24px", padding: "10px" }}
                                 >
                                   <FontAwesomeIcon icon={faPlus} />
                                 </button>
@@ -308,21 +308,19 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                                   className="arrow-button"
                                   onClick={() => decrementCounter(menuItem)}
                                   disabled={itemQuantities[menuItem._id] === 0}
+                                  style={{ fontSize: "24px", padding: "10px" }} // Reduced padding for the minus button
                                 >
                                   <FontAwesomeIcon icon={faMinus} />
                                 </button>
-                                
                               </div>
-                              
                             </div>
                             <button
-                                className="delete-button"
-                                onClick={() => deleteItem(menuItem)}
-                              >
-                                <FontAwesomeIcon icon={faTrash} />
-                              </button>
+                              className="delete-button"
+                              onClick={() => deleteItem(menuItem)}
+                            >
+                              <FontAwesomeIcon icon={faTrash} />
+                            </button>
                           </div>
-                          
                         ))}
                       </div>
                     </div>
@@ -350,83 +348,138 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                     </div>
                     <Line className="bg-white-A700 h-px w-full" />
                     <div className="flex flex-col items-center justify-start mt-[310px] w-full">
-                      <div className="flex flex-col gap-[29px] justify-start w-full">
-                        <div className="flex flex-row gap-[27px] items-end justify-start ml-5 md:ml-[0] w-[61%] md:w-full">
-                          <Text
-                            className="bg-orange-600 flex h-[45px] items-center justify-center mb-0.5 mt-[9px] rounded-[22px] text-2xl md:text-[22px] text-center text-white-A700 sm:text-xl w-[45px]"
-                            size="txtPoppinsBold24"
-                          >
-                            1x
-                          </Text>
-                          <div className="flex flex-col items-start justify-start">
-                            <Text
-                              className="text-teal-800 text-xl"
-                              size="txtPoppinsSemiBold20Teal800"
-                            >
-                              Rs.1400
-                            </Text>
-                            <Text
-                              className="mt-0.5 text-base text-black-900_01"
-                              size="txtPoppinsSemiBold16"
-                            >
-                              Chicken Fried Rice
-                            </Text>
-                          </div>
-                        </div>
-                        <Line className="bg-black-900_33 h-px w-full" />
+  <div className="flex flex-col gap-[29px] justify-start w-full">
+    {/* New */}
+    <div
+      className="absolute flex flex-col gap-[57px] inset-x-[0] justify-start mx-auto top-[10%] w-full"
+      style={{ height: "auto" }}
+    >
+      {items.map((menuItem, index) => (
+        <div
+          key={index}
+          className="flex flex-col gap-[49px] justify-start md:ml-[0] ml-[88px] w-[81%] md:w-full"
+        >
+          <div className="flex flex-row gap-[27px] items-start justify-start ml-5 md:ml-[0] w-[56%] md:w-full">
+            <Text
+              className="bg-orange-600 flex h-[45px] items-center justify-center mt-[29px] rounded-[22px] text-2xl md:text-[22px] text-center text-white-A700 sm:text-xl w-[45px]"
+              size="txtPoppinsBold24"
+            >
+              {parseInt(itemQuantities[menuItem._id]) || 0}x{" "}
+              {/* Convert to integer */}
+            </Text>
+            <div className="flex flex-col items-start justify-start mb-[17px]">
+              {/* Log intermediate values for debugging */}
+              {console.log(
+                "Quantity:",
+                itemQuantities[menuItem._id]
+              )}
+              {console.log(
+                "Price:",
+                parseFloat(
+                  menuItem.price.replace("Rs. ", "")
+                )
+              )}
+              <Text
+                className="text-teal-800 text-xl"
+                size="txtPoppinsSemiBold20Teal800"
+              >
+                {/* Log intermediate result of multiplication */}
+                {parseFloat(
+                  menuItem.price.replace("Rs. ", "")
+                ) *
+                  (parseInt(itemQuantities[menuItem._id]) ||
+                    0) || 0}{" "}
+                {/* Convert to float */}
+              </Text>
+              <Text
+                className="mt-0.5 text-base text-black-900_01"
+                size="txtPoppinsSemiBold16"
+              >
+                {menuItem.name}
+              </Text>
+            </div>
+          </div>
+        </div>
+      ))}
+      <div className="flex flex-row items-start justify-between mt-[173px] w-[92%] md:w-full">
+        <Text
+          className="text-black-900_01 text-xl"
+          size="txtPoppinsSemiBold20Black90001"
+        >
+          Sub Total:{" "}
+        </Text>
+        <Text
+          className="text-2xl md:text-[22px] text-gray-900_01 sm:text-xl"
+          size="txtPoppinsRegular24Gray90001"
+        >
+          {/* Calculate subtotal */}
+          Rs.
+          {items.reduce((total, menuItem) => {
+            return (
+              total +
+              parseFloat(
+                menuItem.price.replace("Rs. ", "")
+              ) *
+                (parseInt(itemQuantities[menuItem._id]) ||
+                  0)
+            );
+          }, 0)}
+        </Text>
+      </div>
+      <Text
+        className="mt-[13px] text-black-900_01 text-xl"
+        size="txtPoppinsSemiBold20Black90001"
+      >
+        Discounts:
+      </Text>
+      <div className="flex flex-row items-start justify-between mt-3.5 w-[89%] md:w-full">
+        <Text
+          className="mt-1 text-black-900_01 text-xl"
+          size="txtPoppinsSemiBold20Black90001"
+        >
+          Delivery Fee:
+        </Text>
+        <Text
+          className="text-2xl md:text-[22px] text-gray-900_01 sm:text-xl"
+          size="txtPoppinsRegular24Gray90001"
+        >
+          Rs.200
+        </Text>
+      </div>
+      <Line className="bg-black-900_33 h-px w-full" />
+      <div className="bg-orange-600_cc border border-black-900_1c border-solid flex flex-row items-center justify-between mt-[33px] p-1 rounded-lg w-[94%] md:w-full">
+        <Text
+          className="ml-[27px] text-white-A700 text-xl"
+          size="txtPoppinsSemiBold20WhiteA700"
+        >
+          Total to pay
+        </Text>
+        <Text
+          className="my-[3px] text-4xl sm:text-[32px] md:text-[34px] text-white-A700"
+          size="txtPoppinsSemiBold36"
+        >
+          {/* Calculate total to pay */}
+          Rs.
+          {items.reduce((total, menuItem) => {
+            return (
+              total +
+              parseFloat(
+                menuItem.price.replace("Rs. ", "")
+              ) *
+                (parseInt(itemQuantities[menuItem._id]) ||
+                  0)
+            );
+          }, 0) + 200}{" "}
+          {/* Add delivery fee */}
+        </Text>
+      </div>
+    </div>
+
+                        {/* <Line className="bg-black-900_33 h-px w-full" /> */}
                       </div>
                     </div>
-                    <div className="flex flex-row items-start justify-between mt-[173px] w-[92%] md:w-full">
-                      <Text
-                        className="text-black-900_01 text-xl"
-                        size="txtPoppinsSemiBold20Black90001"
-                      >
-                        Sub Total:{" "}
-                      </Text>
-                      <Text
-                        className="text-2xl md:text-[22px] text-gray-900_01 sm:text-xl"
-                        size="txtPoppinsRegular24Gray90001"
-                      >
-                        Rs.4400
-                      </Text>
-                    </div>
-                    <Text
-                      className="mt-[13px] text-black-900_01 text-xl"
-                      size="txtPoppinsSemiBold20Black90001"
-                    >
-                      Discounts:
-                    </Text>
-                    <div className="flex flex-row items-start justify-between mt-3.5 w-[89%] md:w-full">
-                      <Text
-                        className="mt-1 text-black-900_01 text-xl"
-                        size="txtPoppinsSemiBold20Black90001"
-                      >
-                        Delivery Fee:
-                      </Text>
-                      <Text
-                        className="text-2xl md:text-[22px] text-gray-900_01 sm:text-xl"
-                        size="txtPoppinsRegular24Gray90001"
-                      >
-                        Rs.200
-                      </Text>
-                    </div>
-                    <Line className="bg-black-900_33 h-px mt-[30px] w-full" />
-                    <div className="bg-orange-600_cc border border-black-900_1c border-solid flex flex-row items-center justify-between mt-[33px] p-1 rounded-lg w-[94%] md:w-full">
-                      <Text
-                        className="ml-[27px] text-white-A700 text-xl"
-                        size="txtPoppinsSemiBold20WhiteA700"
-                      >
-                        Total to pay
-                      </Text>
-                      <Text
-                        className="my-[3px] text-4xl sm:text-[32px] md:text-[34px] text-white-A700"
-                        size="txtPoppinsSemiBold36"
-                      >
-                        Rs.4600
-                      </Text>
-                    </div>
-                    <Line className="bg-black-900_33 h-px mt-[177px] w-full" />
-                    <div className="flex flex-row items-start justify-start mt-4 w-[83%] md:w-full">
+
+                    {/* <div className="flex flex-row items-start justify-start mt-4 w-[83%] md:w-full">
                       <div className="bg-gray-200_01 border border-black-900_33 border-solid flex flex-col gap-2 items-center justify-start p-[11px] rounded-[12px] w-[53%]">
                         <Img
                           className="h-[35px] md:h-auto object-cover w-[35px]"
@@ -470,81 +523,12 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                           </Text>
                         </div>
                       </div>
-                    </div>
-                    <div className="bg-teal-800 border border-black-900_1c border-solid flex flex-row gap-[53px] items-center justify-start mt-[17px] p-[15px] rounded-lg w-[94%] md:w-full">
-                      <Img
-                        className="h-[35px] md:h-auto ml-1 object-cover w-[35px]"
-                        src="images/img_forwardbutton_35x35.png"
-                        alt="forwardbutton"
-                      />
-                      <Text
-                        className="mt-0.5 text-2xl md:text-[22px] text-white-A700 sm:text-xl"
-                        size="txtPoppinsSemiBold24WhiteA700"
-                      >
-                        Checkout!
-                      </Text>
-                    </div>
+                    </div> */}
                   </div>
-                </div>
-                <div className="absolute flex flex-col gap-[57px] inset-x-[0] justify-start mx-auto top-[10%] w-full">
-                  <div className="flex flex-col gap-[49px] justify-start md:ml-[0] ml-[88px] w-[81%] md:w-full">
-                    <div className="flex flex-row gap-[27px] items-start justify-start ml-5 md:ml-[0] w-[56%] md:w-full">
-                      <Text
-                        className="bg-orange-600 flex h-[45px] items-center justify-center mt-[29px] rounded-[22px] text-2xl md:text-[22px] text-center text-white-A700 sm:text-xl w-[45px]"
-                        size="txtPoppinsBold24"
-                      >
-                        1x
-                      </Text>
-                      <div className="flex flex-col items-start justify-start mb-[17px]">
-                        <Text
-                          className="text-teal-800 text-xl"
-                          size="txtPoppinsSemiBold20Teal800"
-                        >
-                          Rs.1350
-                        </Text>
-                        <Text
-                          className="mt-0.5 text-base text-black-900_01"
-                          size="txtPoppinsSemiBold16"
-                        >
-                          Mixed Fried Rice
-                        </Text>
-                      </div>
-                    </div>
-                    <Line className="bg-black-900_33 h-px w-full" />
-                  </div>
-                </div>
-              </div>
-              <div className="absolute flex flex-col items-center justify-start right-[0] top-[21%] w-[81%]">
-                <div className="flex flex-col gap-[42px] justify-start w-full">
-                  <div className="flex flex-row gap-[27px] items-start justify-start ml-5 md:ml-[0] w-[73%] md:w-full">
-                    <Text
-                      className="bg-orange-600 flex h-[45px] items-center justify-center mb-[7px] mt-[29px] rounded-[22px] text-2xl md:text-[22px] text-center text-white-A700 sm:text-xl w-[45px]"
-                      size="txtPoppinsBold24"
-                    >
-                      1x
-                    </Text>
-                    <div className="flex flex-col items-start justify-start">
-                      <Text
-                        className="text-teal-800 text-xl"
-                        size="txtPoppinsSemiBold20Teal800"
-                      >
-                        Rs.1650
-                      </Text>
-                      <Text
-                        className="mt-0.5 text-base text-black-900_01"
-                        size="txtPoppinsSemiBold16"
-                      >
-                        <>
-                          LEON’S KITCHEN Special <br />
-                          Fried Rice
-                        </>
-                      </Text>
-                    </div>
-                  </div>
-                  <Line className="bg-black-900_33 h-px w-full" />
                 </div>
               </div>
             </div>
+
             <div className="absolute flex flex-col md:gap-10 gap-[430px] justify-start left-[2%] top-[65px] w-[22%]">
               <Img
                 className="h-[239px] md:h-auto mr-[63px] object-cover w-[81%]"
