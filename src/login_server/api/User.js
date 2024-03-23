@@ -45,6 +45,9 @@ const path=require("path");
 const { error } = require('console');
 const { errorMonitor } = require('events');
 
+const YOUR_DOMAIN = 'http://localhost:5000/';
+
+
 
 // Define a route to get items based on user email
 router.get('/cart/:userEmail', async (req, res) => {

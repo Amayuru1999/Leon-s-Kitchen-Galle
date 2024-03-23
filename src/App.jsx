@@ -35,6 +35,7 @@ import RestaurantDetailPageDesktopPage from "pages/RestaurantDetailPageDesktop";
 import OrderingPagePage from "pages/OrderingPage";
 import HomeDesktopLighterVersion from "pages/HomeDesktopLighterVersion"
 import MacBookPro14OnePage from "pages/MacBookPro14One";
+import PaymentForm from "pages/PaymentForm/PaymentForm";
 function App({ checked }) {
   return (
     <BrowserRouter>
@@ -52,7 +53,7 @@ function App({ checked }) {
                 <Route path=":reset" element={<EmailSent/>}/>
               </Route>
             </Route>
-            
+            <Route path="/payment" element={<PaymentForm/>}/>
             <Route
             path="/restaurantdetailpagedesktop"
             element={<RestaurantDetailPageDesktopPage />}
