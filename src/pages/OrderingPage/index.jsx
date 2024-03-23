@@ -333,9 +333,9 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                               onClick={() => deleteItem(menuItem)}
                               style={{
                                 position: "absolute",
-                                bottom: "10px", 
-                                right: "30px", 
-                                fontSize: "24px", 
+                                bottom: "10px",
+                                right: "30px",
+                                fontSize: "24px",
                                 transition:
                                   "transform 0.3s ease, color 0.3s ease", // Add transition effect
                                 transform:
@@ -364,10 +364,7 @@ const OrderingPagePage = ({ logoutUser, user }) => {
 
             <div className="absolute bottom-[0] md:h-[1360px] h-[1363px] right-[0] w-[30%] sm:w-full">
               <div className="md:h-[1360px] h-[1363px] m-auto w-full">
-                <div
-                  className="absolute bg-gray-50 border border-black-900_1c border-solid flex flex-col inset-y-[0] items-center justify-start my-auto pb-[13px] right-[0] rounded-[12px] w-[81%] "
-                  style={{ minHeight: "100%" }}
-                >
+
                   <div className="flex flex-col items-center justify-start w-full">
                     <div className="bg-teal-800 border border-black-900_1c border-solid flex flex-row gap-[30px] items-end justify-start p-[21px] sm:px-5 rounded-tl-lg rounded-tr-lg w-full">
                       <Img
@@ -382,12 +379,9 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                         My Cart
                       </Text>
                     </div>
-                    <div className="flex flex-col items-center justify-start mt-[310px] w-full">
+                    <div className="flex flex-col items-center justify-start mt-[310px] w-full h-[1363px]">
                       <div className="flex flex-col gap-[29px] justify-start w-full">
-                        <div
-                          className="absolute flex flex-col gap-[57px] inset-x-[0] justify-start mx-auto top-[10%] w-full"
-                          style={{ height: "auto" }}
-                        >
+                        <div className="absolute flex flex-col gap-[57px] inset-x-[0] justify-start mx-auto top-[10%] w-full ">
                           {items.map((menuItem, index) => (
                             <div
                               key={index}
@@ -491,7 +485,7 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                               // onClick={makePayment}
                             >
                               <Text
-                                className="ml-[27px] text-white-A700 text-xl"
+                                className="ml-[26px] text-white-A700 text-xl"
                                 size="txtPoppinsSemiBold20WhiteA700"
                               >
                                 Total to pay
@@ -520,7 +514,7 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                       </div>
                     </div>
                   </div>
-                </div>
+                
               </div>
             </div>
           </div>
