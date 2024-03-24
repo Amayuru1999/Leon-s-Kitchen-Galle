@@ -45,8 +45,37 @@ const path=require("path");
 const { error } = require('console');
 const { errorMonitor } = require('events');
 
-const YOUR_DOMAIN = 'http://localhost:5000/';
+const YOUR_DOMAIN = 'http://localhost:5000';
 
+router.post('/create-checkout-session', async (req, res) => {
+  const userEmail = req.body.userEmail; // Assuming the user's email is sent in the request body
+
+  try {
+    // Retrieve items from the user's cart in the database based on the user's email
+    const cartItems = await Cart.find({ userId: userEmail });
+
+    // Create line items array based on cart items
+    const lineItems = cartItems.map(item => ({
+      price: item.price, // Assuming each item in the cart has a 'price' field representing the Stripe Price ID
+      quantity: item.quantity, // Assuming each item in the cart has a 'quantity' field representing the quantity
+    }));
+
+    // Create a checkout session with the retrieved line items
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: lineItems,
+      mode: 'payment',
+      success_url: `${YOUR_DOMAIN}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${YOUR_DOMAIN}/cancel`,
+    });
+
+    // Redirect the client to the checkout session URL
+    res.redirect(303, session.url);
+  } catch (error) {
+    console.error('Error creating checkout session:', error);
+    res.status(500).json({ error: 'Failed to create checkout session' });
+  }
+});
 
 
 // Define a route to get items based on user email

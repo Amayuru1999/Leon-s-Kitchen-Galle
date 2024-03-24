@@ -15,10 +15,30 @@ const OrderingPagePage = ({ logoutUser, user }) => {
   const [items, setItems] = useState([]);
   const [isHovered, setIsHovered] = useState(false);
 
+  const Message = ({ message }) => (
+    <section>
+      <p>{message}</p>
+    </section>
+  );
+  const [message, setMessage] = useState("");
+
   const handleHover = (itemId) => {
     setIsHovered(itemId); // Set the hovered item ID
   };
+  useEffect(() => {
+    // Check to see if this is a redirect back from Checkout
+    const query = new URLSearchParams(window.location.search);
 
+    if (query.get("success")) {
+      setMessage("Order placed! You will receive an email confirmation.");
+    }
+
+    if (query.get("canceled")) {
+      setMessage(
+        "Order canceled -- continue to shop around and checkout when you're ready."
+      );
+    }
+  }, []);
   const deleteItem = async (menuItem) => {
     try {
       const response = await fetch(
@@ -475,41 +495,37 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                             </Text>
                           </div>
                           <Line className="bg-black-900_33 h-px w-full" />
-                          <Button
-                            to="/create-checkout-session"
-                            method="POST"
-                            className="w-[94%] md:w-full"
-                          >
-                            <Button
-                              className="bg-orange-600_cc border border-black-900_1c border-solid flex flex-row items-center justify-between p-1 rounded-lg cursor-pointer"
-                              // onClick={makePayment}
-                            >
-                              <Text
-                                className="ml-[26px] text-white-A700 text-xl"
-                                size="txtPoppinsSemiBold20WhiteA700"
-                              >
-                                Total to pay
-                              </Text>
-                              <Text
-                                className="my-[3px] text-4xl sm:text-[32px] md:text-[34px] text-white-A700"
-                                size="txtPoppinsSemiBold36"
-                              >
-                                {/* Calculate total to pay */}
-                                Rs.
-                                {items.reduce((total, menuItem) => {
-                                  return (
-                                    total +
-                                    parseFloat(
-                                      menuItem.price.replace("Rs. ", "")
-                                    ) *
-                                      (parseInt(itemQuantities[menuItem._id]) ||
-                                        0)
-                                  );
-                                }, 0) + 200}{" "}
-                                {/* Add delivery fee */}
-                              </Text>
-                            </Button>
-                          </Button>
+                          
+                          <form action="/create-checkout-session" method="POST">
+  <button
+    className="bg-orange-600_cc border border-black-900_1c border-solid flex flex-row items-center justify-between p-1 rounded-lg cursor-pointer"
+    type="submit"
+  >
+    <Text
+      className="ml-[26px] text-white-A700 text-xl"
+      size="txtPoppinsSemiBold20WhiteA700"
+    >
+      Total to pay
+    </Text>
+    <Text
+      className="my-[3px] text-4xl sm:text-[32px] md:text-[34px] text-white-A700"
+      size="txtPoppinsSemiBold36"
+    >
+      {/* Calculate total to pay */}
+      Rs.
+      {items.reduce((total, menuItem) => {
+        return (
+          total +
+          parseFloat(menuItem.price.replace("Rs. ", "")) *
+            (parseInt(itemQuantities[menuItem._id]) || 0)
+        );
+      }, 0) + 200}{" "}
+      {/* Add delivery fee */}
+    </Text>
+  </button>
+</form>
+
+                         
                         </div>
                       </div>
                     </div>
