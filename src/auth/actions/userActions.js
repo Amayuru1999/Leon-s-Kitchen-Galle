@@ -49,7 +49,7 @@ export const loginUser = (
               sessionService
                 .saveUser(userData)
                 .then(() => {
-                  navigate("/dashboard");
+                  navigate("/restaurantdetailpagedesktop");
                 })
                 .catch((err) => console.error(err));
             })

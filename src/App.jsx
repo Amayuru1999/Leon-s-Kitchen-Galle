@@ -44,9 +44,10 @@ function App({ checked }) {
           <Routes>
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/loginorreg" element={<Home />} />
             <Route path="/forgottenpassword" element={<ForgottenPassword />} />
+
             {/* <Route path="/emailsent/:userEmail/:reset" element={<EmailSent />} /> */}
             <Route path="emailsent">
               <Route path=":userEmail">

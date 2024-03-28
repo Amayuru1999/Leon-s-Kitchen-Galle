@@ -53,7 +53,7 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                   src="images/img_.png"
                   alt="One"
                 />
-                <Text className="mb-2">Welcome, {user.name}</Text>
+                {/* <Text className="mb-2">Welcome, {user.name}</Text> */}
               </div>
 
               <div className="flex md:flex-col flex-row gap-[53px] items-center justify-end md:ml-[0] ml-[383px] mt-[38px] w-3/4 md:w-full">
@@ -63,7 +63,7 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                       Home
                     </button>
                     <button className="text-black-900_01 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button"
-                    onClick={() => navigate('/restaurantdetailpagedesktop')}
+                    onClick={() => navigate('/loginorreg')}
                     >
                       Browse Menu
                     </button>
@@ -267,7 +267,7 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                     className="block h-[325px] m-auto object-cover rounded-[12px] w-full overflow-hidden focus:outline-none"
                   >
                     <Link
-                      to="/restaurantdetailpagedesktop"
+                      to="/loginorreg"
                       className="block h-[325px] m-auto rounded-[12px] w-full overflow-hidden focus:outline-none"
                     >
                       <img
@@ -312,7 +312,7 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                         className="block h-[325px] m-auto rounded-[12px] w-full overflow-hidden focus:outline-none"
                       >
                         <Link
-                      to="/restaurantdetailpagedesktop"
+                      to="/loginorreg"
                       className="block h-[325px] m-auto rounded-[12px] w-full overflow-hidden focus:outline-none"
                     >
                         <img
@@ -347,7 +347,7 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                       className="block h-[325px] m-auto object-cover rounded-[12px] w-full overflow-hidden focus:outline-none"
                     >
                       <Link
-                      to="/restaurantdetailpagedesktop"
+                      to="/loginorreg"
                       className="block h-[325px] m-auto rounded-[12px] w-full overflow-hidden focus:outline-none"
                     >
                       <img
@@ -407,12 +407,7 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                     >
                       Fried Rice
                     </Text>
-                    <Text
-                      className="text-[13px] text-orange-600"
-                      size="txtPoppinsRegular13"
-                    >
-                      Categories: 8
-                    </Text>
+                    
                   </div>
                 </a>
 
@@ -432,12 +427,7 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                     >
                       Salad
                     </Text>
-                    <Text
-                      className="text-[13px] text-orange-600"
-                      size="txtPoppinsRegular13"
-                    >
-                      Categories: 5
-                    </Text>
+                    
                   </div>
                 </a>
 
@@ -457,12 +447,7 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                     >
                       Pasta
                     </Text>
-                    <Text
-                      className="text-[13px] text-orange-600"
-                      size="txtPoppinsRegular13"
-                    >
-                      Categories: 9
-                    </Text>
+                   
                   </div>
                 </a>
 
@@ -482,12 +467,7 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                     >
                       Pizza
                     </Text>
-                    <Text
-                      className="text-[13px] text-orange-600"
-                      size="txtPoppinsRegular13"
-                    >
-                      Categories: 3
-                    </Text>
+                    
                   </div>
                 </a>
 
@@ -507,12 +487,7 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                     >
                       Burgers
                     </Text>
-                    <Text
-                      className="text-[13px] text-orange-600"
-                      size="txtPoppinsRegular13"
-                    >
-                      Categories: 4
-                    </Text>
+                    
                   </div>
                 </a>
 
@@ -532,12 +507,7 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                     >
                       Kottu
                     </Text>
-                    <Text
-                      className="text-[13px] text-orange-600"
-                      size="txtPoppinsRegular13"
-                    >
-                      Categories: 11
-                    </Text>
+                    
                   </div>
                 </a>
               </div>
