@@ -35,6 +35,7 @@ import RestaurantDetailPageDesktopPage from "pages/RestaurantDetailPageDesktop";
 import OrderingPagePage from "pages/OrderingPage";
 import HomeDesktopLighterVersion from "pages/HomeDesktopLighterVersion"
 import MacBookPro14OnePage from "pages/MacBookPro14One";
+import PaymentForm from "pages/PaymentForm/PaymentForm";
 function App({ checked }) {
   return (
     <BrowserRouter>
@@ -43,16 +44,17 @@ function App({ checked }) {
           <Routes>
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/loginorreg" element={<Home />} />
             <Route path="/forgottenpassword" element={<ForgottenPassword />} />
+
             {/* <Route path="/emailsent/:userEmail/:reset" element={<EmailSent />} /> */}
             <Route path="emailsent">
               <Route path=":userEmail">
                 <Route path=":reset" element={<EmailSent/>}/>
               </Route>
             </Route>
-            
+            <Route path="/payment" element={<PaymentForm/>}/>
             <Route
             path="/restaurantdetailpagedesktop"
             element={<RestaurantDetailPageDesktopPage />}
