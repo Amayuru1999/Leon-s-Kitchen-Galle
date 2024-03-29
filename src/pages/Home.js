@@ -1,9 +1,8 @@
 import React from "react";
-import { MDBBtn, MDBContainer } from "mdb-react-ui-kit";
+import { motion } from 'framer-motion'
 
 import {
   StyledTitle,
-  StyledSubTitle,
   Avatar,
   StyledButton,
   ButtonGroup,
@@ -32,7 +31,7 @@ const Home = () => {
         style={{
           position: "absolute",
           top: -80,
-          left: -700,
+          left: -600,
           backgroundColor: "transparent",
           width: "100%",
           padding: "15px",
@@ -42,26 +41,43 @@ const Home = () => {
       >
         <Avatar image={Logo} />
       </div>
-
-      <StyledTitle
-        size={65}
-        style={{
-          color: "yellow",
-          fontFamily: "Arial, sans-serif",
-          textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
-          margin: "20px 0", // Example margin
+      <motion.div
+        initial={{ y: -500 }}
+        animate={{ y: -100 }}
+        transition={{
+          duration: "2",
+          delay: "1"
         }}
       >
-        Sign Up With Us!
-      </StyledTitle>
-
+        <StyledTitle
+          size={65}
+          style={{
+            color: "yellow",
+            fontFamily: "Arial, sans-serif",
+            textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+            margin: "20px 0", // Example margin
+            textAlign: "center", // Center the text
+            fontSize: "4rem", // Increase font size
+            letterSpacing: "10px", // Add letter spacing
+            fontWeight: "bold", // Make it bold
+            lineHeight: "1.2", // Adjust line height
+            // Hide the text fill color
+          }}
+        >
+          Sign Up With Us!
+        </StyledTitle>
+      </motion.div>
       {/* <StyledSubTitle size={27} style={{ color: "#ffffff" }}>Feel free to explore our page</StyledSubTitle> */}
       <ButtonGroup>
-        <StyledButton to="/login" style={{ marginRight: "30px" }}>
-          Login
-        </StyledButton>
-        <StyledButton to="/signup">Signup</StyledButton>
-      </ButtonGroup>
+  {/* Updated button styles with larger size, centered text, and bold font */}
+  <StyledButton to="/login" style={{ marginRight: "70px", padding: "15px 25px", fontSize: "1.6rem", textAlign: "center", fontWeight: "bold" }}>
+    Login
+  </StyledButton>
+  <StyledButton to="/signup" style={{  padding: "15px 25px", fontSize: "1.6rem", textAlign: "center", fontWeight: "bold" }}>
+    Signup
+  </StyledButton>
+</ButtonGroup>
+
     </div>
   );
 };
