@@ -1,0 +1,22 @@
+/* YourComponent.css */
+
+/* Navigation button style */
+.nav-button {
+  padding: 8px 16px; /* Adjust padding as needed */
+  font-family: 'Poppins', sans-serif; /* Update font-family */
+  font-size: 20px; /* Update font-size */
+  font-weight: 500; /* Update font-weight */
+  color: #000; /* Update text color */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  border-radius: 18px;
+}
+
+/* Hover effect */
+.nav-button:hover {
+  color: #fff; /* Change text color on hover */
+  background-color: #FFA500; 
+  /* Change background color on hover */
+}

@@ -1,0 +1,376 @@
+{
+  "stats": {
+    "suites": 4,
+    "tests": 4,
+    "passes": 3,
+    "pending": 0,
+    "failures": 1,
+    "start": "2024-05-07T20:33:00.952Z",
+    "end": "2024-05-07T20:33:22.924Z",
+    "duration": 21972,
+    "testsRegistered": 4,
+    "passPercent": 75,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "3848de45-8a51-4083-9a21-5311034353f2",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "21cb6d03-47dd-4345-81a9-8390f5d24a7e",
+          "title": "Login positive scenario",
+          "fullFile": "C:\\Users\\USER\\Desktop\\New folder\\Leon-s-Kitchen-Galle-dev_New\\tests\\components\\Login.spec.js",
+          "file": "\\tests\\components\\Login.spec.js",
+          "beforeHooks": [
+            {
+              "title": "\"before each\" hook in \"Login positive scenario\"",
+              "fullTitle": "Login positive scenario \"before each\" hook in \"Login positive scenario\"",
+              "timedOut": false,
+              "duration": 1457,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await new Builder().forBrowser('chrome').build()\nvars = {}",
+              "err": {},
+              "uuid": "31453f45-6274-43b5-84ce-d7541d105d40",
+              "parentUUID": "21cb6d03-47dd-4345-81a9-8390f5d24a7e",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"Login positive scenario\"",
+              "fullTitle": "Login positive scenario \"after each\" hook in \"Login positive scenario\"",
+              "timedOut": false,
+              "duration": 73,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.quit();",
+              "err": {},
+              "uuid": "7b6be972-0863-46dc-afe4-75f231002f20",
+              "parentUUID": "21cb6d03-47dd-4345-81a9-8390f5d24a7e",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "login_positive",
+              "fullTitle": "Login positive scenario login_positive",
+              "timedOut": false,
+              "duration": 3144,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"http://localhost:3000/loginorreg\")\nawait driver.manage().window().setRect({ width: 1552, height: 832 })\nawait driver.findElement(By.linkText(\"Login\")).click()\nawait driver.findElement(By.name(\"email\")).click()\nawait driver.findElement(By.name(\"email\")).sendKeys(\"desilvahiruna72@gmail.com\")\nawait driver.findElement(By.name(\"password\")).click()\nawait driver.findElement(By.name(\"password\")).sendKeys(\"Rsm@1234\")\nawait driver.findElement(By.css(\".sc-qZrbh\")).click()",
+              "err": {},
+              "uuid": "d2ba7e0b-08b1-40a5-a4bd-db4b1bca44b9",
+              "parentUUID": "21cb6d03-47dd-4345-81a9-8390f5d24a7e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "d2ba7e0b-08b1-40a5-a4bd-db4b1bca44b9"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3144,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 30000
+        },
+        {
+          "uuid": "263b1c7f-5ce5-4613-84bd-0ba7e056a8fc",
+          "title": "Negative Scenario for login",
+          "fullFile": "C:\\Users\\USER\\Desktop\\New folder\\Leon-s-Kitchen-Galle-dev_New\\tests\\components\\Login.spec.js",
+          "file": "\\tests\\components\\Login.spec.js",
+          "beforeHooks": [
+            {
+              "title": "\"before each\" hook in \"Negative Scenario for login\"",
+              "fullTitle": "Negative Scenario for login \"before each\" hook in \"Negative Scenario for login\"",
+              "timedOut": false,
+              "duration": 1460,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await new Builder().forBrowser('chrome').build()\nvars = {}",
+              "err": {},
+              "uuid": "5d24c1b7-17b2-4e96-8abc-109a2009e264",
+              "parentUUID": "263b1c7f-5ce5-4613-84bd-0ba7e056a8fc",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"Negative Scenario for login\"",
+              "fullTitle": "Negative Scenario for login \"after each\" hook in \"Negative Scenario for login\"",
+              "timedOut": false,
+              "duration": 116,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.quit();",
+              "err": {},
+              "uuid": "34cb96b9-4f8d-4808-92ce-c0c82c2329ac",
+              "parentUUID": "263b1c7f-5ce5-4613-84bd-0ba7e056a8fc",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "login_negative2",
+              "fullTitle": "Negative Scenario for login login_negative2",
+              "timedOut": false,
+              "duration": 3404,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"http://localhost:3000/loginorreg\")\nawait driver.manage().window().setRect({ width: 1552, height: 832 })\nawait driver.findElement(By.linkText(\"Login\")).click()\nawait driver.findElement(By.name(\"email\")).click()\nawait driver.findElement(By.name(\"email\")).sendKeys(\"desilvahiruna72@gmail.com\")\nawait driver.findElement(By.name(\"password\")).click()\nawait driver.findElement(By.name(\"password\")).sendKeys(\"rsm@1234\")\n// await driver.findElement(By.css(\".sc-qZrbh ktOWcc\")).click()\n{\n  const element = await driver.findElement(By.css(\".sc-qZrbh\"))\n  await driver.actions({ bridge: true }).moveToElement(element).perform()\n}",
+              "err": {
+                "message": "TypeError: driver.actions(...).moveToElement is not a function",
+                "estack": "TypeError: driver.actions(...).moveToElement is not a function\n    at Context.<anonymous> (tests\\components\\Login.spec.js:51:46)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+                "diff": null
+              },
+              "uuid": "d9af41c6-8496-4bd5-9023-c2c4682b3509",
+              "parentUUID": "263b1c7f-5ce5-4613-84bd-0ba7e056a8fc",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "d9af41c6-8496-4bd5-9023-c2c4682b3509"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 3404,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 90000
+        },
+        {
+          "uuid": "d10cc5a1-ae4c-4642-9c2d-a91373c20beb",
+          "title": "Signup positive scenario",
+          "fullFile": "C:\\Users\\USER\\Desktop\\New folder\\Leon-s-Kitchen-Galle-dev_New\\tests\\components\\Signup.spec.js",
+          "file": "\\tests\\components\\Signup.spec.js",
+          "beforeHooks": [
+            {
+              "title": "\"before each\" hook in \"Signup positive scenario\"",
+              "fullTitle": "Signup positive scenario \"before each\" hook in \"Signup positive scenario\"",
+              "timedOut": false,
+              "duration": 1527,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await new Builder().forBrowser('chrome').build()\nvars = {}",
+              "err": {},
+              "uuid": "de3b3e36-065c-49d8-a828-4511849a446a",
+              "parentUUID": "d10cc5a1-ae4c-4642-9c2d-a91373c20beb",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"Signup positive scenario\"",
+              "fullTitle": "Signup positive scenario \"after each\" hook in \"Signup positive scenario\"",
+              "timedOut": false,
+              "duration": 148,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.quit();",
+              "err": {},
+              "uuid": "f935200f-cfa2-4482-933a-265f327c2788",
+              "parentUUID": "d10cc5a1-ae4c-4642-9c2d-a91373c20beb",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "Signup",
+              "fullTitle": "Signup positive scenario Signup",
+              "timedOut": false,
+              "duration": 4920,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"http://localhost:3000/\")\nawait driver.manage().window().setRect({ width: 1552, height: 832 })\nawait driver.findElement(By.css(\".hover-effect:nth-child(2)\")).click()\nawait driver.findElement(By.linkText(\"Signup\")).click()\nawait driver.findElement(By.name(\"name\")).click()\nawait driver.findElement(By.name(\"name\")).sendKeys(\"Virat\")\nawait driver.findElement(By.name(\"name\")).click()\nawait driver.findElement(By.name(\"name\")).sendKeys(\"Virat Kohli\")\nawait driver.findElement(By.name(\"email\")).sendKeys(\"virat18@gmail.com\")\nawait driver.findElement(By.name(\"mobileNumber\")).sendKeys(\"76433232\")\nawait driver.findElement(By.name(\"password\")).click()\nawait driver.findElement(By.name(\"password\")).sendKeys(\"virat18\")\nawait driver.findElement(By.name(\"repeatPassword\")).sendKeys(\"virat18\")\nawait driver.findElement(By.css(\".sc-qZrbh\")).click()",
+              "err": {},
+              "uuid": "32cd83d7-d305-4dfa-9538-b0dda6628281",
+              "parentUUID": "d10cc5a1-ae4c-4642-9c2d-a91373c20beb",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "32cd83d7-d305-4dfa-9538-b0dda6628281"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 4920,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 90000
+        },
+        {
+          "uuid": "cfdd5e5e-fcc1-4ea3-9129-30460af7185b",
+          "title": "Signup negative scenario",
+          "fullFile": "C:\\Users\\USER\\Desktop\\New folder\\Leon-s-Kitchen-Galle-dev_New\\tests\\components\\Signup.spec.js",
+          "file": "\\tests\\components\\Signup.spec.js",
+          "beforeHooks": [
+            {
+              "title": "\"before each\" hook in \"Signup negative scenario\"",
+              "fullTitle": "Signup negative scenario \"before each\" hook in \"Signup negative scenario\"",
+              "timedOut": false,
+              "duration": 1414,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await new Builder().forBrowser('chrome').build()\nvars = {}",
+              "err": {},
+              "uuid": "42ecf94d-3c36-4507-a258-fcaeac5aaf10",
+              "parentUUID": "cfdd5e5e-fcc1-4ea3-9129-30460af7185b",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"Signup negative scenario\"",
+              "fullTitle": "Signup negative scenario \"after each\" hook in \"Signup negative scenario\"",
+              "timedOut": false,
+              "duration": 127,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.quit();",
+              "err": {},
+              "uuid": "8cce0149-3b20-4085-a5a3-88653e91b4db",
+              "parentUUID": "cfdd5e5e-fcc1-4ea3-9129-30460af7185b",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "signup_negative",
+              "fullTitle": "Signup negative scenario signup_negative",
+              "timedOut": false,
+              "duration": 4165,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"http://localhost:3000/signup\")\nawait driver.manage().window().setRect({ width: 1552, height: 832 })\nawait driver.findElement(By.name(\"name\")).click()\nawait driver.findElement(By.name(\"name\")).sendKeys(\"Dhoni M\")\nawait driver.findElement(By.name(\"email\")).sendKeys(\"dhoni.gmail.com\")\nawait driver.findElement(By.name(\"mobileNumber\")).sendKeys(\"+941234567\")\nawait driver.findElement(By.name(\"password\")).sendKeys(\"hiruna#\")\nawait driver.findElement(By.name(\"repeatPassword\")).sendKeys(\"hiruna#\")\nawait driver.findElement(By.name(\"password\")).click()\nawait driver.findElement(By.name(\"password\")).sendKeys(\"hiruna#123\")\nawait driver.findElement(By.name(\"repeatPassword\")).click()\nawait driver.findElement(By.name(\"repeatPassword\")).sendKeys(\"hiruna#123\")\nawait driver.findElement(By.css(\".sc-qZrbh\")).click()",
+              "err": {},
+              "uuid": "0e239ad1-5a64-4e03-8e6a-7fd3cbce7d1a",
+              "parentUUID": "cfdd5e5e-fcc1-4ea3-9129-30460af7185b",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "0e239ad1-5a64-4e03-8e6a-7fd3cbce7d1a"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 4165,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 30000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.4.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "Test_Report",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "Report",
+        "reportFilename": "Test_Report"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
