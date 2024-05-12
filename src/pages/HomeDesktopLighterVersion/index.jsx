@@ -1,6 +1,6 @@
 import React from "react";
 import "./index.css";
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import { Helmet } from "react-helmet";
 
 import { Button, Img, Input, Line, List, Text } from "components";
@@ -14,6 +14,23 @@ import { Link } from "react-router-dom";
 const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
   const navigate = useNavigate();
   const [cartItemCount, setCartItemCount] = useState(0);
+  const images = [
+    "images/1.jpg",
+    "images/2.jpg",
+    "images/3.jpg",
+    "images/4.jpg",
+    "images/5.jpg",
+    "images/6.jpg",
+    
+  ];
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(intervalId);
+  }, [images.length]);
 
   const updateCartItemCount = (newCount) => {
     setCartItemCount(newCount);
@@ -112,99 +129,21 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                 </button>
               </div>
               <div className="font-poppins h-[610px] md:h-[651px] mt-[41px] relative w-full">
-                <Img
-                  className="h-[610px] m-auto object-cover rounded-[12px] w-full"
-                  src="images/img_rectangle2.png"
-                  alt="rectangleTwo"
-                />
-                <div className="absolute bottom-[33%] flex flex-col items-center justify-start right-[0] w-[26%]">
-                  <div className="h-[127px] relative w-full">
-                    <Img
-                      className="h-[127px] m-auto object-cover w-full"
-                      src="images/img_notification1.png"
-                      alt="notificationOne"
-                    />
-                    <div className="absolute bg-gray-80 flex flex-col items-start justify-start left-[7%] pt-[3px] px-[3px] top-[17%] w-[61%]">
-                      <div className="flex flex-col items-start justify-start mt-[3px] w-[91%] md:w-full">
-                        <Img
-                          className="h-[15px] md:h-auto object-cover w-[29%] sm:w-full"
-                          src="images/img_logo2.png"
-                          alt="logoTwo"
-                        />
-                        <div className="flex flex-row gap-[19px] items-start justify-start ml-0.5 md:ml-[0] mt-[11px] w-[66%] md:w-full">
-                          <Text
-                            className="text-black-900 text-xs"
-                            size="txtPoppinsSemiBold12"
-                          >
-                            Order Accepted!{" "}
-                          </Text>
-                          <Img
-                            className="h-[17px] md:h-auto object-cover w-[17px]"
-                            src="images/img_tickbox.png"
-                            alt="tickbox"
-                          />
-                        </div>
-                        <Text
-                          className="ml-0.5 md:ml-[0] text-black-900_cc text-xs"
-                          size="txtPoppinsRegular12"
-                        >
-                          Your order will be delivered shortly
-                        </Text>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="absolute bottom-[7%] flex flex-col items-center justify-start right-[4%] w-[26%]">
-                  <div className="h-[127px] relative w-full">
-                    <Img
-                      className="h-[127px] m-auto object-cover w-full"
-                      src="images/img_notification1.png"
-                      alt="notificationOne_One"
-                    />
-                    <div className="absolute bg-gray-50 flex flex-col items-start justify-start left-[7%] p-[5px] top-[17%] w-[29%]">
+              <div className="slideshow-container">
+                    {images.map((image, index) => (
                       <Img
-                        className="h-[15px] md:h-auto object-cover w-[58%]"
-                        src="images/img_logo2.png"
-                        alt="logoTwo_One"
+                        key={index}
+                        className={`slideshow-image ${
+                          index === currentImageIndex ? "active" : ""
+                        }`}
+                        src={image}
+                        alt={`slide-${index}`}
                       />
-                    </div>
+                    ))}
                   </div>
-                </div>
-                <div className="absolute flex flex-col items-center justify-start right-[7%] top-[18%] w-[26%]">
-                  <div className="h-[127px] relative w-full">
-                    <Img
-                      className="h-[127px] m-auto object-cover w-full"
-                      src="images/img_notification1.png"
-                      alt="notificationOne_Two"
-                    />
-                    <div className="absolute bg-gray-50 flex flex-col items-start justify-end left-[7%] top-[17%] w-[61%]">
-                      <Img
-                        className="h-[15px] md:h-auto md:ml-[0] ml-[3px] mt-1 object-cover w-1/4 sm:w-full"
-                        src="images/img_logo2.png"
-                        alt="logoTwo_Two"
-                      />
-                      <Text
-                        className="md:ml-[0] ml-[3px] mt-2.5 text-black-900 text-xs"
-                        size="txtPoppinsSemiBold12"
-                      >
-                        We’ve Received your order!
-                      </Text>
-                      <div className="h-[18px] md:ml-[0] ml-[3px] relative w-[84%]">
-                        <Text
-                          className="m-auto text-black-900_cc text-xs"
-                          size="txtPoppinsRegular12"
-                        >
-                          Awaiting Restaurant acceptance{" "}
-                        </Text>
-                        <Img
-                          className="absolute h-3 inset-y-[0] my-auto object-cover right-[9%] w-3"
-                          src="images/img_tracking.png"
-                          alt="tracking"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                
+                
+
                 <div className="absolute bg-blue_gray-100_7f bottom-[5%] flex flex-col items-center justify-end left-[3%] p-[22px] sm:px-5 rounded-[20px] w-[44%]">
                   <div className="flex flex-col gap-[7px] items-start justify-start mt-[25px]">
                     <Text
@@ -510,13 +449,16 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
           </div>
         </div>
         <Helmet>
-        <script src="https://static.elfsight.com/platform/platform.js" defer />
-      </Helmet>
-      <div
-        className="elfsight-app-fd76f4b6-e0fc-4e44-98f9-82fc7d69a499"
-        data-elfsight-app-lazy
-        style={{ paddingTop: "30px" }} // Adjust the padding as needed
-      />
+          <script
+            src="https://static.elfsight.com/platform/platform.js"
+            defer
+          />
+        </Helmet>
+        <div
+          className="elfsight-app-fd76f4b6-e0fc-4e44-98f9-82fc7d69a499"
+          data-elfsight-app-lazy
+          style={{ paddingTop: "30px" }} // Adjust the padding as needed
+        />
         <div className="flex flex-col font-poppins items-center justify-start mt-5 w-full">
           <div className="sm:h-[2500px] h-[2520px] md:h-[3135px] md:px-5 relative w-full">
             <Img
