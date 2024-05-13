@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "pages/Home";
 import NotFound from "pages/NotFound";
 import Signup from "signup";
+import Gallery from "pages/Gallery/gallery";
 const Menu = React.lazy(() => import("pages/Menu"));
 const OrdersCurrent = React.lazy(() => import("pages/OrdersCurrent"));
 const FoodDeliveryDashboard = React.lazy(
@@ -35,6 +36,7 @@ const ProjectRoutes = () => {
             path="/deliverypopupdesktop"
             element={<DeliveryPopupDesktop />}
           />
+          <Route path="/gallery" element={<Gallery/>}/>
           <Route path="/orderingpage" element={<OrderingPage />} />
           <Route path="/macbookpro14one" element={<MacBookPro14One />} />
           <Route path="/login" element={<Login />} />

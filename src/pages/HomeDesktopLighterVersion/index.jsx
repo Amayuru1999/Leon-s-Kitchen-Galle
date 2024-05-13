@@ -89,7 +89,8 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                     <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
                       Special Offers
                     </button>
-                    <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
+                    <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button"
+                    onClick={() => navigate("/gallery")}>
                       Restaurants
                     </button>
                     <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
