@@ -51,7 +51,7 @@ Browse Menu: Users can view the available menu items.
 Place Order: Users can select items, add them to the cart, and place an order.
 Make Payment: Securely pay for orders using integrated payment options.
 Order Management: Admins can manage and track orders through the admin panel.
-Contributing
+Contributing.
 We welcome contributions! Please follow these steps to contribute:
 
 ## Fork the repository.
@@ -65,9 +65,9 @@ Please ensure your code follows our Code of Conduct.
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
 ## Contact
-For any inquiries or feedback, please contact us at:
--**Email: amarasingheau@gmail.com**
--**GitHub Issues: Create a new issue**
+For any inquiries or feedback, please contact us at.
+**Email: amarasingheau@gmail.com**
+**GitHub Issues: Create a new issue**
 Thank you for using Leon's Kitchen! We hope this system enhances your restaurant's dining experience.
 
 
