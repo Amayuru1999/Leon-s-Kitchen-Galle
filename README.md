@@ -29,15 +29,15 @@ Leon's Kitchen is an online food ordering system for restaurants. This repositor
 
 ### Clone the Repository
 
-bash
 git clone https://github.com/Amayuru1999/Leon-s-Kitchen-Galle.git
 cd Leon-s-Kitchen-Galle
-npm install
+
 ## Install Dependencies
 
 npm install
 
 ## Set Up Environment Variables
+
 Create a .env file in the root directory and add the following variables:
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret_key
@@ -66,8 +66,8 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 
 ## Contact
 For any inquiries or feedback, please contact us at:
-Email: amarasingheau@gmail.com
-GitHub Issues: Create a new issue
+-**Email: amarasingheau@gmail.com**
+-**GitHub Issues: Create a new issue**
 Thank you for using Leon's Kitchen! We hope this system enhances your restaurant's dining experience.
 
 
