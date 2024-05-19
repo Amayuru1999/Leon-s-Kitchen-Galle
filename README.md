@@ -29,18 +29,18 @@ Leon's Kitchen is an online food ordering system for restaurants. This repositor
 
 ### Clone the Repository
 
--git clone https://github.com/Amayuru1999/Leon-s-Kitchen-Galle.git
--cd Leon-s-Kitchen-Galle
+- git clone https://github.com/Amayuru1999/Leon-s-Kitchen-Galle.git
+- cd Leon-s-Kitchen-Galle
 
 ## Install Dependencies
 
-npm install
+- npm install
 
 ## Set Up Environment Variables
 
--Create a .env file in the root directory and add the following variables:
--MONGO_URI=your_mongodb_connection_string
--JWT_SECRET=your_jwt_secret_key
+- Create a .env file in the root directory and add the following variables:
+- MONGO_URI=your_mongodb_connection_string
+- JWT_SECRET=your_jwt_secret_key
 
 ## Run the Application
 -npm start
@@ -55,20 +55,20 @@ npm install
 - We welcome contributions! Please follow these steps to contribute:
 
 ## Fork the repository.
--Create a new branch (git checkout -b feature/your-feature-name).
--Commit your changes (git commit -m 'Add some feature').
--Push to the branch (git push origin feature/your-feature-name).
--Open a Pull Request.
--Please ensure your code follows our Code of Conduct.
+- Create a new branch (git checkout -b feature/your-feature-name).
+- Commit your changes (git commit -m 'Add some feature').
+- Push to the branch (git push origin feature/your-feature-name).
+- Open a Pull Request.
+- Please ensure your code follows our Code of Conduct.
 
 ## License
--This project is licensed under the MIT License. See the LICENSE file for more details.
+- This project is licensed under the MIT License. See the LICENSE file for more details.
 
 ## Contact
--For any inquiries or feedback, please contact us at.
--**Email: amarasingheau@gmail.com**
--**GitHub Issues: Create a new issue**
--Thank you for using Leon's Kitchen! We hope this system enhances your restaurant's dining experience.
+- For any inquiries or feedback, please contact us at.
+- **Email: amarasingheau@gmail.com**
+- **GitHub Issues: Create a new issue**
+- Thank you for using Leon's Kitchen! We hope this system enhances your restaurant's dining experience.
 
 
 
