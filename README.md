@@ -43,8 +43,8 @@ Leon's Kitchen is an online food ordering system for restaurants. This repositor
 - JWT_SECRET=your_jwt_secret_key
 
 ## Run the Application
--npm start
--The application will be running at http://localhost:3000.
+- npm start
+- The application will be running at http://localhost:3000.
 
 ## Usage
 - Browse Menu: Users can view the available menu items.
