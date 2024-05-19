@@ -47,12 +47,12 @@ npm install
 -The application will be running at http://localhost:3000.
 
 ## Usage
--Browse Menu: Users can view the available menu items.
--Place Order: Users can select items, add them to the cart, and place an order.
--Make Payment: Securely pay for orders using integrated payment options.
--Order Management: Admins can manage and track orders through the admin panel.
--Contributing.
--We welcome contributions! Please follow these steps to contribute:
+- Browse Menu: Users can view the available menu items.
+- Place Order: Users can select items, add them to the cart, and place an order.
+- Make Payment: Securely pay for orders using integrated payment options.
+- Order Management: Admins can manage and track orders through the admin panel.
+- Contributing.
+- We welcome contributions! Please follow these steps to contribute:
 
 ## Fork the repository.
 -Create a new branch (git checkout -b feature/your-feature-name).
