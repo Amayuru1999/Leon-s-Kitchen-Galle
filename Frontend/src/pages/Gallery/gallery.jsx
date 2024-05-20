@@ -8,7 +8,7 @@ import { logoutUser } from "./../../auth/actions/userActions";
 import { Link } from "react-router-dom";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
-
+import { Helmet } from "react-helmet";
 import { Button, Img, Input, Line, List, Text } from "components";
 import { connect } from "react-redux";
 
@@ -192,7 +192,7 @@ const Gallery = ({ logoutUser, user }) => {
                 <div className="flex ml-[-300px] items-center gap-4">
                   <button
                     className="text-white font-poppins font-medium text-lg hover-effect focus:outline-none nav-button"
-                    onClick={() => navigate("/dashboard")}
+                    onClick={() => navigate("/")}
                   >
                     Home
                   </button>
@@ -239,6 +239,7 @@ const Gallery = ({ logoutUser, user }) => {
                 </div>
               </button>
             </div>
+            
             <Img
               className="h-[38px] md:h-auto md:ml-[0] ml-[803px] mt-1 object-cover w-[2%]"
               src="images/img_.png"
@@ -247,6 +248,17 @@ const Gallery = ({ logoutUser, user }) => {
             <Text className="mb-2 ml-[780px]">Welcome!</Text>
           </div>
         </div>
+        <Helmet>
+          <script
+            src="https://static.elfsight.com/platform/platform.js"
+            defer
+          />
+        </Helmet>
+        <div
+          className="elfsight-app-fd76f4b6-e0fc-4e44-98f9-82fc7d69a499"
+          data-elfsight-app-lazy
+          style={{ paddingTop: "30px" }} // Adjust the padding as needed
+        />
         <div className="flex flex-wrap justify-center gap-12">
           {images.map((image, index) => (
             <div key={index} className="image-wrapper">
