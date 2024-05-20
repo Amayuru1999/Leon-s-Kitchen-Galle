@@ -1,11 +1,13 @@
 import React from "react";
 import "./index.css";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "./../../auth/actions/userActions";
 import { Link } from "react-router-dom";
+import Lightbox from "react-image-lightbox";
+import "react-image-lightbox/style.css";
 
 import { Button, Img, Input, Line, List, Text } from "components";
 import { connect } from "react-redux";
@@ -49,7 +51,6 @@ const Gallery = ({ logoutUser, user }) => {
     "images/34.jpg",
     "images/35.jpg",
     "images/36.jpg",
-
     "images/37.jpg",
     "images/38.jpg",
     "images/39.jpg",
@@ -61,11 +62,11 @@ const Gallery = ({ logoutUser, user }) => {
     "images/45.jpg",
     "images/46.jpg",
     "images/47.jpg",
-    "images/48.jpg",
-    "images/49.jpg",
-    
+   
   ];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+  const [photoIndex, setPhotoIndex] = useState(0);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -74,6 +75,7 @@ const Gallery = ({ logoutUser, user }) => {
 
     return () => clearInterval(intervalId);
   }, [images.length]);
+
   const handleLogout = async () => {
     try {
       // Make a request to your backend endpoint to clear the user's cart
@@ -97,6 +99,12 @@ const Gallery = ({ logoutUser, user }) => {
       console.error("An error occurred during logout:", error);
     }
   };
+
+  const openLightbox = (index) => {
+    setPhotoIndex(index);
+    setIsOpen(true);
+  };
+
   return (
     <>
       <div className="flex flex-col gap-5 items-center justify-start w-full">
@@ -243,14 +251,30 @@ const Gallery = ({ logoutUser, user }) => {
           {images.map((image, index) => (
             <div key={index} className="image-wrapper">
               <Img
-                className="h-80 w-80 object-cover rounded-md"
+                className="h-80 w-80 object-cover rounded-md cursor-pointer"
                 src={image}
                 alt={`image-${index}`}
+                onClick={() => openLightbox(index)}
               />
             </div>
           ))}
         </div>
       </div>
+
+      {isOpen && (
+        <Lightbox
+          mainSrc={images[photoIndex]}
+          nextSrc={images[(photoIndex + 1) % images.length]}
+          prevSrc={images[(photoIndex + images.length - 1) % images.length]}
+          onCloseRequest={() => setIsOpen(false)}
+          onMovePrevRequest={() =>
+            setPhotoIndex((photoIndex + images.length - 1) % images.length)
+          }
+          onMoveNextRequest={() =>
+            setPhotoIndex((photoIndex + 1) % images.length)
+          }
+        />
+      )}
     </>
   );
 };
