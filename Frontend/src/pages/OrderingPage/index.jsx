@@ -9,6 +9,7 @@ import { Button, Img, Input, Line, List, Text } from "components";
 import { connect } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
 import ReactWhatsapp from "react-whatsapp";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 const OrderingPagePage = ({ logoutUser, user }) => {
   const navigate = useNavigate();
@@ -19,24 +20,34 @@ const OrderingPagePage = ({ logoutUser, user }) => {
   const [wmessage, setWMessage] = useState("");
   const handleSendMessage = () => {
     // Generate the message dynamically based on the items in the cart
-    const cartItemsMessage = items.map((menuItem) => {
-        const totalPrice = parseFloat(menuItem.price.replace("Rs. ", "")) * (parseInt(itemQuantities[menuItem._id]) || 1);
-        return `${menuItem.name} - Rs. ${menuItem.price} x${itemQuantities[menuItem._id] || 1} = Rs. ${totalPrice.toFixed(2)}`;
-    }).join('\n'); // Separate each item with a new line
-  
+    const cartItemsMessage = items
+      .map((menuItem) => {
+        const totalPrice =
+          parseFloat(menuItem.price.replace("Rs. ", "")) *
+          (parseInt(itemQuantities[menuItem._id]) || 1);
+        return `${menuItem.name} - Rs. ${menuItem.price} x${
+          itemQuantities[menuItem._id] || 1
+        } = Rs. ${totalPrice.toFixed(2)}`;
+      })
+      .join("\n"); // Separate each item with a new line
+
     // Calculate total amount to pay
-    const totalAmount = items.reduce((total, menuItem) => {
-        return total + parseFloat(menuItem.price.replace("Rs. ", "")) * (parseInt(itemQuantities[menuItem._id]) || 1);
-    }, 0) + 200; // Add delivery fee
+    const totalAmount =
+      items.reduce((total, menuItem) => {
+        return (
+          total +
+          parseFloat(menuItem.price.replace("Rs. ", "")) *
+            (parseInt(itemQuantities[menuItem._id]) || 1)
+        );
+      }, 0) + 200; // Add delivery fee
 
     // Set the message state with the dynamically generated message
-    setWMessage(`Hello New Order!\n\nItems in the cart:\n${cartItemsMessage}\n\nTotal Amount to Pay: Rs. ${totalAmount.toFixed(2)}\nDelivery Fee: Rs. 200`);
-};
-
-
-
-
-
+    setWMessage(
+      `Hello New Order!\n\nItems in the cart:\n${cartItemsMessage}\n\nTotal Amount to Pay: Rs. ${totalAmount.toFixed(
+        2
+      )}\nDelivery Fee: Rs. 200`
+    );
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -538,26 +549,7 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                         >
                           Discounts:
                         </Text> */}
-                        <div className="flex flex-col items-center justify-start mt-4 w-full">
-                          {/* Button to select location */}
-                          <Button
-                            className="bg-orange-600_cc border border-black-1900_1c border-solid flex flex-row items-center justify-between p-4 rounded-lg cursor-pointer"
-                            onClick={() => navigate("/map")}
-                          >
-                            <span className="ml-[26px] text-white-A700 text-xl">
-                              Select Your Location
-                            </span>
-                          </Button>
 
-                          <ReactWhatsapp
-                            number="+94 0741112634"
-                            className="bg-orange-600_cc border border-black-1900_1c border-solid flex flex-row items-center justify-between p-4 rounded-lg cursor-pointer"
-                            message={wmessage}
-                            onClick={handleSendMessage} // Call handleSendMessage when button is clicked
-                          >
-                            Place Order
-                          </ReactWhatsapp>
-                        </div>
                         <div className="flex flex-row items-start justify-between mt-3.5 w-[89%] md:w-full">
                           <Text
                             className="mt-1 text-black-900_01 text-xl"
@@ -576,14 +568,25 @@ const OrderingPagePage = ({ logoutUser, user }) => {
 
                         <form onSubmit={handleSubmit}>
                           <button
-                            className="bg-orange-600_cc border border-black-900_1c border-solid flex flex-row items-center justify-between p-1 rounded-lg cursor-pointer"
+                            className="bg-orange-600_cc border border-black-900_1c border-solid flex flex-row items-center justify-between p-4 rounded-lg cursor-pointer w-100"
                             type="submit"
-                            disabled={loading} // Disable button when loading is true
+                            disabled={loading}
+                            style={{
+                              width: "400px",
+                              display: "flex",
+                              flexDirection: "row",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              marginLeft: "30px",
+                            }} // Center the text
                           >
-                            <span className="ml-[26px] text-white-A700 text-xl">
-                              Total to pay
+                            <span className="text-white-A700 text-xl">
+                              Total to pay :
                             </span>
-                            <span className="my-[3px] text-4xl sm:text-[32px] md:text-[34px] text-white-A700">
+                            <span
+                              className="text-4xl sm:text-[32px] md:text-[34px] text-white-A700"
+                              style={{ marginLeft: "10px" }}
+                            >
                               Rs. {/* Calculate total amount to pay */}
                               {items.reduce((total, menuItem) => {
                                 return (
@@ -598,6 +601,36 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                             </span>
                           </button>
                         </form>
+                        <div className="flex flex-col items-center justify-start mt-0.5 mb-3 w-full">
+                          {/* Button to select location */}
+                          <Button
+                            className="bg-orange-600_cc border border-black-1900_1c border-solid flex flex-row items-center justify-between p-4 rounded-lg cursor-pointer"
+                            onClick={() => navigate("/map")}
+                          >
+                            <span className="ml-[26px] text-white-A700 text-xl">
+                              Select Your Location
+                            </span>
+                          </Button>
+
+                          <ReactWhatsapp
+                            number="+94 0741112634"
+                            className="bg-orange-600_cc border border-black-1900_1c border-solid flex flex-row items-center justify-between p-4 rounded-lg cursor-pointer mt-3"
+                            message={wmessage}
+                            onClick={handleSendMessage} // Call handleSendMessage when button is clicked
+                          >
+                            <FontAwesomeIcon
+                              icon={faWhatsapp}
+                              style={{
+                                fontSize: "24px", // Match the font size of the text
+                                color: "black",
+                                marginRight: "10px", // Optional: Add some spacing between the icon and the text
+                              }}
+                            />
+                            <span style={{ fontSize: "24px" }}>
+                              Place Order
+                            </span>
+                          </ReactWhatsapp>
+                        </div>
                       </div>
                     </div>
                   </div>

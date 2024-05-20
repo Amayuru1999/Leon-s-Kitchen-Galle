@@ -232,11 +232,11 @@ const Gallery = ({ logoutUser, user }) => {
               </button>
             </div>
             <Img
-              className="h-[38px] md:h-auto md:ml-[0] ml-[23px] mt-1 object-cover w-[2%]"
+              className="h-[38px] md:h-auto md:ml-[0] ml-[803px] mt-1 object-cover w-[2%]"
               src="images/img_.png"
               alt="One"
             />
-            <Text className="mb-2">Welcome!</Text>
+            <Text className="mb-2 ml-[780px]">Welcome!</Text>
           </div>
         </div>
         <div className="flex flex-wrap justify-center gap-12">
