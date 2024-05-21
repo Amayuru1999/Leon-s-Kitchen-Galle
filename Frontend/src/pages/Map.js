@@ -66,23 +66,50 @@ function Map({ user }) {
 
   function getCurrentLocation() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const { latitude, longitude } = position.coords;
-        const currentLocation = { lat: latitude, lng: longitude };
-        const geocoder = new window.google.maps.Geocoder();
-        geocoder.geocode({ location: currentLocation }, (results, status) => {
-          if (status === "OK" && results[0]) {
-            const formattedAddress = results[0].formatted_address;
-            destinationRef.current.value = formattedAddress;
-          } else {
-            alert("Geocoder failed due to: " + status);
+      // Request the user's location with high accuracy
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          const currentLocation = { lat: latitude, lng: longitude };
+          const geocoder = new window.google.maps.Geocoder();
+  
+          geocoder.geocode({ location: currentLocation }, (results, status) => {
+            if (status === "OK" && results[0]) {
+              const formattedAddress = results[0].formatted_address;
+              destinationRef.current.value = formattedAddress;
+            } else {
+              alert("Geocoder failed due to: " + status);
+            }
+          });
+        },
+        (error) => {
+          // Handle different geolocation errors
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              alert("User denied the request for Geolocation.");
+              break;
+            case error.POSITION_UNAVAILABLE:
+              alert("Location information is unavailable.");
+              break;
+            case error.TIMEOUT:
+              alert("The request to get user location timed out.");
+              break;
+            case error.UNKNOWN_ERROR:
+              alert("An unknown error occurred.");
+              break;
           }
-        });
-      });
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 0,
+        }
+      );
     } else {
       alert("Geolocation is not supported by this browser.");
     }
   }
+  
   
   
   
