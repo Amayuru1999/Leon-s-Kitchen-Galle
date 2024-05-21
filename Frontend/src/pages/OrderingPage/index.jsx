@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import "./index.css";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -10,6 +11,7 @@ import { connect } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
 import ReactWhatsapp from "react-whatsapp";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { BsEmojiSmile } from "react-icons/bs";
 
 const OrderingPagePage = ({ logoutUser, user }) => {
   const navigate = useNavigate();
@@ -18,6 +20,15 @@ const OrderingPagePage = ({ logoutUser, user }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [loading, setLoading] = useState(false);
   const [wmessage, setWMessage] = useState("");
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+
+  const handleShowPopup = () => {
+    setIsPopupVisible(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupVisible(false);
+  };
   const handleSendMessage = () => {
     // Generate the message dynamically based on the items in the cart
     const cartItemsMessage = items
@@ -611,25 +622,93 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                               Select Your Location
                             </span>
                           </Button>
-
-                          <ReactWhatsapp
-                            number="+94 0741112634"
-                            className="bg-orange-600_cc border border-black-1900_1c border-solid flex flex-row items-center justify-between p-4 rounded-lg cursor-pointer mt-3"
-                            message={wmessage}
-                            onClick={handleSendMessage} // Call handleSendMessage when button is clicked
+                          <button
+                            className="bg-orange-600_cc border border-black-1900_1c border-solid flex flex-row items-center justify-between p-4 rounded-lg cursor-pointer"
+                            onClick={handleShowPopup}
                           >
-                            <FontAwesomeIcon
-                              icon={faWhatsapp}
-                              style={{
-                                fontSize: "24px", // Match the font size of the text
-                                color: "black",
-                                marginRight: "10px", // Optional: Add some spacing between the icon and the text
-                              }}
-                            />
-                            <span style={{ fontSize: "24px" }}>
+                            <span className="ml-[26px] text-white-A700 text-xl">
                               Place Order
                             </span>
-                          </ReactWhatsapp>
+                          </button>
+
+                          {isPopupVisible && (
+                            <div className="popup">
+                              <div className="popup-inner">
+                                <h2
+                                  style={{
+                                    fontWeight: "600",
+                                    textAlign: "center",
+                                    fontSize: "40px",
+                                    
+                                  }}
+                                >
+                                  Order Information
+                                </h2>
+                                <p
+                                  style={{
+                                    textAlign: "center",
+                                    fontSize: "20px",
+                                    
+                                  }}
+                                >
+                                  Your order is almost set!
+                                  <span
+                                    style={{
+                                      display: "inline-flex",
+                                      alignItems: "center",
+                                      marginLeft: "10px",
+                                      marginTop:""
+                                    }}
+                                  >
+                                    <BsEmojiSmile />
+                                  </span>
+                                </p>
+
+                                <ul
+                                  style={{
+                                    listStyleType: "disc",
+                                    paddingLeft: "20px",
+                                  }}
+                                >
+                                  <li>
+                                    Please check the message details and send it
+                                    through WhatsApp.
+                                  </li>
+                                  <li>
+                                    WhatsApp will automatically open and send
+                                    the message.
+                                  </li>
+                                  <li>Please follow the steps.</li>
+                                </ul>
+                                <div className="flex justify-center mt-3">
+                                  <ReactWhatsapp
+                                    number="+94 0741112634"
+                                    className="bg-orange-600_cc border border-black-1900_1c border-solid flex items-center justify-center p-4 rounded-lg cursor-pointer"
+                                    message={wmessage}
+                                    onClick={handleSendMessage} // Call handleSendMessage when button is clicked
+                                  >
+                                    <FontAwesomeIcon
+                                      icon={faWhatsapp}
+                                      style={{
+                                        fontSize: "24px", // Match the font size of the text
+                                        color: "black",
+                                        marginRight: "10px", // Optional: Add some spacing between the icon and the text
+                                      }}
+                                    />
+                                    <span style={{ fontSize: "24px" }}>
+                                      Place Order
+                                    </span>
+                                  </ReactWhatsapp>
+                                </div>
+                                <button
+                                  onClick={handleClosePopup}
+                                  className="popup-inner-button"
+                                >
+                                  Close
+                                </button>
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -646,5 +725,6 @@ const OrderingPagePage = ({ logoutUser, user }) => {
 const mapStateToProps = ({ session }) => ({
   user: session.user,
 });
+
 // export default OrderingPagePage;
 export default connect(mapStateToProps, { logoutUser })(OrderingPagePage);
