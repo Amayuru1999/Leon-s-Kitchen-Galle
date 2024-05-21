@@ -21,14 +21,20 @@
     
   }
   
+  .button-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%; /* Ensure it takes the full width of the parent container */
+  }
+  
   .popup-inner-button {
-    margin-top: 20px;
+    
     padding: 10px 20px;
-    background: rgb(255, 12, 12);
+    background: rgb(250, 81, 30);
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-   justify-content: center;
   }
+  
   
