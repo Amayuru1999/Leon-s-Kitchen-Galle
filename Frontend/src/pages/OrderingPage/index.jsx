@@ -12,6 +12,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import ReactWhatsapp from "react-whatsapp";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { BsEmojiSmile } from "react-icons/bs";
+import PopUpImage from "./../../assets/images/logo.png"
 
 const OrderingPagePage = ({ logoutUser, user }) => {
   const navigate = useNavigate();
@@ -700,12 +701,19 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                                     </span>
                                   </ReactWhatsapp>
                                 </div>
+                                <img src={PopUpImage} alt="Popup" style={{
+                                  width:"180px",
+                                  height:"180px",
+                                  marginLeft:"170px"
+                                }}/>
+                                <div className="button-wrapper">
                                 <button
                                   onClick={handleClosePopup}
                                   className="popup-inner-button"
                                 >
                                   Close
                                 </button>
+                                </div>
                               </div>
                             </div>
                           )}
