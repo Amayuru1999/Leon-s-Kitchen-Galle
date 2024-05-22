@@ -1,17 +1,28 @@
 import React from "react";
 import "./index.css";
-import { useState ,useEffect} from "react";
+import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 
 import { Button, Img, Input, Line, List, Text } from "components";
 import { connect } from "react-redux";
 import { logoutUser } from "./../../auth/actions/userActions";
-
+import { IoMdClose } from "react-icons/io";
 // React router
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import PopUpImage from "./../../assets/images/logo.png";
 
 const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleButtonClick = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
   const navigate = useNavigate();
   const [cartItemCount, setCartItemCount] = useState(0);
   const images = [
@@ -21,7 +32,46 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
     "images/4.jpg",
     "images/5.jpg",
     "images/6.jpg",
-    
+    "images/8.jpg",
+    "images/9.jpg",
+    "images/10.jpg",
+    "images/11.jpg",
+    "images/12.jpg",
+    "images/13.jpg",
+    "images/14.jpg",
+    "images/15.jpg",
+    "images/16.jpg",
+    "images/17.jpg",
+    "images/18.jpg",
+    "images/19.jpg",
+    "images/20.jpg",
+    "images/21.jpg",
+    "images/22.jpg",
+    "images/23.jpg",
+    "images/24.jpg",
+    "images/25.jpg",
+    "images/26.jpg",
+    "images/27.jpg",
+    "images/28.jpg",
+    "images/29.jpg",
+    "images/30.jpg",
+    "images/31.jpg",
+    "images/32.jpg",
+    "images/33.jpg",
+    "images/34.jpg",
+    "images/35.jpg",
+    "images/36.jpg",
+    "images/37.jpg",
+      
+    "images/39.jpg",
+    "images/40.jpg",
+    "images/41.jpg",
+    "images/42.jpg",
+    "images/43.jpg",
+    "images/44.jpg",
+    "images/45.jpg",
+    "images/46.jpg",
+    "images/47.jpg",
   ];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   useEffect(() => {
@@ -89,14 +139,23 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                     <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
                       Special Offers
                     </button>
-                    <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button"
-                    onClick={() => navigate("/gallery")}>
+                    <button
+                      className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button"
+                      onClick={() => navigate("/gallery")}
+                    >
                       Restaurants
                     </button>
-                    <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
+                    <button
+                      className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button"
+                      onClick={handleButtonClick}
+                    >
                       Track Order
                     </button>
-                    <button className="flex items-center text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button relative">
+
+                    <button
+                      className="flex items-center text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button relative"
+                      onClick={handleButtonClick}
+                    >
                       <img
                         src="images/cart.svg"
                         alt="Cart"
@@ -109,6 +168,68 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                         </span>
                       )}
                     </button>
+
+                    {isPopupOpen && (
+                      <div className="popup-overlay">
+                        <div className="popup-inner">
+                          <button
+                            onClick={handleClosePopup}
+                            className="popup-inner-close-button"
+                          >
+                            <IoMdClose
+                              style={{
+                                width: "40px",
+                                height: "40px",
+                              }}
+                            />
+                          </button>
+                          <h2
+                            style={{
+                              fontWeight: "bold",
+                              textAlign: "center",
+                              fontSize: "40px",
+                            }}
+                          >
+                            Please SignUp or Login
+                          </h2>
+
+                          <p
+                            style={{
+                              textAlign: "center",
+                              fontSize: "15px",
+                              marginTop: "20px",
+                            }}
+                          >
+                            Dear Customer, You need to login or signup to use
+                            this feature.
+                          </p>
+                          <img
+                            src={PopUpImage}
+                            alt="Popup"
+                            style={{
+                              width: "180px",
+                              height: "180px",
+                              margin: "20px auto",
+                            }}
+                          />
+                          <div className="button-container">
+                            <button
+                              className="signup-button"
+                              onClick={() => navigate("/loginorreg")} // Example of navigation
+                            >
+                              Sign Up
+                            </button>
+                            <div className="or-text">or</div>
+                            <button
+                              className="login-button"
+                              onClick={() => navigate("/loginorreg")} // Example of navigation
+                            >
+                              Login
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
                 <button
@@ -130,20 +251,18 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                 </button>
               </div>
               <div className="font-poppins h-[610px] md:h-[651px] mt-[41px] relative w-full">
-              <div className="slideshow-container">
-                    {images.map((image, index) => (
-                      <Img
-                        key={index}
-                        className={`slideshow-image ${
-                          index === currentImageIndex ? "active" : ""
-                        }`}
-                        src={image}
-                        alt={`slide-${index}`}
-                      />
-                    ))}
-                  </div>
-                
-                
+                <div className="slideshow-container">
+                  {images.map((image, index) => (
+                    <Img
+                      key={index}
+                      className={`slideshow-image ${
+                        index === currentImageIndex ? "active" : ""
+                      }`}
+                      src={image}
+                      alt={`slide-${index}`}
+                    />
+                  ))}
+                </div>
 
                 <div className="absolute bg-blue_gray-100_7f bottom-[5%] flex flex-col items-center justify-end left-[3%] p-[22px] sm:px-5 rounded-[20px] w-[44%]">
                   <div className="flex flex-col gap-[7px] items-start justify-start mt-[25px]">
@@ -496,7 +615,7 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                     </div>
 
                     <Text
-                      className="md:ml-[0] ml-[866px] mt-10 text-2xl md:text-[22px] text-black-900 sm:text-xl tracking-[-1.44px] w-[33%] sm:w-full"
+                      className="md:ml-[0] ml-[966px] mt-10 text-2xl md:text-[22px] text-black-900 sm:text-xl tracking-[-1.44px] w-[33%] sm:w-full"
                       size="txtPoppinsRegular24"
                     >
                       Download the Leon’s Kitchen app for faster ordering
@@ -507,14 +626,10 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                       alt="appstorebadgese"
                     />
                   </div>
-                  <Img
-                    className="absolute h-[1089px] inset-y-[0] left-[0] my-auto object-cover w-[55%]"
-                    src="images/img_friendslaughin.png"
-                    alt="friendslaughin"
-                  />
+                 
                 </div>
                 <Img
-                  className="absolute h-[1089px] inset-y-[0] left-[0] my-auto object-cover w-[55%]"
+                  className="absolute h-[1089px] inset-y-[0] left-[0] my-auto object-cover w-[55%] mt-10"
                   src="images/img_friendslaughin_1089x832.png"
                   alt="friendslaughin_One"
                 />
@@ -528,58 +643,44 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                     >
                       Know more about us!
                     </Text>
-                    <div className="h-[61px] relative w-[55%] md:w-full">
-                      <Text
-                        className="absolute bottom-[26%] right-[0] text-base text-black-900"
-                        size="txtPoppinsRegular16"
-                      >
-                        Frequent Questions Who we are? Partner Program Help &
-                        Support
-                      </Text>
-                      <div className="absolute border border-orange-600 border-solid h-[61px] inset-y-[0] left-[0] my-auto rounded-[30px] w-[33%]"></div>
-                    </div>
                   </div>
                   <div className="md:h-[1588px] sm:h-[526px] h-[529px] relative w-full">
                     <div className="absolute bg-white-A700 flex flex-col h-max inset-[0] items-end justify-center m-auto p-5 rounded-[12px] w-full">
                       <div className="flex md:flex-col flex-row md:gap-5 items-start justify-end my-[11px] w-[96%] md:w-full">
                         <div className="flex flex-col justify-start md:mt-0 mt-11 w-[31%] md:w-full">
-                          <div className="bg-orange-600 flex flex-col items-end justify-start mr-4 p-2.5 rounded-[31px]">
+                          <div className="bg-white flex flex-col items-end justify-start mr-4 p-2.5 rounded-[31px] hover:bg-orange-600">
                             <Text
-                              className="my-[7px] text-black-900 text-lg tracking-[-0.36px]"
+                              className="my-[7px] text-black-900 text-lg tracking-[-0.36px] mr-10"
                               size="txtPoppinsBold18Black900"
                             >
                               How does Leon’s Kitchen work?
                             </Text>
                           </div>
-                          <Text
-                            className="ml-2.5 md:ml-[0] mt-9 text-black-900_01 text-lg tracking-[-0.36px]"
-                            size="txtPoppinsBold18"
-                          >
-                            What payment methods are accepted?
-                          </Text>
+                          <div className="bg-white flex flex-col items-end justify-start mr-6 p-2.5 rounded-[31px] hover:bg-orange-600 ">
+                            <Text
+                              className="ml-2.5 md:ml-[0] mt-2 text-black-900_01 text-lg tracking-[-0.36px] mr-4"
+                              size="txtPoppinsBold18"
+                            >
+                              What payment methods are accepted?
+                            </Text>
+                          </div>
                           <div className="flex flex-col gap-8 items-center justify-start ml-9 md:ml-[0] mt-[33px]">
-                            <Text
-                              className="text-black-900_01 text-lg tracking-[-0.36px]"
-                              size="txtPoppinsBold18"
-                            >
-                              Can I track my order in real-time?
-                            </Text>
-                            <Text
-                              className="text-black-900_01 text-center text-lg tracking-[-0.36px]"
-                              size="txtPoppinsBold18"
-                            >
-                              <>
-                                Are there any special discounts or
-                                <br />
-                                promotions available?
-                              </>
-                            </Text>
+                            <div className="bg-white flex flex-col items-end justify-start mr-4 p-2.5 rounded-[31px] hover:bg-orange-600">
+                              <Text
+                                className="text-black-900_01 text-lg tracking-[-0.36px]"
+                                size="txtPoppinsBold18"
+                              >
+                                Can I track my order in real-time?
+                              </Text>
+                            </div>
+                            <div className="bg-white flex flex-col items-end justify-start mr-4 p-2.5 rounded-[31px] hover:bg-orange-600">
                             <Text
                               className="text-black-900_01 text-center text-lg tracking-[-0.36px]"
                               size="txtPoppinsBold18"
                             >
                               Is dilivery available in my area?
                             </Text>
+                            </div>
                           </div>
                         </div>
                         <Line className="bg-black-900 h-[463px] md:h-px md:ml-[0] ml-[29px] md:w-full w-px" />
@@ -604,7 +705,7 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                                 <>
                                   Place order through our
                                   <br />
-                                  website or Mobile app
+                                  Website
                                 </>
                               </Text>
                             </div>
@@ -642,6 +743,9 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                                 className="h-[150px] md:h-auto mt-[18px] object-cover w-[115px]"
                                 src="images/img_order1.png"
                                 alt="orderOne"
+                                style={{
+                                  height: "130px",
+                                }}
                               />
                               <Text
                                 className="mt-[5px] mx-auto text-base text-black-900 text-center tracking-[-0.32px]"
@@ -780,9 +884,9 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                             size="txtPoppinsRegular15"
                           >
                             <>
-                              Company # 490039-445, Registered with
+                              Leon's Kitchen - Galle
                               <br />
-                              House of companies.
+                              Best in Galle
                             </>
                           </Text>
                           <Img

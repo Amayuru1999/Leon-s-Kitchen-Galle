@@ -260,11 +260,13 @@ const OrderingPagePage = ({ logoutUser, user }) => {
                     <div className="flex ml-[-93px] items-center gap-4">
                       <button
                         className="text-white font-poppins font-medium text-lg hover-effect focus:outline-none nav-button"
-                        onClick={() => navigate("/dashboard")}
+                        onClick={() => navigate("/")}
                       >
                         Home
                       </button>
-                      <button className="text-black-900_01 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
+                      <button className="text-black-900_01 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button"
+                        onClick={() => navigate("/restaurantdetailpagedesktop")}
+                      >
                         Browse Menu
                       </button>
                       <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">

@@ -40,3 +40,66 @@
 .slideshow-image.active {
   opacity: 1;
 }
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.popup-inner {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  width: 300px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.popup-inner-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: rgb(255, 12, 12);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.signup-button, .login-button {
+  padding: 10px 20px;
+  background: #FFA500;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  width: 100px;
+
+}
+
+.signup-button:hover, .login-button:hover {
+  background: rgb(105, 105, 105);
+}
+.or-text{
+  font-size: 30px;
+}
+.popup-inner-close-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-left: 530px;
+}
