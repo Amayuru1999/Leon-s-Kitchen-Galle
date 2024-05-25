@@ -1,0 +1,131 @@
+.container {
+  height: 1106px;
+  position: relative;
+  width: 100%;
+}
+
+.inner-container {
+  height: 1106px;
+  margin: auto;
+  width: 100%;
+}
+
+.content {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding: 21px;
+  width: 100%;
+}
+
+.image-one {
+  width: 18%;
+  margin-left: auto;
+  margin-right: 0;
+  object-fit: cover;
+}
+
+.text-container {
+  background-color: rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: start;
+  margin-left: auto;
+  margin-right: 0;
+  margin-top: 82px;
+  padding: 31px;
+}
+
+.text-one {
+  margin-bottom: 1.5rem;
+  font-size: 3.375rem; /* 54px */
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+}
+
+.link {
+  color: orange;
+  text-decoration: underline;
+  margin-right: 2px;
+}
+
+.text-two {
+  color: white;
+}
+
+.text-three {
+  margin-left: auto;
+  margin-right: 0;
+  margin-top: 10px;
+  font-size: 1.375rem; /* 22px */
+  color: black;
+  width: 33%;
+  font-family: 'Poppins', sans-serif;
+}
+
+.image-two {
+  height: auto;
+  width: 18%;
+  margin-bottom: 229px;
+  margin-left: auto;
+  margin-right: 0;
+  margin-top: 38px;
+}
+
+.image-three {
+  position: absolute;
+  height: 100%; /* Adjust height as needed */
+  left: 0;
+  top: 0; /* Align the top edge with the container */
+  object-fit: cover;
+  width: 55%; /* Adjust width as needed */
+}
+
+/* Styles for screens less than 1600px */
+@media only screen and (max-width: 1600px) {
+  .container,
+  .inner-container {
+    height: auto; /* Adjust the height for mobile */
+  }
+
+  .content {
+    padding: 10px;
+  }
+
+  .image-one{
+    max-width:fit-content;
+    max-height: fit-content;
+  }
+  .image-two,
+  .image-three {
+    width: 100%;
+    height: auto; /* Make images take up the full width on mobile */
+    margin-left: 0; /* Remove the left margin */
+    margin-right: 0;
+  }
+
+  .text-container {
+    width: 100%;
+    height: auto; /* Adjust height for mobile */
+    padding: 10px;
+    margin-left: 0; /* Remove the left margin */
+    margin-right: 0;
+    margin-top: 10px; /* Adjust top margin */
+  }
+
+  .text-one {
+    font-size: 2.5rem; /* Reduce the font size for mobile */
+  }
+
+  .text-three {
+    width: 100%; /* Make text take up the full width on mobile */
+    font-size: 1.125rem; /* Adjust font size for mobile */
+  }
+
+  .image-two {
+    margin-bottom: 20px; /* Adjust bottom margin for mobile */
+  }
+}

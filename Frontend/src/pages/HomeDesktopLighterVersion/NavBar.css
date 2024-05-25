@@ -1,0 +1,260 @@
+.nav-container {
+  display: flex;
+  flex-direction: row;
+  gap: 53px;
+  align-items: center;
+  justify-content: end;
+  margin-left: 383px;
+  margin-top: 38px;
+  width: 75%;
+}
+
+.logo {
+  position: absolute;
+  height: auto;
+  width: 17%;
+  left: 0;
+  top: 2%;
+  object-fit: cover; /* Corrected property */
+}
+
+.nav-buttons-container {
+  display: flex;
+  width: 75%;
+  position: relative;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 4px;
+  margin-left: -93px;
+  flex-wrap: wrap;
+}
+
+.nav-button {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 1.125rem;
+  color: #000;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.nav-button:hover {
+  color: #666;
+}
+
+.cart-button {
+  display: flex;
+  align-items: center;
+  position: relative;
+  
+}
+
+.cart-icon {
+  height: 24px;
+  width: 24px;
+  margin-right: 18px;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #f00;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 2px 8px;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-inner {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  position: relative;
+  max-width: 400px;
+  width: 90%;
+}
+
+.popup-inner-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.close-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.popup-title {
+  font-weight: bold;
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.popup-text {
+  font-size: 15px;
+  margin-top: 20px;
+}
+
+.popup-image {
+  width: 180px;
+  height: 180px;
+  margin: 20px auto;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.signup-button, .login-button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  background-color: #000;
+  color: #fff;
+  font-size: 16px;
+}
+
+.or-text {
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.logout-button {
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: 30px;
+  width: 20%;
+  cursor: pointer;
+  border: 1px solid #fff;
+  transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #666;
+}
+
+.logout-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-icon {
+  height: 27px;
+  width: 27px;
+  object-fit: cover; /* Corrected property */
+  border-radius: 1px;
+}
+
+.logout-text {
+  font-size: 1.125rem;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0;
+    width: 100%;
+    gap: 20px;
+    height: 100%;
+  }
+
+  .logo {
+    width: 50%;
+    height: auto;
+    top: 10px;
+  }
+
+  .nav-buttons-container {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-buttons {
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 0;
+    width: 100%;
+    align-items: center;
+  }
+
+  .nav-button {
+    font-size: 1rem;
+  }
+
+  .cart-button {
+    align-items: center;
+  }
+
+  .popup-inner {
+    width: 80%;
+  }
+
+  .logout-button {
+    width: 50%;
+    padding: 10px;
+  }
+
+  .logout-content {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    width: 30%; /* Adjust logo size further for smaller screens */
+    top: 5px;
+  }
+
+  .nav-button {
+    font-size: 0.875rem; /* Adjust font size for smaller screens */
+  }
+
+  .logout-button {
+    width: 80%; /* Adjust button width for smaller screens */
+  }
+}
+@media (max-width: 800px) {
+  .logo {
+    width: 30%; /* Adjust logo size further for smaller screens */
+    top: 5px;
+  }
+
+  .nav-button {
+    font-size: 0.875rem; /* Adjust font size for smaller screens */
+  }
+
+  .logout-button {
+    width: 80%; /* Adjust button width for smaller screens */
+  }
+}
