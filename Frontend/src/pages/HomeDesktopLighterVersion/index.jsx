@@ -11,6 +11,11 @@ import { IoMdClose } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import PopUpImage from "./../../assets/images/logo.png";
+import NavBar from './NavBar'; // Adjust the path as necessary
+import CustomComponent from "./CustomComponent";
+import AboutUsComponent from "./AboutUsComponent";
+import UberEatsStatsComponent from "./UberEatsStatsComponent";
+import FooterComponent from "./FooterComponent";
 
 const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -62,7 +67,7 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
     "images/35.jpg",
     "images/36.jpg",
     "images/37.jpg",
-      
+
     "images/39.jpg",
     "images/40.jpg",
     "images/41.jpg",
@@ -123,133 +128,17 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                 />
                 {/* <Text className="mb-2">Welcome, {user.name}</Text> */}
               </div>
-
-              <div className="flex md:flex-col flex-row gap-[53px] items-center justify-end md:ml-[0] ml-[383px] mt-[38px] w-3/4 md:w-full">
-                <div className="flex relative w-3/4 md:w-full">
-                  <div className="flex ml-[-93px] items-center gap-4">
-                    <button className="text-white font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
-                      Home
-                    </button>
-                    <button
-                      className="text-black-900_01 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button"
-                      onClick={() => navigate("/loginorreg")}
-                    >
-                      Browse Menu
-                    </button>
-                    <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
-                      Special Offers
-                    </button>
-                    <button
-                      className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button"
-                      onClick={() => navigate("/gallery")}
-                    >
-                      Restaurants
-                    </button>
-                    <button
-                      className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button"
-                      onClick={handleButtonClick}
-                    >
-                      Track Order
-                    </button>
-
-                    <button
-                      className="flex items-center text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button relative"
-                      onClick={handleButtonClick}
-                    >
-                      <img
-                        src="images/cart.svg"
-                        alt="Cart"
-                        className="h-6 w-20 mr-2" // Adjust the size as needed and add margin-right
-                      />
-                      <span>Cart</span>
-                      {cartItemCount > 0 && (
-                        <span className="absolute top-0 right-0 bg-red-500 text-white font-bold rounded-full px-2">
-                          {cartItemCount}
-                        </span>
-                      )}
-                    </button>
-
-                    {isPopupOpen && (
-                      <div className="popup-overlay">
-                        <div className="popup-inner">
-                          <button
-                            onClick={handleClosePopup}
-                            className="popup-inner-close-button"
-                          >
-                            <IoMdClose
-                              style={{
-                                width: "40px",
-                                height: "40px",
-                              }}
-                            />
-                          </button>
-                          <h2
-                            style={{
-                              fontWeight: "bold",
-                              textAlign: "center",
-                              fontSize: "40px",
-                            }}
-                          >
-                            Please SignUp or Login
-                          </h2>
-
-                          <p
-                            style={{
-                              textAlign: "center",
-                              fontSize: "15px",
-                              marginTop: "20px",
-                            }}
-                          >
-                            Dear Customer, You need to login or signup to use
-                            this feature.
-                          </p>
-                          <img
-                            src={PopUpImage}
-                            alt="Popup"
-                            style={{
-                              width: "180px",
-                              height: "180px",
-                              margin: "20px auto",
-                            }}
-                          />
-                          <div className="button-container">
-                            <button
-                              className="signup-button"
-                              onClick={() => navigate("/loginorreg")} // Example of navigation
-                            >
-                              Sign Up
-                            </button>
-                            <div className="or-text">or</div>
-                            <button
-                              className="login-button"
-                              onClick={() => navigate("/loginorreg")} // Example of navigation
-                            >
-                              Login
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-                <button
-                  className="bg-black-900_01 flex flex-col font-poppins items-center justify-center p-4 rounded-[30px] w-[20%] md:w-full focus:outline-none border border-white-A700 hover:bg-gray-400 transition duration-300 "
-                  to="#"
-                  onClick={() => {
-                    logoutUser(navigate); // Assuming logoutUser is a function that logs out the user
-                    handleLogout(); // Assuming handleLogout clears the user's cart
-                  }}
-                >
-                  <div className="flex flex-row gap-3 items-center justify-center w-[81%] md:w-full">
-                    <img
-                      className="h-[27px] md:h-auto object-cover rounded-[1px] w-[19%]"
-                      src="images/img_maleuser.png"
-                      alt="maleuser"
-                    />
-                    <span className="text-lg text-white-A700">Logout</span>
-                  </div>
-                </button>
-              </div>
+              <NavBar
+        navigate={navigate}
+        handleButtonClick={handleButtonClick}
+        handleClosePopup={handleClosePopup}
+        isPopupOpen={isPopupOpen}
+        cartItemCount={cartItemCount}
+        logoutUser={logoutUser}
+        handleLogout={handleLogout}
+        PopUpImage={PopUpImage}
+      />
+              
               <div className="font-poppins h-[610px] md:h-[651px] mt-[41px] relative w-full">
                 <div className="slideshow-container">
                   {images.map((image, index) => (
@@ -285,11 +174,7 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
               </div>
             </div>
           </div>
-          <Img
-            className="absolute h-[239px] left-[0] object-cover top-[2%] w-[17%]"
-            src="images/img_32700620370740.png"
-            alt="32700620370740"
-          />
+          
         </div>
         <div className="flex flex-col font-poppins md:gap-10 gap-[63px] items-center justify-start max-w-[1528px] mt-[53px] mx-auto md:px-5 w-full">
           <div className="flex flex-col items-center justify-start w-full">
@@ -523,7 +408,7 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                       size="txtPoppinsBold18"
                     >
                       Pizza
-                    </Text>
+                    </Text> 
                   </div>
                 </a>
 
@@ -587,384 +472,12 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
               alt="32901370112176"
             />
             <div className="absolute flex flex-col md:gap-10 gap-[532px] h-full inset-[0] items-center justify-center m-auto w-[90%]">
-              <div className="md:h-[1089px] h-[1106px] relative w-full">
-                <div className="md:h-[1089px] h-[1106px] m-auto w-full">
-                  <div className="absolute bg-gradient  bottom-[0] flex flex-col inset-x-[0] justify-start mx-auto p-[21px] sm:px-5 rounded-[12px] w-full">
-                    <Img
-                      className="h-[239px] md:h-auto md:ml-[0] ml-[963px] mt-[37px] object-cover w-[18%] sm:w-full"
-                      src="images/img_32700620370740.png"
-                      alt="32700620370740_One"
-                    />
-                    <div className="bg-black-900_01 flex flex-col items-end justify-start md:ml-[0] ml-[544px] mt-[82px] p-[31px] sm:px-5 rounded-[75px]">
-                      <Text
-                        className="mb-1.5 sm:text-[40px] md:text-[46px] text-[54px] text-black-900_01 tracking-[-3.24px]"
-                        size="txtPoppinsMedium54"
-                      >
-                        <span className="text-white-A700 font-poppins text-left font-medium">
-                          <a
-                            href="javascript:"
-                            className="text-orange-600 font-poppins text-left font-medium underline mr-2"
-                          >
-                            Personalised
-                          </a>
-                          <span className="text-white-A700 font-poppins text-left font-medium">
-                            & Instant
-                          </span>
-                        </span>
-                      </Text>
-                    </div>
-
-                    <Text
-                      className="md:ml-[0] ml-[966px] mt-10 text-2xl md:text-[22px] text-black-900 sm:text-xl tracking-[-1.44px] w-[33%] sm:w-full"
-                      size="txtPoppinsRegular24"
-                    >
-                      Download the Leon’s Kitchen app for faster ordering
-                    </Text>
-                    <Img
-                      className="h-[102px] mb-[229px] md:ml-[0] ml-[898px] mt-[38px]"
-                      src="images/img_appstorebadgesen.svg"
-                      alt="appstorebadgese"
-                    />
-                  </div>
-                 
-                </div>
-                <Img
-                  className="absolute h-[1089px] inset-y-[0] left-[0] my-auto object-cover w-[55%] mt-10"
-                  src="images/img_friendslaughin_1089x832.png"
-                  alt="friendslaughin_One"
-                />
-              </div>
-              <div className="bg-blue_gray-100_75 flex flex-col items-center justify-center p-[108px] md:px-10 sm:px-5 rounded-[12px] w-[99%] md:w-full">
-                <div className="flex flex-col md:gap-10 gap-[63px] items-center justify-start mb-[5px] mt-2 w-[99%] md:w-full">
-                  <div className="flex md:flex-col flex-row md:gap-10 items-center justify-between w-[97%] md:w-full">
-                    <Text
-                      className="md:text-3xl sm:text-[28px] text-[32px] text-black-900"
-                      size="txtPoppinsBold32"
-                    >
-                      Know more about us!
-                    </Text>
-                  </div>
-                  <div className="md:h-[1588px] sm:h-[526px] h-[529px] relative w-full">
-                    <div className="absolute bg-white-A700 flex flex-col h-max inset-[0] items-end justify-center m-auto p-5 rounded-[12px] w-full">
-                      <div className="flex md:flex-col flex-row md:gap-5 items-start justify-end my-[11px] w-[96%] md:w-full">
-                        <div className="flex flex-col justify-start md:mt-0 mt-11 w-[31%] md:w-full">
-                          <div className="bg-white flex flex-col items-end justify-start mr-4 p-2.5 rounded-[31px] hover:bg-orange-600">
-                            <Text
-                              className="my-[7px] text-black-900 text-lg tracking-[-0.36px] mr-10"
-                              size="txtPoppinsBold18Black900"
-                            >
-                              How does Leon’s Kitchen work?
-                            </Text>
-                          </div>
-                          <div className="bg-white flex flex-col items-end justify-start mr-6 p-2.5 rounded-[31px] hover:bg-orange-600 ">
-                            <Text
-                              className="ml-2.5 md:ml-[0] mt-2 text-black-900_01 text-lg tracking-[-0.36px] mr-4"
-                              size="txtPoppinsBold18"
-                            >
-                              What payment methods are accepted?
-                            </Text>
-                          </div>
-                          <div className="flex flex-col gap-8 items-center justify-start ml-9 md:ml-[0] mt-[33px]">
-                            <div className="bg-white flex flex-col items-end justify-start mr-4 p-2.5 rounded-[31px] hover:bg-orange-600">
-                              <Text
-                                className="text-black-900_01 text-lg tracking-[-0.36px]"
-                                size="txtPoppinsBold18"
-                              >
-                                Can I track my order in real-time?
-                              </Text>
-                            </div>
-                            <div className="bg-white flex flex-col items-end justify-start mr-4 p-2.5 rounded-[31px] hover:bg-orange-600">
-                            <Text
-                              className="text-black-900_01 text-center text-lg tracking-[-0.36px]"
-                              size="txtPoppinsBold18"
-                            >
-                              Is dilivery available in my area?
-                            </Text>
-                            </div>
-                          </div>
-                        </div>
-                        <Line className="bg-black-900 h-[463px] md:h-px md:ml-[0] ml-[29px] md:w-full w-px" />
-                        <div className="flex flex-col gap-[33px] items-center justify-start md:ml-[0] ml-[42px] md:mt-0 mt-[54px] w-[64%] md:w-full">
-                          <div className="gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 items-center justify-between w-full">
-                            <div className="bg-blue_gray-100 flex flex-1 flex-col items-center justify-end p-[25px] sm:px-5 rounded-[12px] w-full">
-                              <Text
-                                className="mt-2 text-black-900_01 text-center text-lg tracking-[-0.36px]"
-                                size="txtPoppinsBold18"
-                              >
-                                Place an Order!
-                              </Text>
-                              <Img
-                                className="h-32 md:h-auto mt-3.5 object-cover w-32"
-                                src="images/img_orderfood1.png"
-                                alt="orderfoodOne"
-                              />
-                              <Text
-                                className="mt-1.5 text-base text-black-900 text-center tracking-[-0.32px]"
-                                size="txtPoppinsMedium16"
-                              >
-                                <>
-                                  Place order through our
-                                  <br />
-                                  Website
-                                </>
-                              </Text>
-                            </div>
-                            <div className="bg-blue_gray-100 flex flex-1 flex-col items-center justify-center p-5 rounded-[12px] w-full">
-                              <Text
-                                className="mt-4 text-black-900_01 text-center text-lg tracking-[-0.36px]"
-                                size="txtPoppinsBold18"
-                              >
-                                Track Progress
-                              </Text>
-                              <Img
-                                className="h-[115px] md:h-auto mt-[18px] object-cover w-[115px]"
-                                src="images/img_food1.png"
-                                alt="foodOne"
-                              />
-                              <Text
-                                className="mb-[5px] mt-3 text-base text-black-900 text-center tracking-[-0.32px]"
-                                size="txtPoppinsMedium16"
-                              >
-                                <>
-                                  You can track your order
-                                  <br />
-                                  status with delivery time
-                                </>
-                              </Text>
-                            </div>
-                            <div className="bg-blue_gray-100 flex flex-1 flex-col items-center justify-center p-5 rounded-[12px] w-full">
-                              <Text
-                                className="mt-[11px] mx-auto text-black-900_01 text-center text-lg tracking-[-0.36px]"
-                                size="txtPoppinsBold18"
-                              >
-                                Get your Order!
-                              </Text>
-                              <Img
-                                className="h-[150px] md:h-auto mt-[18px] object-cover w-[115px]"
-                                src="images/img_order1.png"
-                                alt="orderOne"
-                                style={{
-                                  height: "130px",
-                                }}
-                              />
-                              <Text
-                                className="mt-[5px] mx-auto text-base text-black-900 text-center tracking-[-0.32px]"
-                                size="txtPoppinsMedium16"
-                              >
-                                <>
-                                  Receive your order at a<br />
-                                  lighting fast speed!
-                                </>
-                              </Text>
-                            </div>
-                          </div>
-                          <Text
-                            className="text-base text-black-900_01 text-center tracking-[-0.32px] w-[83%] sm:w-full"
-                            size="txtPoppinsRegular16Black90001"
-                          >
-                            leonskitchen.lk simplifies the food ordering
-                            process. Browse through our diverse menu, select
-                            your favorite dishes, and proceed to checkout. Your
-                            delicious meal will be on its way to your doorstep
-                            in no time!
-                          </Text>
-                        </div>
-                      </div>
-                    </div>
-                    <Line className="absolute bg-white-A700_19 h-[526px] inset-y-[0] left-[38%] my-auto w-px" />
-                  </div>
-                </div>
-              </div>
+              <CustomComponent/>
+              <AboutUsComponent/>
             </div>
           </div>
-          <div className="bg-lime-300_a5 flex md:flex-col flex-row md:gap-5 items-start justify-start max-w-[1528px] mt-[43px] mx-auto p-6 md:px-5 rounded-[12px] w-full">
-            <Img
-              className="md:flex-1 h-[88px] sm:h-auto md:ml-[0] ml-[22px] md:mt-0 mt-[5px] object-cover w-[8%] md:w-full"
-              src="images/img_download1removebgpreview.png"
-              alt="download1remove"
-            />
-            <Text
-              className="md:mt-0 mt-[25px] md:text-3xl sm:text-[28px] text-[32px] text-center text-green-800_dd"
-              size="txtPoppinsBold32Green800dd"
-            >
-              Uber Eats
-            </Text>
-            <Line className="bg-green-800 h-[100px] md:h-px md:ml-[0] ml-[63px] md:mt-0 my-[5px] md:w-full w-px" />
-            <Text
-              className="leading-[38.00px] md:ml-[0] ml-[68px] md:mt-0 mt-5 text-2xl md:text-[22px] text-center text-light_green-900 sm:text-xl"
-              size="txtPoppinsBold24Lightgreen900"
-            >
-              <>
-                2500+
-                <br />
-                Orders Delivered
-              </>
-            </Text>
-            <Line className="bg-green-800_01 h-[100px] md:h-px md:ml-[0] ml-[43px] md:mt-0 my-[5px] md:w-full w-px" />
-            <Text
-              className="leading-[38.00px] md:ml-[0] ml-[90px] md:mt-0 mt-5 text-2xl md:text-[22px] text-center text-light_green-900_01 sm:text-xl"
-              size="txtPoppinsBold24Lightgreen90001"
-            >
-              <>
-                5000+
-                <br />
-                Food items
-              </>
-            </Text>
-          </div>
-          <footer className="flex items-center justify-center mt-6 md:px-5 w-full">
-            <div className="flex flex-col items-center justify-center w-full">
-              <div className="md:h-[1222px] sm:h-[368px] h-[392px] relative w-full">
-                <div className="absolute bg-blue_gray-100_90 bottom-[0] flex flex-col inset-x-[0] items-end justify-end mx-auto md:pl-10 sm:pl-5 pl-[43px] py-[43px] w-full">
-                  <div className="flex flex-col justify-start mt-[47px] w-[96%] md:w-full">
-                    <div className="flex md:flex-col flex-row md:gap-5 items-center justify-end md:ml-[0] ml-[512px] w-[58%] md:w-full">
-                      <Text
-                        className="text-black-900_01 text-lg"
-                        size="txtPoppinsBold18"
-                      >
-                        Get Exclusive Deals in your Inbox
-                      </Text>
-                      <Text
-                        className="md:ml-[0] ml-[223px] text-black-900_01 text-lg"
-                        size="txtPoppinsBold18"
-                      >
-                        Legal Pages
-                      </Text>
-                      <Text
-                        className="md:ml-[0] ml-[141px] text-black-900_01 text-lg"
-                        size="txtPoppinsBold18"
-                      >
-                        Important Links
-                      </Text>
-                    </div>
-                    <div className="flex md:flex-col flex-row gap-10 items-start justify-start w-full">
-                      <div className="flex md:flex-1 flex-col gap-[11px] items-start justify-start md:mt-0 mt-[27px] w-[62%] md:w-full">
-                        <div className="flex md:flex-col flex-row md:gap-10 items-start justify-between w-full">
-                          <Img
-                            className="h-[53px] md:mt-0 mt-[45px]"
-                            src="images/img_appstorebadgesen.svg"
-                            alt="appstorebadgese_One"
-                          />
-                          <div className="flex flex-col gap-2 justify-start mb-2.5">
-                            <div className="flex relative w-full border rounded-md border-gray-500">
-                              <Input
-                                name="email"
-                                placeholder="youremail@gmail.com"
-                                className="p-2  placeholder:text-black-900_99 text-[15px] text-left w-full mr-2"
-                                wrapClassName="my-auto w-[79%] z-[1]"
-                                type="email"
-                              ></Input>
-                              <Button
-                                className="cursor-pointer font-medium leading-[normal] min-w-[171px] my-auto rounded-[29px] text-center text-lg z-[1]"
-                                color="orange_600"
-                                size="xs"
-                              >
-                                Subscribe
-                              </Button>
-                            </div>
-                            <Text
-                              className="md:ml-[0] ml-[30px] text-[13px] text-black-900_01"
-                              size="txtPoppinsRegular13Black90001"
-                            >
-                              <span className="text-black-900_01 font-poppins text-left font-normal">
-                                we won't spam, read our{" "}
-                              </span>
-                              <a
-                                href="javascript:"
-                                className="text-black-900_01 font-poppins text-left font-normal underline"
-                              >
-                                email policy
-                              </a>
-                            </Text>
-                          </div>
-                        </div>
-                        <div className="flex md:flex-col flex-row md:gap-5 items-start justify-start w-[77%] md:w-full">
-                          <Text
-                            className="md:mt-0 mt-[11px] text-[15px] text-black-900"
-                            size="txtPoppinsRegular15"
-                          >
-                            <>
-                              Leon's Kitchen - Galle
-                              <br />
-                              Best in Galle
-                            </>
-                          </Text>
-                          <Img
-                            className="h-[45px] md:h-auto md:ml-[0] ml-[226px] object-cover w-[45px]"
-                            src="images/img_facebook.png"
-                            alt="facebook"
-                          />
-                          <Img
-                            className="h-[45px] md:h-auto ml-3.5 md:ml-[0] object-cover w-[45px]"
-                            src="images/img_instagram.png"
-                            alt="instagram"
-                          />
-                          <Img
-                            className="h-[45px] md:h-auto ml-3.5 md:ml-[0] object-cover w-[45px]"
-                            src="images/img_tiktok.png"
-                            alt="tiktok"
-                          />
-                          <Img
-                            className="h-[45px] md:h-auto ml-3.5 md:ml-[0] object-cover w-[45px]"
-                            src="images/img_snapchat.png"
-                            alt="snapchat"
-                          />
-                        </div>
-                      </div>
-                      <Text
-                        className="leading-[43.00px] text-[15px] text-black-900 underline"
-                        size="txtPoppinsRegular15"
-                      >
-                        <>
-                          Terms and conditions
-                          <br />
-                          Privacy
-                          <br />
-                          Cookies
-                          <br />
-                          Modern Slavery Statement
-                        </>
-                      </Text>
-                      <Text
-                        className="sm:flex-1 leading-[43.00px] text-[15px] text-black-900 underline w-[18%] sm:w-full"
-                        size="txtPoppinsRegular15"
-                      >
-                        <>
-                          Get help
-                          <br />
-                          Add your restaurant
-                          <br />
-                          Sign up to deliver
-                          <br />
-                          Create a business account
-                        </>
-                      </Text>
-                    </div>
-                  </div>
-                </div>
-                <Img
-                  className="absolute h-[239px] left-[7%] object-cover top-[0] w-[16%]"
-                  src="images/img_32700620370740.png"
-                  alt="32700620370740_Two"
-                />
-              </div>
-              <div className="bg-black-900_01 flex sm:flex-col flex-row md:gap-10 items-start justify-between p-[19px] w-full">
-                <Text
-                  className="mb-0.5 ml-24 sm:ml-[0] sm:mt-0 mt-2 text-[15px] text-white-A700"
-                  size="txtPoppinsRegular15WhiteA700"
-                >
-                  leonskitchen.lk Copyright 2023, All Rights Reserved.
-                </Text>
-                <Text
-                  className="mr-20 sm:mt-0 mt-[11px] text-[15px] text-lime-300"
-                  size="txtPoppinsRegular15Lime300"
-                >
-                  Privacy Policy Terms Pricing Do not sell or share my personal
-                  information
-                </Text>
-              </div>
-            </div>
-          </footer>
+          <UberEatsStatsComponent/>
+          <FooterComponent/>
         </div>
       </div>
     </>
