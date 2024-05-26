@@ -85,10 +85,10 @@
 }
 
 /* Styles for screens less than 1600px */
-@media only screen and (max-width: 1600px) {
+@media only screen and (max-width: 1000px) {
   .container,
   .inner-container {
-    height: auto; /* Adjust the height for mobile */
+    height: 1000px; /* Adjust the height for mobile */
   }
 
   .content {

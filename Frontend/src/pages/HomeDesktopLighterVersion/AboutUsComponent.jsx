@@ -13,23 +13,23 @@ const AboutUsComponent = () => {
           <div className="absolute bg-white-A700 flex flex-col h-max inset-[0] items-end justify-center m-auto p-5 rounded-[12px] w-full">
             <div className="flex md:flex-col flex-row md:gap-5 items-start justify-end my-[11px] w-[96%] md:w-full">
               <div className="flex flex-col justify-start md:mt-0 mt-11 w-[31%] md:w-full">
-                <div className="bg-white flex flex-col items-end justify-start mr-4 p-2.5 rounded-[31px] hover:bg-orange-600">
+                <div className="bg-white flex flex-col items-end justify-start mr-4 p-2.5 rounded-[31px] hover:bg-orange-600 md:mr-0">
                   <p className="my-[7px] text-black-900 text-lg tracking-[-0.36px] mr-10 font-bold">
                     How does Leon’s Kitchen work?
                   </p>
                 </div>
-                <div className="bg-white flex flex-col items-end justify-start mr-6 p-2.5 rounded-[31px] hover:bg-orange-600">
+                <div className="bg-white flex flex-col items-end justify-start mr-6 p-2.5 rounded-[31px] hover:bg-orange-600 md:mr-0">
                   <p className="ml-2.5 md:ml-[0] mt-2 text-black-900_01 text-lg tracking-[-0.36px] mr-4 font-bold">
                     What payment methods are accepted?
                   </p>
                 </div>
                 <div className="flex flex-col gap-8 items-center justify-start ml-9 md:ml-[0] mt-[33px]">
-                  <div className="bg-white flex flex-col items-end justify-start mr-4 p-2.5 rounded-[31px] hover:bg-orange-600">
+                  <div className="bg-white flex flex-col items-end justify-start mr-4 p-2.5 rounded-[31px] hover:bg-orange-600 md:mr-0">
                     <p className="text-black-900_01 text-lg tracking-[-0.36px] font-bold">
                       Can I track my order in real-time?
                     </p>
                   </div>
-                  <div className="bg-white flex flex-col items-end justify-start mr-4 p-2.5 rounded-[31px] hover:bg-orange-600">
+                  <div className="bg-white flex flex-col items-end justify-start mr-4 p-2.5 rounded-[31px] hover:bg-orange-600 md:mr-0">
                     <p className="text-black-900_01 text-center text-lg tracking-[-0.36px] font-bold">
                       Is delivery available in my area?
                     </p>

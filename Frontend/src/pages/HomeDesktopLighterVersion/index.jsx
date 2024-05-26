@@ -11,7 +11,7 @@ import { IoMdClose } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import PopUpImage from "./../../assets/images/logo.png";
-import NavBar from './NavBar'; // Adjust the path as necessary
+import NavBar from "./NavBar"; // Adjust the path as necessary
 import CustomComponent from "./CustomComponent";
 import AboutUsComponent from "./AboutUsComponent";
 import UberEatsStatsComponent from "./UberEatsStatsComponent";
@@ -129,16 +129,16 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                 {/* <Text className="mb-2">Welcome, {user.name}</Text> */}
               </div>
               <NavBar
-        navigate={navigate}
-        handleButtonClick={handleButtonClick}
-        handleClosePopup={handleClosePopup}
-        isPopupOpen={isPopupOpen}
-        cartItemCount={cartItemCount}
-        logoutUser={logoutUser}
-        handleLogout={handleLogout}
-        PopUpImage={PopUpImage}
-      />
-              
+                navigate={navigate}
+                handleButtonClick={handleButtonClick}
+                handleClosePopup={handleClosePopup}
+                isPopupOpen={isPopupOpen}
+                cartItemCount={cartItemCount}
+                logoutUser={logoutUser}
+                handleLogout={handleLogout}
+                PopUpImage={PopUpImage}
+              />
+
               <div className="font-poppins h-[610px] md:h-[651px] mt-[41px] relative w-full">
                 <div className="slideshow-container">
                   {images.map((image, index) => (
@@ -174,7 +174,6 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
               </div>
             </div>
           </div>
-          
         </div>
         <div className="flex flex-col font-poppins md:gap-10 gap-[63px] items-center justify-start max-w-[1528px] mt-[53px] mx-auto md:px-5 w-full">
           <div className="flex flex-col items-center justify-start w-full">
@@ -408,7 +407,7 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
                       size="txtPoppinsBold18"
                     >
                       Pizza
-                    </Text> 
+                    </Text>
                   </div>
                 </a>
 
@@ -453,32 +452,36 @@ const HomeDesktopLighterVersionPage = ({ logoutUser, user }) => {
             </div>
           </div>
         </div>
-        <Helmet>
-          <script
-            src="https://static.elfsight.com/platform/platform.js"
-            defer
-          />
-        </Helmet>
-        <div
-          className="elfsight-app-fd76f4b6-e0fc-4e44-98f9-82fc7d69a499"
-          data-elfsight-app-lazy
-          style={{ paddingTop: "30px" }} // Adjust the padding as needed
-        />
-        <div className="flex flex-col font-poppins items-center justify-start mt-5 w-full">
-          <div className="sm:h-[2500px] h-[2520px] md:h-[3135px] md:px-5 relative w-full">
+
+        <div className="flex flex-col font-poppins items-center justify-start mt-5 w-full h-full">
+          <Helmet>
+            <script
+              src="https://static.elfsight.com/platform/platform.js"
+              defer
+            />
+          </Helmet>
+          <CustomComponent />
+
+          <div className="sm:h-[1500px] h-[1590px] md:h-[1135px] md:px-5 relative w-full">
             <Img
               className="absolute bottom-[22%] h-[898px] inset-x-[0] mx-auto object-cover w-full"
               src="images/img_32901370112176.png"
               alt="32901370112176"
             />
-            <div className="absolute flex flex-col md:gap-10 gap-[532px] h-full inset-[0] items-center justify-center m-auto w-[90%]">
-              <CustomComponent/>
-              <AboutUsComponent/>
-            </div>
           </div>
-          <UberEatsStatsComponent/>
-          <FooterComponent/>
+          <AboutUsComponent />
+          <div className="mt-10 md:mt-96">
+      <UberEatsStatsComponent />
+    </div>
         </div>
+        <div className="mt-[10rem] md:mt-[50rem] "
+        style={{
+          width:"100%"
+        }}
+        >
+        <FooterComponent />
+        </div>
+         
       </div>
     </>
   );
