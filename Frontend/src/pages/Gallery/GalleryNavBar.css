@@ -82,7 +82,7 @@
   align-items: center;
 }
 
-.popup-inner {
+.popup-inner-gallery {
   background: #fff;
   padding: 20px;
   border-radius: 8px;
@@ -90,7 +90,6 @@
   position: relative;
   max-width: 400px;
   width: 90%;
-  
 }
 
 .popup-inner-close-button {
@@ -110,7 +109,7 @@
 .popup-title {
   font-weight: bold;
   font-size: 40px;
-  margin-top: 10px;
+  margin-bottom: 20px;
   text-align: center;
 }
 
@@ -131,7 +130,6 @@
   display: flex;
   flex-direction: row;
   gap: 10px;
-  margin-top: -20px;
 }
 
 .signup-button, .login-button {
@@ -220,8 +218,9 @@
     align-items: center;
   }
 
-  .popup-inner {
+  .popup-inner-gallery {
     width: 80%;
+    margin-left: -50px;
   }
 
   .logout-button {
@@ -254,6 +253,7 @@
     width: 30%; /* Adjust logo size further for smaller screens */
     top: 5px;
   }
+  
 
   .nav-button {
     font-size: 0.875rem; /* Adjust font size for smaller screens */
@@ -266,6 +266,7 @@
 
 @media(max-width:600px){
   .popup-inner {
-    height: 1000px;
+    height: 80%; /* Increase height for smaller screens */
+    overflow-y: auto; /* Add scroll if content overflows */
   }
 }
