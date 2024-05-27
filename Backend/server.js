@@ -17,7 +17,9 @@ const bodyParser=require('express').json;
 app.use(bodyParser());
 
 app.use('/user',UserRouter)
-
+app.get('/', (req, res) => {
+    res.send('Welcome to the API');
+  });
 
 app.listen(port,()=>{
     console.log(`Server running on port ${port}`);
