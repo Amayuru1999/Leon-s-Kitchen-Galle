@@ -82,7 +82,7 @@
   align-items: center;
 }
 
-.popup-inner {
+.popup-inner-gallery {
   background: #fff;
   padding: 20px;
   border-radius: 8px;
@@ -218,8 +218,9 @@
     align-items: center;
   }
 
-  .popup-inner {
+  .popup-inner-gallery {
     width: 80%;
+    margin-left: -50px;
   }
 
   .logout-button {
@@ -252,6 +253,7 @@
     width: 30%; /* Adjust logo size further for smaller screens */
     top: 5px;
   }
+  
 
   .nav-button {
     font-size: 0.875rem; /* Adjust font size for smaller screens */

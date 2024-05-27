@@ -11,8 +11,8 @@ import "react-image-lightbox/style.css";
 import { Helmet } from "react-helmet";
 import { Button, Img, Input, Line, List, Text } from "components";
 import { connect } from "react-redux";
-import NavBar from "./NavBar";
-import './NavBar.css'
+import GalleryNavBar from "./GalleryNavBar";
+
 import PopUpImage from "./../../assets/images/logo.png";
 
 const Gallery = ({ logoutUser, user }) => {
@@ -125,9 +125,9 @@ const Gallery = ({ logoutUser, user }) => {
           src="images/img_.png"
           alt="One"
         />
-        <Text className="mb-2 ml-[0px]">Welcome!</Text>
+        {/* <Text className="mb-2 ml-[0px]">Welcome!</Text> */}
 
-        <NavBar
+        <GalleryNavBar
           navigate={navigate}
           handleButtonClick={handleButtonClick}
           handleClosePopup={handleClosePopup}

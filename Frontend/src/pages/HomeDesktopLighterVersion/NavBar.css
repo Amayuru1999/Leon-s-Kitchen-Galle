@@ -90,6 +90,7 @@
   position: relative;
   max-width: 400px;
   width: 90%;
+  
 }
 
 .popup-inner-close-button {
@@ -109,7 +110,7 @@
 .popup-title {
   font-weight: bold;
   font-size: 40px;
-  margin-bottom: 20px;
+  margin-top: 10px;
   text-align: center;
 }
 
@@ -130,6 +131,7 @@
   display: flex;
   flex-direction: row;
   gap: 10px;
+  margin-top: -20px;
 }
 
 .signup-button, .login-button {
@@ -264,7 +266,6 @@
 
 @media(max-width:600px){
   .popup-inner {
-    height: 80%; /* Increase height for smaller screens */
-    overflow-y: auto; /* Add scroll if content overflows */
+    height: 1000px;
   }
 }

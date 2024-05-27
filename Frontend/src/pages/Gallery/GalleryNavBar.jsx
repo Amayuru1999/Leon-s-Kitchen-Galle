@@ -1,9 +1,9 @@
 import React from 'react';
 import { IoMdClose } from "react-icons/io";
 import { Button, Img, Input, Line, List, Text } from "components";
-import './NavBar.css'
+import './GalleryNavBar.css'
 
-const NavBar = ({
+const GalleryNavBar = ({
   navigate,
   handleButtonClick,
   handleClosePopup,
@@ -65,7 +65,7 @@ const NavBar = ({
         </div>
         {isPopupOpen && (
           <div className="popup-overlay">
-            <div className="popup-inner">
+            <div className="popup-inner-gallery">
               <button
                 onClick={handleClosePopup}
                 className="popup-inner-close-button"
@@ -123,4 +123,4 @@ const NavBar = ({
   );
 };
 
-export default NavBar;
+export default GalleryNavBar;
