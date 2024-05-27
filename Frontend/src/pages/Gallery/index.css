@@ -24,8 +24,14 @@
   /* Change background color on hover */
 }
 
+@media (min-width: 1000px) and (max-width: 1600px) {
+  .slideshow-container {
+    margin-top: -110px;
+  }
+}
+
 /* Mobile Responsiveness */
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
   .font-manrope {
     /* Adjust font styles for smaller screens */
     font-size: 16px;
@@ -41,6 +47,7 @@
     position: relative;
     height: 100%;
     width: 100%;
+    margin-top: 0px;
   }
   
   .slideshow-image {

@@ -11,9 +11,21 @@ import "react-image-lightbox/style.css";
 import { Helmet } from "react-helmet";
 import { Button, Img, Input, Line, List, Text } from "components";
 import { connect } from "react-redux";
+import NavBar from "./NavBar";
+import './NavBar.css'
+import PopUpImage from "./../../assets/images/logo.png";
 
 const Gallery = ({ logoutUser, user }) => {
   const navigate = useNavigate();
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [cartItemCount, setCartItemCount] = useState(0);
+  const handleButtonClick = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
   const images = [
     "images/1.jpg",
     "images/2.jpg",
@@ -62,7 +74,6 @@ const Gallery = ({ logoutUser, user }) => {
     "images/45.jpg",
     "images/46.jpg",
     "images/47.jpg",
-   
   ];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
@@ -108,7 +119,27 @@ const Gallery = ({ logoutUser, user }) => {
   return (
     <>
       <div className="flex flex-col gap-5 items-center justify-start w-full">
-        <div className="md:h-[477px] h-[716px] max-w-[1534px] mx-auto md:px-5 relative w-full">
+        
+        <Img
+          className="h-[38px] md:h-auto md:ml-[0] ml-[0px] mt-1 object-cover w-[2%]"
+          src="images/img_.png"
+          alt="One"
+        />
+        <Text className="mb-2 ml-[0px]">Welcome!</Text>
+
+        <NavBar
+          navigate={navigate}
+          handleButtonClick={handleButtonClick}
+          handleClosePopup={handleClosePopup}
+          isPopupOpen={isPopupOpen}
+          cartItemCount={cartItemCount}
+          logoutUser={logoutUser}
+          handleLogout={handleLogout}
+          PopUpImage={PopUpImage}
+        />
+       
+
+        <div className="md:h-[477px] h-[716px] max-w-[1534px] mx-auto md:px-5 relative w-full mt-0">
           <div className="absolute md:h-[477px] h-[697px] inset-[0] justify-center m-auto w-full">
             <div className="absolute bottom-[4%] h-[477px] inset-x-[0] mx-auto w-full">
               <div className="absolute h-[477px] inset-[0] justify-center m-auto w-full">
@@ -139,113 +170,19 @@ const Gallery = ({ logoutUser, user }) => {
                     LEON’S KITCHEN GALLE
                   </Text>
                 </div>
-                <Text
-                  className="absolute bottom-[22%] left-[31%] text-lg text-white-A700"
-                  size="txtPoppinsSemiBold18"
-                >
-                  Delivery in 20-25 Minutes
-                </Text>
-                <Text
-                  className="absolute bottom-[23%] left-[9%] text-lg text-white-A700"
-                  size="txtPoppinsSemiBold18"
-                >
-                  Minimum Order: Rs.1000
-                </Text>
-                <div className="absolute border border-solid border-white-A700 bottom-[19%] flex flex-col items-start justify-end left-[4%] p-3 rounded-[31px] w-[22%]">
-                  <Img
-                    className="h-[34px] md:h-auto md:ml-[0] ml-[21px] mt-[5px] object-cover w-[34px]"
-                    src="images/img_ordercompleted.png"
-                    alt="ordercompleted"
-                  />
-                </div>
-                <div className="absolute border border-solid border-white-A700 bottom-[19%] flex flex-col items-start justify-end left-[26%] p-3.5 rounded-[31px] w-[23%]">
-                  <Img
-                    className="h-[34px] md:h-auto ml-2 md:ml-[0] object-cover w-[34px]"
-                    src="images/img_motocross.png"
-                    alt="motocross"
-                  />
-                </div>
+                
               </div>
             </div>
-            <div className="absolute bg-orange-600 bottom-[0] flex flex-row gap-[13px] items-center justify-center left-[0] p-3.5 rounded-br-[12px] rounded-tr-[12px] w-[22%]">
-              <Img
-                className="h-[29px] md:h-auto ml-[47px] object-cover w-[29px]"
+            <div className="absolute bg-orange-600 bottom-0 flex flex-row gap-3 items-center justify-center left-0 p-3.5 rounded-br-lg rounded-tr-lg w-1/4 md:w-1/3 sm:w-1/2">
+              <img
+                className="h-7 md:h-auto ml-12 sm:ml-4 object-cover w-7"
                 src="images/img_clock_29x29.png"
                 alt="clock"
               />
-              <Text
-                className="mr-[39px] text-lg text-white-A700"
-                size="txtPoppinsSemiBold18"
-              >
+              <span className="mr-10 sm:mr-4 text-lg text-white font-semibold">
                 Open until 10:00 PM
-              </Text>
+              </span>
             </div>
-
-            <div className="absolute flex md:flex-col flex-row font-manrope md:gap-5 inset-x-[0] items-center justify-start mx-auto top-[0] w-[98%]">
-              <Img
-                className="h-[239px] sm:h-auto object-cover w-[18%] md:w-full"
-                src="images/img_32700620370740.png"
-                alt="32700620370740"
-              />
-
-              <div className="h-[45px] md:ml-[0] ml-[331px] relative w-[42%] md:w-full">
-                <div className="flex ml-[-300px] items-center gap-4">
-                  <button
-                    className="text-white font-poppins font-medium text-lg hover-effect focus:outline-none nav-button"
-                    onClick={() => navigate("/")}
-                  >
-                    Home
-                  </button>
-                  <button className="text-black-900_01 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
-                    Browse Menu
-                  </button>
-                  <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
-                    Special Offers
-                  </button>
-                  <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
-                    Restaurants
-                  </button>
-                  <button className="text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button">
-                    Track Order
-                  </button>
-                  <button
-                    className="flex items-center text-black-900 font-poppins font-medium text-lg hover-effect focus:outline-none nav-button relative"
-                    onClick={() => navigate("/orderingpage")}
-                  >
-                    <img
-                      src="images/cart.svg"
-                      alt="Cart"
-                      className="h-6 w-20 mr-1" // Adjust the size as needed and add margin-right
-                    />
-                    <span>Cart</span>
-                  </button>
-                </div>
-              </div>
-              <button
-                className="bg-black-900_01 flex flex-col font-poppins items-center justify-center p-4 rounded-[30px] w-[10%] md:w-full focus:outline-none border border-white-A700 hover:bg-gray-400 transition duration-300 "
-                to="#"
-                onClick={() => {
-                  logoutUser(navigate); // Assuming logoutUser is a function that logs out the user
-                  handleLogout(); // Assuming handleLogout clears the user's cart
-                }}
-              >
-                <div className="flex flex-row gap-3 items-center justify-center w-[81%] md:w-full">
-                  <img
-                    className="h-[27px] md:h-auto object-cover rounded-[1px] w-[19%]"
-                    src="images/img_maleuser.png"
-                    alt="maleuser"
-                  />
-                  <span className="text-lg text-white-A700">Logout</span>
-                </div>
-              </button>
-            </div>
-            
-            <Img
-              className="h-[38px] md:h-auto md:ml-[0] ml-[803px] mt-1 object-cover w-[2%]"
-              src="images/img_.png"
-              alt="One"
-            />
-            <Text className="mb-2 ml-[780px]">Welcome!</Text>
           </div>
         </div>
         <Helmet>
