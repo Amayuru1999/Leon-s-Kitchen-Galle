@@ -40,7 +40,7 @@ transporter.verify((error,success)=>{
 })
 
 //Password handler
-const bcrypt=require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 //path for static verified page
 const path=require("path");
