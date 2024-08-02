@@ -21,11 +21,13 @@ Leon's Kitchen is an online food ordering system for restaurants. This repositor
 
 ## Installation
 
+
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/)
 - [npm](https://www.npmjs.com/)
 - [MongoDB](https://www.mongodb.com/)
+
 
 ### Clone the Repository
 
